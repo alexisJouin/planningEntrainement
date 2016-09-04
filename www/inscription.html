@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Connexion à l'application</title>
+        <title>Inscription</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -23,20 +23,21 @@
         <![endif]-->
 
         <h1>Planning des entrainements Roller Derby</h1>
-        
-        <!--Formulaire de connexion-->
-        <form id="formConnect" class="formConnect" method="POST" action="#">
-            <h2>Connexion</h2>
+
+        <!--Formulaire d' inscription -->
+        <form id="formInscription" class="formConnect" method="POST" action="#">
+            <h2>Inscription</h2>
+            <input id="nom" name="nom" placeholder='Nom'>
+            <input id="prenom" name="prenom" placeholder='Prénom'>
+            <input type="email" id="mail" placeholder='Email'>
             <input id="derbyName" name="derbyName" placeholder='Derby Name'>
-            <input id="password" name="password" placeholder="Mot de passe">
-            <button type="submit" id="submit">Connexion</button>
-            <a href="inscription.html">Pas encore de compte ? Inscrivez-vous ici !</a>
-            <br>
-            <a href="main.html">ACCESS TO MAIN</a>
+            <input type="password" id="password" placeholder="Mot de passe">
+            <input type="password" id="password2" placeholder="Re-tapez le mot de passe">
+            <button type="submit" id="submit">Inscription</button>
+            <a href="index.html">Déjà inscrit ? Connectez-vous ici !</a>
             <br>
             <br>
         </form>
-       
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
@@ -47,10 +48,12 @@
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src='//www.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
+            var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
+            (function (d, t) {
+                var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+                g.src = '//www.google-analytics.com/ga.js';
+                s.parentNode.insertBefore(g, s)
+            }(document, 'script'));
         </script>
     </body>
 </html>

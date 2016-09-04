@@ -11,9 +11,5 @@
             "PACKAGE_NAME": "PlanningEntrainement"
         }
     },
-    "dependent_plugins": {},
-    "modules": [],
-    "plugin_metadata": {
-        "cordova-plugin-whitelist": "1.2.2"
-    }
+    "dependent_plugins": {}
 }

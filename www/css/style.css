@@ -1,0 +1,101 @@
+/* 
+    Created on : 30 juin 2016, 15:30:30
+    Author     : Alexis
+*/
+
+*, form, button, input, ::-webkit-input-placeholder {
+    font-family:"Segoe print", Arial, Helvetica, sans-serif;
+}
+
+form {
+    margin: auto;
+    position: relative;
+    width: 65%;
+    height: auto;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 24px;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 10px;
+    opacity: 0.7;
+    background: rgba(2,112,201,0.7);
+    color: white;
+}
+
+button{
+    width: 30%;
+    display: block;
+    margin: 0 auto;
+    background: rgba(2,112,201,0.7);
+    color: #fff;
+    height: 30px;
+    border:0;
+    margin-bottom: 8px;
+    font-weight: bold;
+    margin-top:20px;
+}
+
+input{
+    background: rgba(255,255,255,0.3);
+    font-size: 18px;
+    width:100%;
+    color:white;
+    margin-top:20px;
+    margin-left: -5px;
+    border-radius: 2px;
+    border:0;
+    padding:5px;
+    display: block;
+    /*margin:0 auto;*/
+}
+
+button:hover{
+    background: rgb(2,112,201);
+    cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+    color: white;
+}
+
+
+#listGroup{
+    display:block;
+    padding: 10px;
+}
+
+#listGroup span{
+    display:block;
+}
+
+#listGroup span:before{
+    content: "- ";
+}
+
+#listGroup span:after{
+    content: " -> REJOINDRE ! ";
+}
+
+footer{
+    background:#ccc;
+    position:absolute;
+    bottom:0;
+    width:100%;
+    padding-top:50px;
+    height:150px;
+}
+
+textarea{
+    background: rgba(255,255,255,0.3);
+    font-size: 18px;
+    width:100%;
+    color:white;
+    margin-top:20px;
+    margin-left: -5px;
+    border-radius: 2px;
+    border:0;
+    padding:5px;
+    display: block;
+    height:150px
+}
