@@ -7,6 +7,12 @@
     font-family:"Segoe print", Arial, Helvetica, sans-serif;
 }
 
+body{
+    cursor:url(../img/roller2.cur)4 12, auto;
+    background: url("../img/backRoller.jpg") no-repeat fixed center;
+    /*height:800px;*/
+}
+
 form {
     margin: auto;
     position: relative;
@@ -98,4 +104,8 @@ textarea{
     padding:5px;
     display: block;
     height:150px
+}
+
+a{
+    color:white;
 }

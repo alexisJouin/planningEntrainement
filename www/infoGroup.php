@@ -6,6 +6,11 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        <script>
+
+
+        </script> 
+        
         <title>Information sur le groupe ??</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +31,7 @@ and open the template in the editor.
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
         <script src="http://mysqljs.com/mysql.js"></script>
+        <script src="js/antipub.js"></script>
     </body>
 
 

@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
+<?php
+    include("include/header.php");
+?>
+       
         <title>Menu Principal</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/style.css">
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
         <script src="js/main.js"></script>
     </head>
     <body>
@@ -50,6 +39,7 @@ and open the template in the editor.
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
         <script src="http://mysqljs.com/mysql.js"></script>
+        <script src="js/antipub.js"></script>
 
     </body>
 </html>

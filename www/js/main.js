@@ -1,5 +1,7 @@
 $(document).ready(function () {
-    $("#creationMove").click(function(){
-        window.location("creationGroup.html");
+    $("#creationMove").click(function () {
+        window.location.assign("creationGroup.php");
     });
+
+
 });
