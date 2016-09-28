@@ -2,6 +2,14 @@
 
 require_once '../include/connexionBDD.php';
 // connexion avec la base de données
+$derby_name =$_POST['derby_name'];
+$email =$_POST['email'];
+$sexe =$_POST['sexe'];
+$photo =$_POST['photo'];
+$mdp =$_POST['password'];
+//utf8_encode($derby_name);
+//utf8_encode($mdp);
+
 
 try {
 
@@ -19,7 +27,7 @@ try {
     else if($_POST['derby_name'] != $membre['derby_name']) {
         echo "1"; // on 'retourne' la valeur 1 au javascript si c'est bon
         $res = null;
-        $res = $dbh->prepare("INSERT INTO player (`nom`, `prenom`, `derby_name`, `mdp`) VALUES (' $_POST[nom]',' $_POST[prenom]' , '$_POST[derby_name]', ' $_POST[password]')");
+        $res = $dbh->prepare("INSERT INTO player (`derby_name`, `nom`, `prenom`,`sexe`, `email`, `photo`,  `mdp`) VALUES ('$derby_name', '$_POST[nom]','$_POST[prenom]' ,'$sexe', '$email', '$photo',  '$mdp')");
         $res->execute();
     }
     else{

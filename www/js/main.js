@@ -1,7 +1,9 @@
 $(document).ready(function () {
     $("#creationMove").click(function () {
-        window.location.assign("creationGroup.php");
+        window.location.href = "creationGroup.php";
     });
+    
+//     alert($(".derby_name_session"));
 
 
 });
