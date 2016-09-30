@@ -27,24 +27,10 @@ style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la connexion,\n\
                 else // si la connexion en php a fonctionnée
                 {
 
-                    $("div#connexion").html("<span id=\"confirmMsg\">Vous &ecirc;tes maintenant connect&eacute;.</span>");
+                    $("div#connexion").html("<span id=\"confirmMsg\">Vous &ecirc;tes maintenant connect&eacute;.</span>");            
                     // on désactive l'affichage du formulaire et on affiche un message de bienvenue à la place
                     alert(msg);
-                    
-                    
-
-                    var parameters = location.search.substring(1).split("&");
-
-                    var temp = parameters[0].split("=");
-                    l = unescape(temp[1]);
-                    temp = parameters[1].split("=");
-                    p = unescape(temp[1]);
-                    document.getElementById("derby_name").innerHTML = l;
-
-
-
-//                    window.location.assign("main.php&derby_name="+msg);
-                    window.location.assign("main.php");
+                    window.location.href = "main.php";
 
                 }
             },

@@ -29,7 +29,7 @@ try {
         $_SESSION['id'] = $membre['id'];
         $_SESSION['derby_name'] = $derby_name_session;
         
-        $_SESSION['PHPSESSID'] = $id_session;
+//        $_SESSION['PHPSESSID'] = $id_session;
 
 
         echo $derby_name_session; // on 'retourne' la valeur 1 au javascript si la connexion est bonne

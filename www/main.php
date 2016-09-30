@@ -1,16 +1,15 @@
 <?php
     include("include/header.php");
-    
-    if (!isset($_SESSION['id'])) { // Si l'utilisateur n'a pas encore d'ID de session
-            $_SESSION['id'] = $_SESSION['PHPSESSID']; // Bah on en recréer un
-            $_SESSION['derby_name'] = $_COOKIE['derby_name']; // Bah on en recréer un
+    session_start();
+    if(!isset($_SESSION['sid'])) { // Si l'utilisateur n'a pas encore d'ID de session
+        $_SESSION['sid'] = uniqid(); // Bah on en recréer un
     }
-    else { // Si l'ID de session de la barre d'adresse n'est pas le bon ID
-        header('Location: index.php'); // Redirection powa !
+     
+    if($_GET['sid']!=$_SESSION['sid']) { // Si l'ID de session de la barre d'adresse n'est pas le bon ID
+        header('Location: 404.html'); // Redirection powa !
         die(); // Et argh, on tue le script
     }
     
-    echo(session_status());
     
 ?>
     <script src="js/uikit/uikit.min.js"></script>
@@ -27,8 +26,8 @@
     </head>
     <body>
         
-        <p>Bonjour <?php echo  $_SESSION['id']; ?></p>
-
+        <p>Bonjour <?php echo  $_SESSION['derby_name']; ?></p>
+        <a href="script.php?sid=<?php echo $_SESSION['sid']; ?>">lien</a>
         <button id="EditProfilMove">Votre Porfil</button>
         
         <!-- Cas où l'untilisateur n'a aucune affiliation -->
