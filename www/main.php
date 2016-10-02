@@ -1,14 +1,14 @@
 <?php
     include("include/header.php");
     session_start();
-    if(!isset($_SESSION['sid'])) { // Si l'utilisateur n'a pas encore d'ID de session
-        $_SESSION['sid'] = uniqid(); // Bah on en recréer un
-    }
-     
-    if($_GET['sid']!=$_SESSION['sid']) { // Si l'ID de session de la barre d'adresse n'est pas le bon ID
-        header('Location: 404.html'); // Redirection powa !
-        die(); // Et argh, on tue le script
-    }
+//    if(!isset($_SESSION['sid'])) { // Si l'utilisateur n'a pas encore d'ID de session
+//        $_SESSION['sid'] = uniqid(); // Bah on en recréer un
+//    }
+//     
+//    if($_GET['sid']!=$_SESSION['sid']) { // Si l'ID de session de la barre d'adresse n'est pas le bon ID
+//        header('Location: 404.html'); // Redirection powa !
+//        die(); // Et argh, on tue le script
+//    }
     
     
 ?>
@@ -27,6 +27,7 @@
     <body>
         
         <p>Bonjour <?php echo  $_SESSION['derby_name']; ?></p>
+        <p>id : <?php echo  $_SESSION['id']; ?></p>
         <a href="script.php?sid=<?php echo $_SESSION['sid']; ?>">lien</a>
         <button id="EditProfilMove">Votre Porfil</button>
         

@@ -9,7 +9,7 @@
 
 body{
     cursor:url(../img/roller2.cur)4 12, auto;
-    background: url("../img/backRoller.jpg") no-repeat fixed center;
+
     /*height:800px;*/
 }
 
@@ -160,4 +160,9 @@ a{
     width:50%;
     height:250px;
     margin-left: 25%;
+    background: url("../img/backRoller.jpg") no-repeat center;
+}
+
+#formEditionCompte input{
+    margin-top: 0px;
 }
