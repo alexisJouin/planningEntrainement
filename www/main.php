@@ -1,15 +1,10 @@
 <?php
     include("include/header.php");
     session_start();
-//    if(!isset($_SESSION['sid'])) { // Si l'utilisateur n'a pas encore d'ID de session
-//        $_SESSION['sid'] = uniqid(); // Bah on en recréer un
-//    }
-//     
-//    if($_GET['sid']!=$_SESSION['sid']) { // Si l'ID de session de la barre d'adresse n'est pas le bon ID
-//        header('Location: 404.html'); // Redirection powa !
-//        die(); // Et argh, on tue le script
-//    }
-    
+    if(!isset($_SESSION['id'])) { // Si l'utilisateur n'a pas encore d'ID de session
+        header('Location: index.php'); // Redirection powa !
+        die(); // Et argh, on tue le script
+    }  
     
 ?>
     <script src="js/uikit/uikit.min.js"></script>

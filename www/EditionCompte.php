@@ -26,10 +26,10 @@ include("include/header.php");
         <label for="photoPlayer">Vous pouvez modifier votre photo pour votre profil :</label>
         <input type="file" name="image" id="photoPlayer" accept="image/*;capture=camera" style="margin-top: 0px;">
         <br>
-        <label for="password">Rentrez votre ancien mot de passe pour le changer :</label>
+        <label for="password"><u><b>Rentrez votre ancien mot de passe valider les changement ! :</b></u></label>
         <input type="password" id="password" placeholder="Ancien mot de passe" required style="margin-top: 10px">
-        <input type="password" id="password2" placeholder="Nouveau mot de passe" required style="margin-top: 10px">
-        <input type="password" id="password3" placeholder="Re-tapez le mot de passe" required style="margin-top: 10px">
+        <input type="password" id="password2" placeholder="Nouveau mot de passe"  style="margin-top: 10px">
+        <input type="password" id="password3" placeholder="Re-tapez le mot de passe" style="margin-top: 10px">
         <button type="submit" id="submit">Modifier</button>
         <br>
         <span id="erreur"></span>
