@@ -8,17 +8,17 @@ $(document).ready(function () {
     });
 
 
-    $(function () {
-        $('#dateScrolling').jqxScrollView({width: 600, height: 450, buttonsOffset: [0, 0]});
-        $('#StartBtn').jqxButton({theme: theme});
-        $('#StopBtn').jqxButton({theme: theme});
-        $('#StartBtn').click(function () {
-            $('#dateScrolling').jqxScrollView({slideShow: true});
-        });
-        $('#StopBtn').click(function () {
-            $('#dateScrolling').jqxScrollView({slideShow: false});
-        });
-    });
+//    $(function () {
+//        $('#dateScrolling').jqxScrollView({width: 600, height: 450, buttonsOffset: [1, 1]});
+//        $('#StartBtn').jqxButton({theme: theme});
+//        $('#StopBtn').jqxButton({theme: theme});
+//        $('#StartBtn').click(function () {
+//            $('#dateScrolling').jqxScrollView({slideShow: true});
+//        });
+//        $('#StopBtn').click(function () {
+//            $('#dateScrolling').jqxScrollView({slideShow: false});
+//        });
+//    });
 
     $('#yes').click(function () {
         console.log("Test Yes! ");

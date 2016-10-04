@@ -1,3 +1,8 @@
+<?php
+mb_internal_encoding('UTF-8');
+setlocale(LC_CTYPE, 'fr_FR.UTF-8');
+header('Content-type: text/html; charset=UTF-8');
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -23,6 +28,12 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+        
+        <link rel="stylesheet" href="css/uikit/jqx.base.css"/>
+        <link rel="stylesheet" href="css/uikit/jqx.arctic.css" />
+        <link rel="stylesheet" href="css/uikit/uikit.css" />
+        <script src="js/uikit/uikit.min.js"></script>
+        
         <!--<script src="http://mysqljs.com/mysql.js"></script>-->
         
     

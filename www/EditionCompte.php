@@ -1,5 +1,6 @@
 <?php
 include("include/header.php");
+session_start();
 ?>
 
 <script src="js/editCompte.js"></script>
@@ -14,7 +15,7 @@ include("include/header.php");
 
     <!--Formulaire de connexion-->
     <form id="formEditionCompte" class="formConnect" method="POST" action="#">
-        <h2>Edition</h2>
+        <h2>Vos infos <?php echo utf8_encode($_SESSION['derby_name']);?> </h2>
         <label for="nom">Nom :</label>
         <input type="text" id="nom" name="nom" placeholder='Nom' required>
         <label for="prenom">Prénom :</label>
@@ -27,10 +28,11 @@ include("include/header.php");
         <input type="file" name="image" id="photoPlayer" accept="image/*;capture=camera" style="margin-top: 0px;">
         <br>
         <label for="password"><u><b>Rentrez votre ancien mot de passe valider les changement ! :</b></u></label>
-        <input type="password" id="password" placeholder="Ancien mot de passe" required style="margin-top: 10px">
+        <input type="password" id="password1" placeholder="Ancien mot de passe" required style="margin-top: 10px">
         <input type="password" id="password2" placeholder="Nouveau mot de passe"  style="margin-top: 10px">
         <input type="password" id="password3" placeholder="Re-tapez le mot de passe" style="margin-top: 10px">
-        <button type="submit" id="submit">Modifier</button>
+        <button type="submit" id="submitEditCompte">Modifier</button>
+        <button id="back">Retour</button>
         <br>
         <span id="erreur"></span>
         <br>
@@ -48,5 +50,6 @@ include("include/header.php");
             s.parentNode.insertBefore(g, s)
         }(document, 'script'));
     </script>
+    <script src="js/updCompte.js"></script>
 </body>
 </html>

@@ -7,9 +7,8 @@
     }  
     
 ?>
-    <script src="js/uikit/uikit.min.js"></script>
-    <link rel="stylesheet" href="css/uikit/jqx.base.css"/>
-    <link rel="stylesheet" href="css/uikit/jqx.arctic.css" />
+
+    
     <script type="text/javascript" src="js/uikit/demos.js"></script>
     <script type="text/javascript" src="js/uikit/jqxcore.js"></script>
     <script type="text/javascript" src="js/uikit/jqxscrollview.js"></script>
