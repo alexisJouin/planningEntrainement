@@ -1,5 +1,6 @@
 <?php
 include("include/header.php");
+include("include/testConnect.php");
 ?>
 <title>Création du groupe</title>
 <script src="js/creationGroupe.js"></script>

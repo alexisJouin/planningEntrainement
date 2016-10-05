@@ -1,11 +1,6 @@
 <?php
     include("include/header.php");
-    session_start();
-    if(!isset($_SESSION['id'])) { // Si l'utilisateur n'a pas encore d'ID de session
-        header('Location: index.php'); // Redirection powa !
-        die(); // Et argh, on tue le script
-    }  
-    
+    include("include/testConnect.php");  
 ?>
 
     
@@ -19,12 +14,16 @@
     <title>Menu Principal</title>
     </head>
     <body>
-        
-        <p>Bonjour <?php echo  $_SESSION['derby_name']; ?></p>
-        <p>id : <?php echo  $_SESSION['id']; ?></p>
-        <a href="script.php?sid=<?php echo $_SESSION['sid']; ?>">lien</a>
-        <button id="EditProfilMove">Votre Porfil</button>
-        
+        <div id="menuMain">
+            <p>Bienvenue <u><b><?php echo  utf8_encode($_SESSION['derby_name']); ?></b></u>, vous êtes connecté</p>
+            <a href="#" id="logOff">Se déconnecter</a>
+            <button id="EditProfilMove">Votre Porfil</button>
+            <p>Vous êtes le coach ou le responsable de la gestion des entrainements ?</p>
+            <a href="creationGroup.php">Créez votre groupe dès maintenant</a>
+        </div>
+        <img src="img/direction_arrow_blue_down.png" class="arrowToHide" id="arrowDownToHide" alt="Cacher le menu" ></img>
+        <img src="img/direction_arrow_blue_up.png" class="arrowToHide" id="arrowUpToHide" alt="Cacher le menu" ></img>
+              
         <!-- Cas où l'untilisateur n'a aucune affiliation -->
         <div id='firstUse'>
 
@@ -55,12 +54,5 @@
             </div>
         </div>
         
-        <footer>
-            <p>
-                Vous êtes le coach ou le responsable de la gestion des
-                entrainements ? Créez votre groupe dès maintenant
-            </p>
-            <button id="creationMove">Créer Groupe</button>
-        </footer>
     </body>
 </html>

@@ -11,7 +11,7 @@ $descriptionGroupe =$_POST['descriptionGroupe'];
 
 
 try {
-
+    session_start();
     //Préparation de la requête
     $res = $dbh->prepare("SELECT nom, id FROM groupe WHERE nom = '$nom'");
     $res->execute();
@@ -26,7 +26,7 @@ try {
     else if($nom != $membre['nom']) {
         echo "1"; // on 'retourne' la valeur 1 au javascript si c'est bon
         $res = null;
-        $res = $dbh->prepare("INSERT INTO Groupe (`nom`, `email`,`adresse`, `descriptif` ,`photo`, `date_creation`, `id_admin`) VALUES (' $nom',' $email ' , '$adress', '$descriptionGroupe', '$photo', CURRENT_TIMESTAMP, '".session_id()."')");
+        $res = $dbh->prepare("INSERT INTO Groupe (`nom`, `email`,`adresse`, `descriptif` ,`photo`, `date_creation`, `id_admin`) VALUES (' $nom',' $email ' , '$adress', '$descriptionGroupe', '$photo', CURRENT_TIMESTAMP, '$_SESSION[id]')");
         $res->execute();
         
     }

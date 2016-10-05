@@ -30,7 +30,7 @@ form {
 }
 
 button{
-    width: 30%;
+    width: 150px;
     display: block;
     margin: 0 auto;
     background: rgba(2,112,201,0.7);
@@ -163,6 +163,43 @@ a{
     background: url("../img/backRoller.jpg") no-repeat center;
 }
 
+#dateScrolling{
+    cursor: -webkit-grab; cursor:-moz-grab;
+}
+
+#dateScrolling:active{
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+}
+
 #formEditionCompte input{
     margin-top: 0px;
+}
+
+#menuMain{
+    float: right;
+    padding: 15px 40px;
+    background: rgba(238,238,238,0.3);
+    border: 1px solid #e5e5e5;
+    /*display:none;*/
+}
+
+.arrowToHide{
+    float: right;
+    width:25px;
+    cursor: pointer;
+}
+
+/*#arrowUpToHide{
+    display:none;
+}*/
+
+#menuMain {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+#menuMain:hover {
+  visibility: visible;
+  opacity: 1;
 }

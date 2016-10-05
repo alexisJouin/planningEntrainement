@@ -1,6 +1,6 @@
 <?php
 include("include/header.php");
-session_start();
+include("include/testConnect.php");
 ?>
 
 <script src="js/editCompte.js"></script>
