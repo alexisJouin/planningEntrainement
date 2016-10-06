@@ -2,8 +2,8 @@
 include("include/header.php");
 include("include/testConnect.php");
 ?>
-<title>Création du groupe</title>
-<script src="js/creationGroupe.js"></script>
+<title>Edition du groupe</title>
+<script src="js/editionGroupe.js"></script>
 
 
 </head>
@@ -11,7 +11,7 @@ include("include/testConnect.php");
     <h1>Planning des entrainements Roller Derby</h1>
 
     <form id="formCreation" method="POST" action="#">
-        <h2>Création du groupe</h2>
+        <h2>Edition du groupe</h2>
 
         <input id="nom" name="nom" placeholder='Nom du groupe' required>
         <input type="email" id="mail" placeholder="Email de l'association" required>

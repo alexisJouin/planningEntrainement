@@ -29,7 +29,6 @@ style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la connexion,\n\
 
                     $("div#connexion").html("<span id=\"confirmMsg\">Vous &ecirc;tes maintenant connect&eacute;.</span>");            
                     // on désactive l'affichage du formulaire et on affiche un message de bienvenue à la place
-                    alert(msg);
                     window.location.href = "main.php";
 
                 }

@@ -181,7 +181,7 @@ a{
     padding: 15px 40px;
     background: rgba(238,238,238,0.3);
     border: 1px solid #e5e5e5;
-    /*display:none;*/
+    display:none;
 }
 
 .arrowToHide{
@@ -190,11 +190,11 @@ a{
     cursor: pointer;
 }
 
-/*#arrowUpToHide{
+#arrowUpToHide{
     display:none;
-}*/
+}
 
-#menuMain {
+/*#menuMain {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
@@ -202,4 +202,4 @@ a{
 #menuMain:hover {
   visibility: visible;
   opacity: 1;
-}
+}*/

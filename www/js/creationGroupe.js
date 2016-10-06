@@ -25,13 +25,7 @@ $(document).ready(function () {
                     + "&photo=" + photo,
             // données à transmettre
             success: function (msg) { // si l'appel a bien fonctionné
-                if (msg == 1) // si la connexion en php a fonctionnée
-                {
-                    alert("Votre Groupe a été créé. Vous êtes le super administrateur de ce groupe");
-                    // on désactive l'affichage du formulaire et on affiche un message de bienvenue à la place
-                    window.location.assign("main.php");
-                }
-                else if (msg == 0) // si la connexion en php n'a pas fonctionnée
+                if (msg == 0) // si la connexion en php n'a pas fonctionnée
                 {
                     $("span#erreur").html("<img src=\"img/error.png\" \n\
 style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la création, le groupe existe déjà !");
@@ -40,10 +34,11 @@ style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la création, le groupe 
                 }
                 else {
                     console.log(msg);
+                    alert("Votre Groupe a été créé. Vous êtes le super administrateur de ce groupe");
+                    window.location.href = "main.php";
                 }
             },
             error: function (msg) {
-                alert(msg);
                 console.log(msg);
             }
         });

@@ -24,17 +24,13 @@ try {
         echo "0"; // on 'retourne' la valeur 0 au javascript si LE Groupe Existe déjà
     } 
     else if($nom != $membre['nom']) {
-        echo "1"; // on 'retourne' la valeur 1 au javascript si c'est bon
-        $res = null;
-        $res = $dbh->prepare("INSERT INTO Groupe (`nom`, `email`,`adresse`, `descriptif` ,`photo`, `date_creation`, `id_admin`) VALUES (' $nom',' $email ' , '$adress', '$descriptionGroupe', '$photo', CURRENT_TIMESTAMP, '$_SESSION[id]')");
-        $res->execute();
-        
-    }
-    else{
-        echo ($res);
+        $ins = $dbh->prepare("INSERT INTO Groupe (`nom`, `email`,`adresse`, `descriptif` ,`photo`, `date_creation`, `id_admin`) VALUES ('$nom','$email ' , '$adress', '$descriptionGroupe', '$photo', CURRENT_TIMESTAMP, '$_SESSION[id]')");
+        $ins->execute();
+        echo json_encode($ins); // on 'retourne' la valeur 1 au javascript si c'est bon
     }
 
     $res = null;
+    $ins = null;
 } catch (PDOException $e) {
     print "Erreur !: " . $e->getMessage() . "<br/>";
     die();
