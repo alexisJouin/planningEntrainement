@@ -52,8 +52,10 @@ include("include/testConnect.php");
 
         <div><u>Liste des groupes :</u></div>
         <div id="listGroup">
-            <ul class="uk-list" id="listLiGroup">
-            </ul>
+            <div id="listGroupTot">
+                <ul class="uk-list uk-list-striped" id="listLiGroup">
+                </ul>
+            </div>
         </div>
 
     </div>

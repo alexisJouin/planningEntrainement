@@ -46,14 +46,27 @@ $(document).ready(function () {
         async: false,
         success: function (msg) {
             if (msg != "" || msg != null) {
-//                alert(msg)
-//                tabListGroup = jQuery.parseJSON(msg);
-//                console.log(tabListGroup);
-//                nomGroupe = msg['nom'];
-                $('#listGroup').append(msg);
-//                alert(msg);
+                
+                var output;
+               
+                tabListGroup = jQuery.parseJSON(msg);
 
+                //Pour chaque Groupe
+                for (var i in tabListGroup)
+                {
+                    //Génération des listes
+                    output += "<li id='"+ tabListGroup[i].id +"'>"+ tabListGroup[i].nom + 
+                            "<a href='#modalInfoGroupe"+tabListGroup[i].id+"' data-uk-modal><img src='img/info.png' id='"+ tabListGroup[i].id +
+                            "' style='width:30px; float:right; cursor:pointer;'></a><button id='buttonInfoGroupe"+
+                            tabListGroup[i].id +"'>Rejoindre</button></li>";
+                    
+                    //Génération des modals
+                    $('#firstUse').append('<div id="modalInfoGroupe'+ tabListGroup[i].id +'" class="uk-modal"><div class="uk-modal-dialog"><a class="uk-modal-close uk-close"></a></div></div>');
+                    $('#modalInfoGroupe'+tabListGroup[i].id).append("<h1>Info du groupe : "+ tabListGroup[i].nom +"</h1>");
+                
+                }
 
+                $('#listLiGroup').append(output);
             }
             else {
                 console.log("Erreur : il n'a aucun groupe ");

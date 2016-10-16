@@ -71,16 +71,12 @@ button:hover{
     padding: 10px;
 }
 
-#listGroup span{
-    display:block;
+#infoGroupe{
+    display:none;
 }
 
-#listGroup span:before{
-    content: "- ";
-}
-
-#listGroup span:after{
-    content: " -> REJOINDRE ! ";
+#tableGroupes{
+    /*display: none;*/
 }
 
 footer{
