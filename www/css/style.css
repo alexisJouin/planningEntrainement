@@ -8,7 +8,7 @@
 }
 
 body{
-    cursor:url(../img/roller2.cur)4 12, auto;
+    /*cursor:url(../img/roller2.cur)4 12, auto;*/
 
     /*height:800px;*/
 }
@@ -153,7 +153,10 @@ a{
     text-align: center;
     line-height: 18px;
 }
-
+#dateScrolling .jqx-scrollview-page{
+    width:inherit;
+    height: inherit;
+}
 
 #dateScrolling{
     background-color: transparent;
@@ -161,45 +164,60 @@ a{
     height:250px;
     margin-left: 25%;
     background: url("../img/backRoller.jpg") no-repeat center;
+    border:1px solid black;
 }
 
 #dateScrolling{
     cursor: -webkit-grab; cursor:-moz-grab;
+    width: 70%;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+    margin-left: 50px;
 }
 
 #dateScrolling:active{
     cursor: -webkit-grabbing;
     cursor: -moz-grabbing;
 }
+#dateScrolling h1{
+    font-size: 24px;
+    padding-bottom: 0px;
+}
+#dateScrolling h2{
+    font-size: 20px;
+}
 
 #formEditionCompte input{
     margin-top: 0px;
 }
 
-#menuMain{
-    float: right;
-    padding: 15px 40px;
-    background: rgba(238,238,238,0.3);
-    border: 1px solid #e5e5e5;
-    display:none;
-}
-
-.arrowToHide{
-    float: right;
-    width:25px;
-    cursor: pointer;
+#menuMain p{
+    color:white;
 }
 
 #arrowUpToHide{
     display:none;
+    cursor: pointer;
 }
 
-/*#menuMain {
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s, opacity 0.5s linear;
+#paramButton{
+    width:75px;
+    background-color: white;
 }
-#menuMain:hover {
-  visibility: visible;
-  opacity: 1;
-}*/
+
+
+#planning{
+    display: none;
+}
+
+#firstUse{
+    display: none;
+}
+
+#buttonReponse{
+    display: inline-block;
+}
+#EditGroupeMove{
+    display: none;
+}

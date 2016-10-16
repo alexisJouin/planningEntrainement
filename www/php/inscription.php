@@ -25,14 +25,15 @@ try {
         echo "0"; // on 'retourne' la valeur 0 au javascript si LE USER Existe déjà
     } 
     else if($_POST['derby_name'] != $membre['derby_name']) {
-        echo "1"; // on 'retourne' la valeur 1 au javascript si c'est bon
+       
         $res = null;
         $res = $dbh->prepare("INSERT INTO player (`derby_name`, `nom`, `prenom`,`sexe`, `email`, `photo`,  `mdp`) VALUES ('$derby_name', '$_POST[nom]','$_POST[prenom]' ,'$sexe', '$email', '$photo',  '$mdp')");
         $res->execute();
+        echo "1"; // on 'retourne' la valeur 1 au javascript si c'est bon
     }
     else{
         echo ($res);
-    }
+    }   
 
     $res = null;
 } catch (PDOException $e) {

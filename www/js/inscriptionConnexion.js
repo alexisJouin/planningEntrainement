@@ -1,14 +1,6 @@
 $(document).ready(function () {
 
 
-    var sexe;
-    //Click sur radio button
-    $('#homme').click(function () {
-        sexe = 0;
-    });
-    $('#femme').click(function () {
-        sexe = 1;
-    });
 
     //Connexion
     $("#formConnect").submit(function () {	// à la soumission du formulaire						 
@@ -27,24 +19,34 @@ style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la connexion,\n\
                 else // si la connexion en php a fonctionnée
                 {
 
-                    $("div#connexion").html("<span id=\"confirmMsg\">Vous &ecirc;tes maintenant connect&eacute;.</span>");            
+                    $("div#connexion").html("<span id=\"confirmMsg\">Vous &ecirc;tes maintenant connect&eacute;.</span>");
                     // on désactive l'affichage du formulaire et on affiche un message de bienvenue à la place
                     window.location.href = "main.php";
-
                 }
             },
             error: function (msg) {
                 console.log(msg);
-            }
+            }        
         });
         return false; // permet de rester sur la même page à la soumission du formulaire
     });
 
+    var sexe;
+    //Click sur radio button
+    $('#homme').click(function () {
+        sexe = 0;
+        alert(sexe);
+    });
+    $('#femme').click(function () {
+        sexe = 1;
+        alert(sexe);
+    });
     //Inscription
     $("#formInscription").submit(function () {	// à la soumission du formulaire
         var photo = $("#photoPlayer")[0].files[0];
 //        alert(photo);
         if ($('#password').val() == $('#password2').val()) {
+            alert(sexe);
             $.ajax({// fonction permettant de faire de l'ajax
                 type: "POST", // methode de transmission des données au fichier php
                 url: "php/inscription.php", // url du fichier php
@@ -53,17 +55,17 @@ style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la connexion,\n\
                         + "&nom=" + $("#nom").val()
                         + "&sexe=" + sexe
                         + "&email=" + $("#mail").val()
-                        + "&photo" + photo
+                        + "&photo=" + photo
                         + "&password=" + $("#password").val(),
                 // données à transmettre
                 success: function (msg) { // si l'appel a bien fonctionné
-                    if (msg == 1) // si la connexion en php a fonctionnée
+                    if (msg == "1") // si la connexion en php a fonctionnée
                     {
                         alert("Vous êtes à prensent inscrit sur l'application ! Vous pouvez vous connecter !");
                         // on désactive l'affichage du formulaire et on affiche un message de bienvenue à la place
                         window.location.assign("index.php");
                     }
-                    else if (msg == 0) // si la connexion en php n'a pas fonctionnée
+                    else if (msg == "0") // si la connexion en php n'a pas fonctionnée
                     {
                         $("span#erreur").html("<img src=\"img/error.png\" \n\
 style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de l'inscription, l'utilisateur existe déjà !");

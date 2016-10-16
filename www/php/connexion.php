@@ -8,7 +8,7 @@ $derby_name_session;
 try {
 
     //Préparation de la requête
-    $res = $dbh->prepare("SELECT derby_name, mdp, id FROM player WHERE derby_name = '$_POST[derby_name]' AND mdp = '$_POST[mdp]'");
+    $res = $dbh->prepare("SELECT derby_name, mdp, id, id_groupe, privilege FROM player WHERE derby_name = '$_POST[derby_name]' AND mdp = '$_POST[mdp]'");
     $res->execute();
     $membre = $res->fetch(PDO::FETCH_ASSOC);
 
@@ -19,7 +19,9 @@ try {
         session_start();
 
         setcookie("id", $membre['id']); // genere un cookie contenant l'id du membre
-        setcookie("derby_name", $membre['derby_name']); // genere un cookie contenant le login du membre
+        setcookie("derby_name", $membre['derby_name']);
+        setcookie("id_groupe", $membre['id_groupe']); 
+        setcookie("privilege", $membre['privilege']); 
         //TO DO géstion de l'id de session
         //session_id($membre['id']);
 
@@ -28,6 +30,8 @@ try {
 
         $_SESSION['id'] = $membre['id'];
         $_SESSION['derby_name'] = $derby_name_session;
+        $_SESSION['id_groupe'] = $membre['id_groupe'];
+        $_SESSION['privilege'] = $membre['privilege'];
         
 //        $_SESSION['PHPSESSID'] = $id_session;
 

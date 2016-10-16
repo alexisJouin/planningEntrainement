@@ -27,7 +27,6 @@ header('Content-type: text/html; charset=UTF-8');
         
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
         
         <link rel="stylesheet" href="css/uikit/jqx.base.css"/>
         <link rel="stylesheet" href="css/uikit/jqx.arctic.css" />
