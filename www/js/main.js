@@ -16,8 +16,7 @@ $(document).ready(function () {
                 id_groupe = tabCurrentSession['id_groupe'];
                 derby_name = tabCurrentSession['derby_name'];
                 privilege = tabCurrentSession['privilege'];
-            }
-            else {
+            } else {
                 console.log("Erreur : les sessions sont vides ! ");
             }
 
@@ -31,8 +30,7 @@ $(document).ready(function () {
     if (id_groupe == 0 || id_groupe == null || id_groupe == "") {
         $('#planning').hide();
         $('#firstUse').show();
-    }
-    else {
+    } else {
         $('#firstUse').hide();
         $('#planning').show();
         if (privilege == 1 || privilege == 2) {
@@ -46,29 +44,36 @@ $(document).ready(function () {
         async: false,
         success: function (msg) {
             if (msg != "" || msg != null) {
-                
+
                 var output;
-               
+
                 tabListGroup = jQuery.parseJSON(msg);
 
                 //Pour chaque Groupe
                 for (var i in tabListGroup)
                 {
                     //Génération des listes
-                    output += "<li id='"+ tabListGroup[i].id +"'>"+ tabListGroup[i].nom + 
-                            "<a href='#modalInfoGroupe"+tabListGroup[i].id+"' data-uk-modal><img src='img/info.png' id='"+ tabListGroup[i].id +
-                            "' style='width:30px; float:right; cursor:pointer;'></a><button id='buttonInfoGroupe"+
-                            tabListGroup[i].id +"'>Rejoindre</button></li>";
-                    
+                    output += "<li id='" + tabListGroup[i].id + "'>" + tabListGroup[i].nom +
+                            "<a href='#modalInfoGroupe" + tabListGroup[i].id + "' data-uk-modal><img src='img/info.png' id='" + tabListGroup[i].id +
+                            "' style='width:30px; float:right; cursor:pointer;'></a><button class='buttonRejoindre'id='buttonInfoGroupe" +
+                            tabListGroup[i].id + "'>Rejoindre</button></li>";
+
                     //Génération des modals
-                    $('#firstUse').append('<div id="modalInfoGroupe'+ tabListGroup[i].id +'" class="uk-modal"><div class="uk-modal-dialog"><a class="uk-modal-close uk-close"></a></div></div>');
-                    $('#modalInfoGroupe'+tabListGroup[i].id).append("<h1>Info du groupe : "+ tabListGroup[i].nom +"</h1>");
-                
+                    $('#firstUse').append('<div id="modalInfoGroupe' + tabListGroup[i].id + '" class="uk-modal"><div class="uk-modal-dialog"><div class="uk-modal-header"><a class="uk-modal-close uk-close"></a></div></div></div>');
+                    $('#modalInfoGroupe' + tabListGroup[i].id).children().children().append("<h2>Info du groupe " + tabListGroup[i].nom + "</h2>");
+                    $('#modalInfoGroupe' + tabListGroup[i].id).children().append(
+                            "<ul class='uk-list uk-list-striped'>\n\
+                                    <li><u>Adresse Mail</u> : " + tabListGroup[i].email + "</li>\n\
+                                    <li><u>Adresse</u> : " + tabListGroup[i].adresse + "</li>\n\
+                                    <li><u>Description du groupe</u> : " + tabListGroup[i].descriptif + "</li>\n\
+                                    <li><u>Photo du groupe</u> : " + tabListGroup[i].photo + "</li>\n\
+                                </ul>");
+
+
                 }
 
                 $('#listLiGroup').append(output);
-            }
-            else {
+            } else {
                 console.log("Erreur : il n'a aucun groupe ");
             }
 
@@ -78,6 +83,20 @@ $(document).ready(function () {
         }
     });
 
+    $(function () {
+        $(".buttonRejoindre").click(function () {
+            alert($(this).parent().attr("id"));
+            //TODO : ajax call to rejoindre groupe pour le current player co
+            $.ajax({
+                type: "POST", 
+                url: "php/rejoindreGroupe.php",
+                data: "idGroupe"+ $(this).parent().attr("id"), //id du groupe,
+                success: function(msg){
+                    alert("Vous avez rejoint le groupe !")
+                }
+            });
+        });
+    });
 
 
 

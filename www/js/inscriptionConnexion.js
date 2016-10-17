@@ -35,18 +35,14 @@ style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la connexion,\n\
     //Click sur radio button
     $('#homme').click(function () {
         sexe = 0;
-        alert(sexe);
     });
     $('#femme').click(function () {
         sexe = 1;
-        alert(sexe);
     });
     //Inscription
     $("#formInscription").submit(function () {	// à la soumission du formulaire
         var photo = $("#photoPlayer")[0].files[0];
-//        alert(photo);
         if ($('#password').val() == $('#password2').val()) {
-            alert(sexe);
             $.ajax({// fonction permettant de faire de l'ajax
                 type: "POST", // methode de transmission des données au fichier php
                 url: "php/inscription.php", // url du fichier php
