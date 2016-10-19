@@ -198,9 +198,11 @@ a{
 }
 
 #notification{
-    color:white;
+    color:#07D;
 }
-
+#notification li:before{
+    content: " ! ";
+}
 #arrowUpToHide{
     display:none;
     cursor: pointer;

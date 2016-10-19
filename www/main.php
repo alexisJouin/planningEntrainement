@@ -45,6 +45,9 @@ include("include/testConnect.php");
             </div>
             <div id="notification">
                 <h2><u>Notification</u> :</h2>
+                <ul class="uk-list uk-list-striped">
+                    
+                </ul>
             </div>
         </div>
     </div>

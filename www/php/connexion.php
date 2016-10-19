@@ -32,6 +32,13 @@ try {
         $_SESSION['id_groupe'] = $membre['id_groupe'];
         $_SESSION['privilege'] = $membre['privilege'];
         $_SESSION['statut_in_groupe'] = $membre['statut_in_groupe'];
+        $_SESSION['statut_in_groupe'] = $membre['statut_in_groupe'];
+        
+        $resGroupe = $dbh->prepare("SELECT id, nom FROM groupe WHERE id = '$membre[id_groupe]'");
+        $resGroupe->execute();
+        $groupe = $resGroupe->fetch(PDO::FETCH_ASSOC);
+        
+        $_SESSION['nom_groupe'] = $groupe['nom'];
         
         echo "1";  // on 'retourne' la valeur 1 au javascript si la connexion est bonne
         
@@ -40,6 +47,7 @@ try {
     }
 
     $res = null;
+    $groupe = null;
 } catch (PDOException $e) {
     print "Erreur !: " . $e->getMessage() . "<br/>";
     die();

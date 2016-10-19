@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var tabCurrentSession;
     var tabListGroup;
-    var id_player, id_groupe, derby_name, privilege, statut_in_groupe;
+    var id_player, id_groupe, derby_name, privilege, statut_in_groupe, nom_groupe;
     var data = new Array();
     var nomGroupe = new Array();
 
@@ -17,6 +17,7 @@ $(document).ready(function () {
                 derby_name = tabCurrentSession['derby_name'];
                 privilege = tabCurrentSession['privilege'];
                 statut_in_groupe = tabCurrentSession['statut_in_groupe'];
+                nom_groupe = tabCurrentSession['nom_groupe'];
             } else {
                 console.log("Erreur : les sessions sont vides ! ");
             }
@@ -40,8 +41,8 @@ $(document).ready(function () {
                 $('#EditGroupeMove').show();
             }
         } else if (statut_in_groupe == 1) {
-            $('#notification').append('<p>Vous avez demandé de rejoindre le groupe :' + id_groupe + '</p>');
-            $('body').append("<h1>Votre demande pour rejoindre le groupe : <u>"+ id_groupe + "</u> est en cours de validation par l'administrateur</h1>")
+            $('#notification ul').append('<li>Vous avez demandé de rejoindre le groupe : <u><b>' + nom_groupe + '</b></u></li>');
+            $('body').append("<h1>Votre demande pour rejoindre le groupe : <u>"+ nom_groupe + "</u> est en cours de validation par l'administrateur</h1>")
         }
 
     }
