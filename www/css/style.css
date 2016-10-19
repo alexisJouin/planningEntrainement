@@ -201,7 +201,13 @@ a{
     color:#07D;
 }
 #notification li:before{
-    content: " ! ";
+    background-image: url(../img/notif_menu.png);
+    background-size: 15px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    content: "";
+    background-repeat: no-repeat;
 }
 #arrowUpToHide{
     display:none;
