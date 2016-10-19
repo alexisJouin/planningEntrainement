@@ -8,12 +8,14 @@ $id_player = $_SESSION['id'];
 $id_groupe = $_SESSION['id_groupe'];
 $derby_name = utf8_decode($_SESSION['derby_name']);
 $privilege = $_SESSION['privilege'];
+$statut_in_groupe = $_SESSION['statut_in_groupe'];
 
 $tabSession = array( 
   "id_player" => $id_player,
   "id_groupe" => $id_groupe,
   "derby_name" => $derby_name,
-  "privilege" => $privilege
+  "privilege" => $privilege,
+  "statut_in_groupe" => $statut_in_groupe
 );
         
 echo json_encode($tabSession);

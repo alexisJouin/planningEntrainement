@@ -65,6 +65,11 @@ button:hover{
     color: white;
 }
 
+#erreur{
+    color:red;
+    font-weight: bold;
+    padding-top: 20px;
+}
 
 #listGroup{
     display:block;
@@ -192,6 +197,10 @@ a{
     color:white;
 }
 
+#notification{
+    color:white;
+}
+
 #arrowUpToHide{
     display:none;
     cursor: pointer;
@@ -216,4 +225,11 @@ a{
 }
 #EditGroupeMove{
     display: none;
+}
+
+.uk-modal h2{
+    padding: 0px;
+    color:black;
+    font-size: 24px;
+    text-shadow: inherit;
 }

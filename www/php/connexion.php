@@ -8,13 +8,12 @@ $derby_name_session;
 try {
 
     //Préparation de la requête
-    $res = $dbh->prepare("SELECT derby_name, mdp, id, id_groupe, privilege FROM player WHERE derby_name = '$_POST[derby_name]' AND mdp = '$_POST[mdp]'");
+    $res = $dbh->prepare("SELECT derby_name, mdp, id, id_groupe, statut_in_groupe, privilege FROM player WHERE derby_name = '$_POST[derby_name]' AND mdp = '$_POST[mdp]'");
     $res->execute();
     $membre = $res->fetch(PDO::FETCH_ASSOC);
 
-    //echo json_encode($membre);
 
-    if (($_POST['derby_name'] == $membre['derby_name']) && ($_POST['mdp'] == $membre['mdp'])) {
+    if (($_POST['derby_name'] == $membre['derby_name']) && ($_POST['mdp'] == $membre['mdp'] )) {
         //Démarage de la session
         session_start();
 
@@ -32,14 +31,12 @@ try {
         $_SESSION['derby_name'] = $derby_name_session;
         $_SESSION['id_groupe'] = $membre['id_groupe'];
         $_SESSION['privilege'] = $membre['privilege'];
+        $_SESSION['statut_in_groupe'] = $membre['statut_in_groupe'];
         
-//        $_SESSION['PHPSESSID'] = $id_session;
-
-
-        echo $derby_name_session; // on 'retourne' la valeur 1 au javascript si la connexion est bonne
-//        echo(json_encode($derby_name_session));
+        echo "1";  // on 'retourne' la valeur 1 au javascript si la connexion est bonne
+        
     } else {
-        echo NULL; // on 'retourne' la valeur 0 au javascript si la connexion n'est pas bonne
+        echo "0"; // on 'retourne' la valeur 0 au javascript si la connexion n'est pas bonne
     }
 
     $res = null;

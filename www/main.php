@@ -43,8 +43,15 @@ include("include/testConnect.php");
                 <p>Vous êtes le coach ou le responsable de la gestion des entrainements ?</p>
                 <a href="creationGroup.php">Créez votre groupe dès maintenant</a>
             </div>
+            <div id="notification">
+                <h2><u>Notification</u> :</h2>
+            </div>
         </div>
     </div>
+    
+<!--    TODO ! => add class tm-icon-menu pour bouton <a href="#overlay-menu" class="tm-overlay-toggle tm-icon uk-float-right" data-uk-modal="{target: '#overlay-menu', center: true}">
+                           <div class="tm-icon-menu"></div>
+                       </a>-->
     <img src="img/param.png" id="paramButton" alt="Cacher le menu" class="uk-button" data-uk-offcanvas="{target:'#param'}"></img>
 
     <!-- Cas où l'untilisateur n'a aucune affiliation -->

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var tabCurrentSession;
     var tabListGroup;
-    var id_player, id_groupe, derby_name, privilege;
+    var id_player, id_groupe, derby_name, privilege, statut_in_groupe;
     var data = new Array();
     var nomGroupe = new Array();
 
@@ -16,6 +16,7 @@ $(document).ready(function () {
                 id_groupe = tabCurrentSession['id_groupe'];
                 derby_name = tabCurrentSession['derby_name'];
                 privilege = tabCurrentSession['privilege'];
+                statut_in_groupe = tabCurrentSession['statut_in_groupe'];
             } else {
                 console.log("Erreur : les sessions sont vides ! ");
             }
@@ -31,11 +32,18 @@ $(document).ready(function () {
         $('#planning').hide();
         $('#firstUse').show();
     } else {
-        $('#firstUse').hide();
-        $('#planning').show();
-        if (privilege == 1 || privilege == 2) {
-            $('#EditGroupeMove').show();
+        if (statut_in_groupe == 2) { // si personne accepté 
+            $('#firstUse').hide();
+            $('#planning').show();
+
+            if (privilege == 1 || privilege == 2) { //Si c'est l'admin
+                $('#EditGroupeMove').show();
+            }
+        } else if (statut_in_groupe == 1) {
+            $('#notification').append('<p>Vous avez demandé de rejoindre le groupe :' + id_groupe + '</p>');
+            $('body').append("<h1>Votre demande pour rejoindre le groupe : <u>"+ id_groupe + "</u> est en cours de validation par l'administrateur</h1>")
         }
+
     }
 
     //get list des groupes
@@ -83,16 +91,16 @@ $(document).ready(function () {
         }
     });
 
+    //Pour demander de rejoindre un groupe
     $(function () {
         $(".buttonRejoindre").click(function () {
-            alert($(this).parent().attr("id"));
             //TODO : ajax call to rejoindre groupe pour le current player co
             $.ajax({
-                type: "POST", 
+                type: "POST",
                 url: "php/rejoindreGroupe.php",
-                data: "idGroupe"+ $(this).parent().attr("id"), //id du groupe,
-                success: function(msg){
-                    alert("Vous avez rejoint le groupe !")
+                data: "idGroupe=" + $(this).parent().attr("id"), //id du groupe,
+                success: function (msg) {
+                    alert("Votre demande pour rejoindre le groupe a été envoyé !");
                 }
             });
         });

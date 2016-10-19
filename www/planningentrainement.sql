@@ -57,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `groupe` (
 CREATE TABLE IF NOT EXISTS `player` (
   `id` int(11) NOT NULL,
   `id_groupe` int(11) NOT NULL COMMENT 'Identifiant du groupe',
+  `statut_in_groupe` int(11) NOT NULL COMMENT '1 =>en Attente / 2 => Accepté',
   `nom` varchar(100) NOT NULL,
   `prenom` varchar(100) NOT NULL,
   `sexe` tinyint(1) NOT NULL COMMENT '0=>homme/1=>femme',
@@ -115,7 +116,7 @@ ALTER TABLE `player`
 -- Déclencheurs `groupe`
 --
 DELIMITER $$
-CREATE TRIGGER `superAdmin` AFTER INSERT ON `groupe` FOR EACH ROW UPDATE player SET privilege = 2, id_groupe = NEW.id WHERE id = NEW.id_admin
+CREATE TRIGGER `superAdmin` AFTER INSERT ON `groupe` FOR EACH ROW UPDATE player SET privilege = 2, id_groupe = NEW.id, statut_in_groupe = 2 WHERE id = NEW.id_admin
 $$
 DELIMITER ;
 

@@ -9,7 +9,7 @@ $(document).ready(function () {
             url: "php/connexion.php", // url du fichier php
             data: "derby_name=" + $("#derbyName").val() + "&mdp=" + $("#password").val(), // données à transmettre
             success: function (msg) { // si l'appel a bien fonctionné
-                if (msg == null) // si la connexion en php n'a pas fonctionnée
+                if (msg == "0") // si la connexion en php n'a pas fonctionnée
                 {
                     $("span#erreur").html("<img src=\"img/error.png\" \n\
 style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la connexion,\n\
