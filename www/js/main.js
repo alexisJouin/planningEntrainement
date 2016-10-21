@@ -39,10 +39,11 @@ $(document).ready(function () {
 
             if (privilege == 1 || privilege == 2) { //Si c'est l'admin
                 $('#EditGroupeMove').show();
+                getListDemandePlayer();
             }
         } else if (statut_in_groupe == 1) {
             $('#notification ul').append('<li>Vous avez demandé de rejoindre le groupe : <u><b>' + nom_groupe + '</b></u></li>');
-            $('body').append("<h1>Votre demande pour rejoindre le groupe : <u>"+ nom_groupe + "</u> est en cours de validation par l'administrateur</h1>")
+            $('body').append("<h1>Votre demande pour rejoindre le groupe : <u>" + nom_groupe + "</u> est en cours de validation par l'administrateur</h1>")
         }
 
     }
@@ -99,7 +100,7 @@ $(document).ready(function () {
             $.ajax({
                 type: "POST",
                 url: "php/rejoindreGroupe.php",
-                data: "idGroupe=" + $(this).parent().attr("id"), //id du groupe,
+                data: "idGroupe=" + $(this).parent().attr("id") + "&option=1",
                 success: function (msg) {
                     alert("Votre demande pour rejoindre le groupe a été envoyé !");
                 }
@@ -107,7 +108,23 @@ $(document).ready(function () {
         });
     });
 
-
+    //Récupère la liste des demandes
+    function getListDemandePlayer() {
+        $.ajax({
+            type: "POST",
+            url: "php/rejoindreGroupe.php",
+            data: "idGroupe=" + id_groupe + "&option=2", //id du groupe,
+            success: function (msg) {
+                var tabListDemande = jQuery.parseJSON(msg);
+                //Pour chaque demande de joueurs dans le groupe
+                for (var i in tabListDemande) {
+                    $('#notification ul').append('<li><u><b>' + tabListDemande[i].nom_player +
+                            '</b></u> Veux rejoindre le groupe <input type="radio" name="reponseDemande" value="yes" /> Oui <input type="radio" name="reponseDemande" value="no" /> Non </li>');
+                }
+            }
+        });
+    }
+    ;
 
     //Gestion des click bouton
     $("#creationMove").click(function () {
@@ -131,6 +148,13 @@ $(document).ready(function () {
             }
         });
     });
+
+
+
+    //Si il y a des notifications !
+    if ($("#notification ul").has("li").length) {
+        $("#paramButton").attr("src", "img/paramAlert.png");
+    }
 
 
     $(function () {

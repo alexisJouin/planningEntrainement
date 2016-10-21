@@ -201,7 +201,7 @@ a{
     color:#07D;
 }
 #notification li:before{
-    background-image: url(../img/notif_menu.png);
+    background-image: url(../img/notif_alert.png);
     background-size: 15px;
     display: inline-block;
     width: 20px;
@@ -209,6 +209,22 @@ a{
     content: "";
     background-repeat: no-repeat;
 }
+
+#notification input{
+    background: rgba(255,255,255,0.3);
+    font-size: inherit;
+    width: inherit;
+    color: inherit;
+    margin-top: 0px;
+    margin-left: 0px;
+    border-radius: inherit;
+    border: inherit;
+    padding: inherit;
+    display: inline-block;
+    margin: inherit;
+    cursor:pointer;
+}
+
 #arrowUpToHide{
     display:none;
     cursor: pointer;
