@@ -1,6 +1,5 @@
 $(document).ready(function () {
     $('#backEditGroupe').click(function () {
-        alert("Hello");
         window.location = "main.php";
     });
 

@@ -33,7 +33,6 @@ style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la création, le groupe 
 
                 }
                 else {
-                    console.log(msg);
                     alert("Votre Groupe a été créé. Vous êtes le super administrateur de ce groupe");
                     window.location.href = "main.php";
                 }
