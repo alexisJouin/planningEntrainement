@@ -39,10 +39,14 @@ include("include/testConnect.php");
                 <br>
                 <button id="EditProfilMove">Votre Porfil</button>
                 <button id="EditGroupeMove">Votre Groupe</button>
+                <button id="PlannningMove">Gestion du planning</button>
                 <br>
-                <p>Vous êtes le coach ou le responsable de la gestion des entrainements ?</p>
-                <a href="creationGroup.php">Créez votre groupe dès maintenant</a>
+                <div id="linkToCreateGroup">
+                    <p>Vous êtes le coach ou le responsable de la gestion des entrainements ?</p>
+                    <a href="creationGroup.php">Créez votre groupe dès maintenant</a>
+                </div>
             </div>
+            <hr>
             <div id="notification">
                 <h2><u>Notification</u> :</h2>
                 <ul class="uk-list uk-list-striped">
@@ -74,9 +78,9 @@ include("include/testConnect.php");
     <div id='planning'>
         <div id="dateScrolling">
             <!--Exemple a la con-->
-            <div><h1>Jeudi 22</h1><h1>Septembre 2016</h1><h2>Entrainement à 18h30</h2></div>
+<!--            <div><h1>Jeudi 22</h1><h1>Septembre 2016</h1><h2>Entrainement à 18h30</h2></div>
             <div><h1>Samedi 30</h1><h1> Septembre 2016</h1><h2>Entrainement à 15h30</h2></div>
-            <div><h1>Jeudi 05</h1><h1> Octobre 2016</h1><h2>Entrainement à 18h30</h2></h1></div>
+            <div><h1>Jeudi 05</h1><h1> Octobre 2016</h1><h2>Entrainement à 18h30</h2></h1></div>-->
         </div>
         <div style='margin-top: 20px;'></div>
         <div style='margin-top: 20px;'></div>
@@ -89,5 +93,4 @@ include("include/testConnect.php");
     </div>
 
 </body>
-<script type="text/javascript" src="js/gestionMain.js"></script>
 </html>

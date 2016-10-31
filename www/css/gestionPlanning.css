@@ -1,0 +1,128 @@
+/***** Gestion Planning ****/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+    border: 1px solid #555;
+}
+
+li a {
+    display: block;
+    color: #000;
+    padding: 20px 50px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+li {
+    text-align: center;
+    border-bottom: 1px solid #555;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+li a:hover:not(.active) {
+    background-color: #07D;
+    color: white;
+}
+
+input{
+    color:black;
+}
+
+#weekList{
+    cursor:pointer;
+}
+
+#weekList li:hover{
+    background-color: #07D !important;
+    color: white;
+}
+
+#weekList input{
+      
+    background-color:white;
+    margin-left: 25%;
+    width:50%;
+}
+
+#weekList li{
+    padding:25px;
+}
+
+label{
+    position: relative;
+    top: 15px;
+    text-decoration: underline;
+}
+
+#submitPlanning{
+    height:50px;
+}
+
+#formGestionPlanning{
+    margin: inherit;
+    position: inherit;
+    width: inherit;
+    height: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    text-decoration: inherit;
+    border-radius: inherit;
+    padding: inherit;
+    opacity: inherit;
+    background: inherit;
+    color: inherit;
+}
+
+::-webkit-input-placeholder{
+    color:grey;
+}
+
+input#lieu {
+    border: 1px solid;
+    border-radius: 5px;
+    width: 95%;
+    margin-left: 1%;
+}
+
+
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('../img/loading.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}

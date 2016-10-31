@@ -13,6 +13,10 @@ body{
     /*height:800px;*/
 }
 
+h2{
+     text-shadow: inherit;
+}
+
 form {
     margin: auto;
     position: relative;
@@ -35,7 +39,7 @@ button{
     margin: 0 auto;
     background: rgba(2,112,201,0.7);
     color: #fff;
-    height: 30px;
+    height: auto;
     border:0;
     margin-bottom: 8px;
     font-weight: bold;
@@ -251,9 +255,12 @@ a{
     display: none;
 }
 
+#PlannningMove{
+    display: none;
+}
+
 .uk-modal h2{
     padding: 0px;
     color:black;
     font-size: 24px;
-    text-shadow: inherit;
 }

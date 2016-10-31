@@ -14,14 +14,18 @@ $(document).ready(function () {
     } else {
         if (statut_in_groupe == 2) { // si personne accepté 
             $('#firstUse').hide();
+            $('#linkToCreateGroup').hide();
             $('#planning').show();
-
+            
             if (privilege == 1 || privilege == 2) { //Si c'est l'admin
+                $('#linkToCreateGroup').hide();
                 $('#EditGroupeMove').show();
+                $('#PlannningMove').show();
                 getListDemandePlayer();
 
             }
         } else if (statut_in_groupe == 1) {
+            $('#linkToCreateGroup').hide();
             $('#notification ul').append('<li>Vous avez demandé de rejoindre le groupe : <u><b>' + nom_groupe + '</b></u></li>');
             $('body').append("<h1>Votre demande pour rejoindre le groupe : <u>" + nom_groupe + "</u> est en cours de validation par l'administrateur</h1>");
         }
@@ -163,6 +167,9 @@ $(document).ready(function () {
     });
     $("#EditGroupeMove").click(function () {
         window.location.href = "editionGroupe.php";
+    });
+    $("#PlannningMove").click(function () {
+        window.location.href = "gestionPlanning.php";
     });
 
     //Bouton de déconnexion
