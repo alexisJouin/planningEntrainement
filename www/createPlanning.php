@@ -90,13 +90,8 @@ include("include/testConnect.php");
         <div class="modal"></div>
     </form>
     
-
-    <script>
-        
-
-    </script>
-
-
+    <button id="backToMenuGestion">Retour</button>
+    
 
 </body>
 </html>

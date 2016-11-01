@@ -6,6 +6,7 @@
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+SET lc_time_names = 'fr_FR'
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -20,17 +21,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `admin`
+-- Structure de la table `entrainement`
 --
 
-CREATE TABLE IF NOT EXISTS `admin` (
+CREATE TABLE IF NOT EXISTS `entrainement` (
   `id` int(11) NOT NULL,
+  `id_planning` int(11) NOT NULL,
   `id_groupe` int(11) NOT NULL,
-  `nom` varchar(100) NOT NULL,
-  `prenom` varchar(100) NOT NULL,
-  `derby_name` varchar(100) NOT NULL,
-  `mdp` varchar(20) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Table du coach, le créateur du groupe';
+  `date` date NOT NULL,
+  `horraire_debut` time NOT NULL,
+  `horraire_fin` time NOT NULL,
+  `lieu` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -47,8 +49,24 @@ CREATE TABLE IF NOT EXISTS `groupe` (
   `descriptif` varchar(1000) NOT NULL,
   `photo` longblob NOT NULL,
   `date_creation` datetime NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `planning`
+--
+
+CREATE TABLE IF NOT EXISTS `planning` (
+  `id` int(11) NOT NULL,
+  `date_debut` date NOT NULL,
+  `date_fin` date NOT NULL,
+  `id_groupe` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
+
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `player`
@@ -66,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `player` (
   `derby_name` varchar(100) NOT NULL,
   `mdp` varchar(20) NOT NULL,
   `privilege` int(11) NOT NULL DEFAULT '0' COMMENT '0:membre/1:admin/2/superAdmin'
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='Table des joueurs';
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='Table des joueurs';
 
 
 --
@@ -74,16 +92,24 @@ CREATE TABLE IF NOT EXISTS `player` (
 --
 
 --
--- Index pour la table `admin`
+-- Index pour la table `entrainement`
 --
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `entrainement`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `oneTeamTrainer` (`id_groupe`,`date`,`horraire_debut`);
 
 --
 -- Index pour la table `groupe`
 --
 ALTER TABLE `groupe`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `planning`
+--
+ALTER TABLE `planning`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_groupe_index` (`id_groupe`);
 
 --
 -- Index pour la table `player`
@@ -96,20 +122,28 @@ ALTER TABLE `player`
 --
 
 --
--- AUTO_INCREMENT pour la table `admin`
+-- AUTO_INCREMENT pour la table `entrainement`
 --
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `entrainement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
+
 --
 -- AUTO_INCREMENT pour la table `groupe`
 --
 ALTER TABLE `groupe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
+
+--
+-- AUTO_INCREMENT pour la table `planning`
+--
+ALTER TABLE `planning`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=60;
+
 --
 -- AUTO_INCREMENT pour la table `player`
 --
 ALTER TABLE `player`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 
 
 --

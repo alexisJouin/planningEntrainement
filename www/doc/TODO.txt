@@ -1,0 +1,4 @@
+-> lors d'une modification d'un planning, si on réduit la période de l'année,
+ faire une requête qui supprime les entrainements en trop après la new date_fin
+
+-> Rajouter id_planning pour la table entrainement
