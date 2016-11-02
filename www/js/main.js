@@ -40,7 +40,7 @@ $(document).ready(function () {
             success: function (msg) {
                 if (msg != "" || msg != null) {
 
-                    var output;
+                    var output = "";
 
                     tabListGroup = jQuery.parseJSON(msg);
 

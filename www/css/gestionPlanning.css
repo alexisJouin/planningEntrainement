@@ -48,7 +48,7 @@ input{
 }
 
 #weekList input{
-      
+
     background-color:white;
     margin-left: 25%;
     width:50%;
@@ -110,9 +110,9 @@ input#lieu {
     height:     100%;
     width:      100%;
     background: rgba( 255, 255, 255, .8 ) 
-                url('../img/loading.gif') 
-                50% 50% 
-                no-repeat;
+        url('../img/loading.gif') 
+        50% 50% 
+        no-repeat;
 }
 
 /* When the body has the loading class, we turn
@@ -125,4 +125,26 @@ body.loading {
    modal element will be visible */
 body.loading .modal {
     display: block;
+}
+
+
+#periode input{
+    width:90%;
+    border: 1px solid black;
+    margin-left:1%;
+}
+
+#listEntrainement input{
+    width:95%;
+    margin-left: 1%;
+    background-color: white;
+}
+
+#addEntrainement{
+    float:right;
+}
+#backToMenuGestion{
+    float: left;
+    width:100px;
+    height: 50px;
 }
