@@ -263,10 +263,12 @@
                     d = 0;
             this._renderPages();
             this._pages = this._innerWrapper.children();
-            
+            var page = 0;
             this._pages.each(function () {
                 c._refreshPage(b(this));
                 d += b(this).outerWidth(true);
+                b(this).attr('page',page);
+                page ++;
             });
             this._innerWrapper.width(d)
         },
