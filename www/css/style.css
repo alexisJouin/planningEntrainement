@@ -14,7 +14,7 @@ body{
 }
 
 h2{
-     text-shadow: inherit;
+    text-shadow: inherit;
 }
 
 form {
@@ -168,17 +168,15 @@ a{
     width:50%;
     height:250px;
     margin-left: 25%;
-    background: url("../img/backRoller.jpg") no-repeat center;
+    background-color: rgba(2,112,201,0.7);
     border:1px solid black;
 }
 
 #dateScrolling{
     cursor: -webkit-grab; cursor:-moz-grab;
-    width: 70%;
-    height: 250px;
     overflow: hidden;
     position: relative;
-    margin-left: 50px;
+    margin-left: 11%;
 }
 
 #dateScrolling:active{
@@ -250,7 +248,17 @@ a{
 
 #buttonReponse{
     display: inline-block;
+    margin-left: 10%;
+    width: 80%
 }
+
+.selectedButtonReponse{
+    background-color: black;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 20px;
+}
+
 #EditGroupeMove{
     display: none;
 }
@@ -263,4 +271,41 @@ a{
     padding: 0px;
     color:black;
     font-size: 24px;
+}
+
+#arrowLeft{
+    width:10%;
+    float:left;
+    cursor: pointer;
+    position: absolute;
+    margin-top:150px
+}
+#arrowRight{
+    width:10%;
+    cursor: pointer;
+    margin-right: 10px;
+    float:right;
+    margin-top:150px
+}
+
+#notReponse{
+    float: right;
+    display: none;
+    position: relative;
+    top: -55px;
+    right: 15px;
+    
+}
+
+img#notReponse {
+    width:40px;
+}
+
+figcaption#notReponse {
+    display: none;
+    width: 170px;
+    text-align: center;
+    color: red;
+    font-weight: bold;
+    text-decoration: underline;
 }

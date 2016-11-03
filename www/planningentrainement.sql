@@ -87,6 +87,21 @@ CREATE TABLE IF NOT EXISTS `player` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='Table des joueurs';
 
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `presence`
+--
+
+CREATE TABLE IF NOT EXISTS `presence` (
+  `id` int(11) NOT NULL,
+  `id_player` int(11) NOT NULL,
+  `id_groupe` int(11) NOT NULL,
+  `id_entrainement` int(11) NOT NULL,
+  `statut` int(3) NOT NULL COMMENT '0 : no / 1: pas sur / 2 : yes'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 --
 -- Index pour les tables exportées
 --
@@ -118,6 +133,13 @@ ALTER TABLE `player`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `presence`
+--
+ALTER TABLE `presence`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `indexUniquePlayer` (`id_player`,`id_groupe`,`id_entrainement`);
+
+--
 -- AUTO_INCREMENT pour les tables exportées
 --
 
@@ -144,6 +166,12 @@ ALTER TABLE `planning`
 --
 ALTER TABLE `player`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
+
+--
+-- AUTO_INCREMENT pour la table `presence`
+--
+ALTER TABLE `presence`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 
 --

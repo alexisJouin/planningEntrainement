@@ -54,8 +54,24 @@ try {
         $ins->bindParam(1, $lieu);
         
         $ins->execute();
-        echo json_encode($ins);
+        echo json_encode($ins);   
+    }
+    
+    //Gest list entrainement pour la page main
+    else if($option == 5){
+        date_default_timezone_set('UTC');
+        setlocale(LC_TIME, 'fr_FR.utf8', 'fra');
+
+        $current_date = date('y-m-d');
+        $datePeriode_fin = date('Y-m-d', strtotime("+3 week"));
         
+        $req = $dbh->prepare("SELECT  id, `date`, DATE_FORMAT(`horraire_debut`,'%H:%i') horraire_debut, lieu, DATE_FORMAT(`horraire_fin`,'%H:%i') horraire_fin"
+                . " FROM `entrainement` "
+                . " WHERE id_groupe = " . $_SESSION['id_groupe'] . " AND date BETWEEN '" . $current_date . "' AND '" . $datePeriode_fin . "'");
+        $req->execute();
+        $listEntrainement = $req->fetchAll(PDO::FETCH_ASSOC);
+        
+        echo json_encode($listEntrainement);
     }
     
 } catch (PDOException $e) {

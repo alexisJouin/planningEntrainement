@@ -3,6 +3,7 @@ $(document).ready(function () {
     var tabListGroup;
     var id_player, id_groupe, derby_name, privilege, statut_in_groupe, nom_groupe;
     var data = new Array();
+    var currentPage = $('#dateScrolling').jqxScrollView('currentPage');
 
     getCurrentSession();
 
@@ -16,7 +17,7 @@ $(document).ready(function () {
             $('#firstUse').hide();
             $('#linkToCreateGroup').hide();
             $('#planning').show();
-            
+
             if (privilege == 1 || privilege == 2) { //Si c'est l'admin
                 $('#linkToCreateGroup').hide();
                 $('#EditGroupeMove').show();
@@ -24,6 +25,9 @@ $(document).ready(function () {
                 getListDemandePlayer();
 
             }
+
+            getListEntrainement();
+
         } else if (statut_in_groupe == 1) {
             $('#linkToCreateGroup').hide();
             $('#notification ul').append('<li>Vous avez demandé de rejoindre le groupe : <u><b>' + nom_groupe + '</b></u></li>');
@@ -187,39 +191,204 @@ $(document).ready(function () {
     function testHasNotif() {
         if ($("#notification ul").has("li").length) {
             $("#paramButton").attr("src", "img/paramAlert.png");
-        }
-        else {
+        } else {
             $("#paramButton").attr("src", "img/param.png");
         }
     }
-    
+
     testHasNotif();
 
 
+    function getListEntrainement() {
+        $.ajax({
+            url: "php/getListEntrainement.php",
+            type: "POST",
+            async: false,
+            data: "option=5",
+            success: function (msg) {
+                if (msg != "" && msg != null && msg.length != 2) {
+                    var tabListEntrainement = jQuery.parseJSON(msg);
+                    var output = "";
+
+
+//<h1>Jeudi 22</h1><h1>Septembre 2016</h1><h2>Entrainement à 18h30</h2>
+
+                    //Pour chaque Groupe
+                    for (var i in tabListEntrainement)
+
+                    {
+                        output += "\
+                            <div id='" + tabListEntrainement[i].id + "'>\n\
+                                <a href='#modalInfoEntrainement" + tabListEntrainement[i].id + "' data-uk-modal>\n\
+                                    <img src='img/info.png' style='width:35px; float:right;'/>\n\
+                                </a>\n\
+                                <h1>" + $.format.date(tabListEntrainement[i].date, 'ddd d') + "  " + $.format.date(tabListEntrainement[i].date, 'MMMM yyyy') + "</h1>\n\
+                                <h2>Entrainement de " + tabListEntrainement[i].horraire_debut + " à " + tabListEntrainement[i].horraire_fin + "</h2>\n\
+                                <br><img src='img/notif_alert.png' id='notReponse' alt='pas de réponse !'/><figcaption id='notReponse'>Vous n'avez pas répondu !</figcaption>\n\
+                                <span id='buttonReponse'><button value='yes' id='yes' idEntrainement=" + tabListEntrainement[i].id + " >Oui</button><button value='yn' id='yn' idEntrainement=" + tabListEntrainement[i].id + " >Peut-être</button><button value='no' id='no' idEntrainement=" + tabListEntrainement[i].id + " >Non</button></span>\n\
+                            </div>";
+
+                        $('#dateScrolling').append(output);
+                        $('body').append('\
+                            <div id="modalInfoEntrainement' + tabListEntrainement[i].id + '" class="uk-modal">\n\
+                                <div class="uk-modal-dialog">\n\
+                                    <div class="uk-modal-header">\n\
+                                        <a class="uk-modal-close uk-close"></a>\n\
+                                        <h2>Entrainement du ' + $.format.date(tabListEntrainement[i].date, 'dd/MM/yyyy') + ' </h2>\n\
+                                    </div>\n\
+                                    Lieu : <a href="https://www.google.fr/maps/place/' + tabListEntrainement[i].lieu + '">' + tabListEntrainement[i].lieu + '</a>\n\
+                                    <h3><u>Liste des personnes présentes</u> : </h3>\n\
+                                    <ul id="listPresence' + tabListEntrainement[i].id + '" class="uk-list uk-list-striped" style="max-height: 400px;overflow: auto;"></ul>\n\
+                                </div>\n\
+                            </div>'
+                                );
+
+                        getListPresence(tabListEntrainement[i].id);
+                        getCurrentPlayerPresence(tabListEntrainement[i].id);
+                    }
+
+                    //Supprime les doublons 
+                    $('div').each(function () {
+                        $('[id="' + this.id + '"]:gt(0)').remove();
+                    });
+                }
+            }
+
+        });
+    }
+
 
     $(function () {
-        $('#dateScrolling').jqxScrollView({width: 600, height: 450, buttonsOffset: [1, 1]});
-        //$('#StartBtn').jqxButton({theme: theme});
-        //$('#StopBtn').jqxButton({theme: theme});
-//        $('#StartBtn').click(function () {
-//            $('#dateScrolling').jqxScrollView({slideShow: true});
-//        });
-//        $('#StopBtn').click(function () {
-//            $('#dateScrolling').jqxScrollView({slideShow: false});
-//        });
-    });
 
-    $('#yes').click(function () {
-        console.log("Test Yes! ");
-        UIkit.notify({
-            message: 'yES §§	 !',
-            status: 'info',
-            timeout: 2000,
-            pos: 'top-center'
+        $('#dateScrolling').jqxScrollView({
+            width: "75%",
+            height: 550,
+            buttonsOffset: [1, 1]
         });
+
+        currentPage = $('#dateScrolling').jqxScrollView('currentPage');
+
+
+
+        $('#arrowRight').click(function () {
+            $("#dateScrolling").jqxScrollView('forward');
+            currentPage = $('#dateScrolling').jqxScrollView('currentPage');
+        });
+
+        $('#arrowLeft').click(function () {
+            $("#dateScrolling").jqxScrollView('back');
+            currentPage = $('#dateScrolling').jqxScrollView('currentPage');
+        });
+
+
+        $('#dateScrolling').bind('pageChanged', function (event)
+        {
+            var page = event.args.currentPage;
+            currentPage = page;
+        });
+
+
+
     });
 
-//     alert($(".derby_name_session"));
+    function getListPresence(idEntrainement) {
+        $.ajax({
+            url: "php/gestionReponse.php",
+            type: "POST",
+            async: false,
+            data: "option=2&idEntrainement=" + idEntrainement,
+            success: function (msg) {
+                var output = "";
+                if (msg != "" && msg != null && msg.length != 2) {
+                    var tabListPresence = jQuery.parseJSON(msg);
+
+                    for (var i in tabListPresence) {
+                        if (tabListPresence[i].statut == 2) {
+                            output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + "</li>"
+                            $('#listPresence' + idEntrainement).append(output);
+                        }
+                    }
+                    //Supprime les doublons 
+                    $('li').each(function () {
+                        $('[id="' + this.id + '"]:gt(0)').remove();
+                    });
+
+                } else {
+
+                }
+
+//                //Pour un joueur spécifique
+//                else {
+//                    alert("Héhe")
+//                    $("#notReponse").show();
+//                    $("#notReponse").effect("shake", { direction: "up", times: 10, distance: 5}, 3000 );
+//                }
+
+            }
+
+        });
+    }
+
+    function getCurrentPlayerPresence(idEntrainement) {
+        $.ajax({
+            url: "php/gestionReponse.php",
+            type: "POST",
+            async: false,
+            data: "option=3&idEntrainement=" + idEntrainement,
+            success: function (statut) {
+                var tabStatut = jQuery.parseJSON(statut);
+                var statutPlayer = tabStatut['statut'];
+
+                //Si non
+                if (statutPlayer == 0) {
+                    $("#" + idEntrainement + " button[value=no]").addClass("selectedButtonReponse");
+                }
+                //Si peut-être
+                else if (statutPlayer == 1) {
+                    $("#" + idEntrainement + " button[value=yn]").addClass("selectedButtonReponse");
+                } else if (statutPlayer == 2) {
+                    $("#" + idEntrainement + " button[value=yes]").addClass("selectedButtonReponse");
+                } else if (statutPlayer == "undefined") {
+                    $("#" + idEntrainement).children('#notReponse').show();
+                } else if (statut == "false") {
+                    $("#" + idEntrainement).children('#notReponse').show();
+                }
+
+            }
+
+        });
+    }
+
+    //Gestion des boutons de réponses
+    $('#buttonReponse button').click(function () {
+        var id = $('.jqx-scrollview-page[page=' + currentPage + ']').attr('id');
+        var reponse = $(this).val();
+
+        $.ajax({
+            url: "php/gestionReponse.php",
+            type: "POST",
+            async: false,
+            data: "option=1&idEntrainement=" + id + "&reponse=" + reponse,
+            success: function () {
+                UIkit.notify({
+                    message: 'Vous avez confirmé votre présence pour cet entrainement !',
+                    status: 'info',
+                    timeout: 1000,
+                    pos: 'top-center'
+                });
+
+                setTimeout(function () {
+                    window.location.reload();
+                }, 1500);
+            }
+
+        });
+
+
+    });
+
+
+
 
 
 });

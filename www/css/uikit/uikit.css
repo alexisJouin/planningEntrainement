@@ -7473,10 +7473,20 @@ a.uk-thumbnail:focus {
 /* Sub-Object: `uk-modal-header` and `uk-modal-footer`
  ========================================================================== */
 .uk-modal-header {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
+    margin: -20px -20px 15px -20px;
+    padding: 20px;
+    border-bottom: 1px solid #E5E5E5;
+    border-radius: 4px 4px 0 0;
+    background: #fafafa;
 }
 .uk-modal-footer {
-  margin-top: 15px;
+    margin-top: 15px;
+    margin: 15px -20px -20px -20px;
+    padding: 20px;
+    border-top: 1px solid #E5E5E5;
+    border-radius: 0 0 4px 4px;
+    background: #fafafa;
 }
 /*
  * Remove margin from the last-child

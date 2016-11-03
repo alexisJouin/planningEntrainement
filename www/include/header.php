@@ -22,8 +22,11 @@ header('Content-type: text/html; charset=UTF-8');
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/jquery-ui.css"></link>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="js/jquery-dateFormat.js"></script>
+        <script src="js/jquery-ui.js"></script>
         
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
@@ -31,7 +34,9 @@ header('Content-type: text/html; charset=UTF-8');
         <link rel="stylesheet" href="css/uikit/jqx.base.css"/>
         <link rel="stylesheet" href="css/uikit/jqx.arctic.css" />
         <link rel="stylesheet" href="css/uikit/uikit.css" />
+        <link rel="stylesheet" href="css/uikit/components/notify.css" />
         <script src="js/uikit/uikit.min.js"></script>
+        <script src="js/uikit/components/notify.js"></script>
         
         <!--<script src="http://mysqljs.com/mysql.js"></script>-->
         

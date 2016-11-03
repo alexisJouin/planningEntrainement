@@ -42,11 +42,15 @@ try {
             echo json_encode($upd);
             $upd = null;
         } else if ($value_playerDemande == "no") {
-            $upd = $dbh->prepare("UPDATE player SET statut_in_groupe = 0 WHERE id=" . $id_playerDemande);
-            $upd->execute();
-            echo json_encode($upd);
+            $upd1 = $dbh->prepare("UPDATE player SET statut_in_groupe = 0 WHERE id=" . $id_playerDemande);
+            $upd1->execute();
+            $upd2 = $dbh->prepare("UPDATE player SET id_groupe = 0 WHERE id=" . $id_playerDemande);
+            $upd2->execute();
+            
+            echo json_encode($upd1);
 
-            $upd = null;
+            $upd1 = null;
+            $upd2 = null;
         }
     }
 } catch (PDOException $e) {
