@@ -15,8 +15,7 @@ $(document).ready(function () {
 style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la connexion,\n\
  veuillez v&eacute;rifier votre login et votre mot de passe.");
                     // on affiche un message d'erreur dans le span prévu à cet effet
-                }
-                else // si la connexion en php a fonctionnée
+                } else // si la connexion en php a fonctionnée
                 {
 
                     $("div#connexion").html("<span id=\"confirmMsg\">Vous &ecirc;tes maintenant connect&eacute;.</span>");
@@ -26,7 +25,7 @@ style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la connexion,\n\
             },
             error: function (msg) {
                 console.log(msg);
-            }        
+            }
         });
         return false; // permet de rester sur la même page à la soumission du formulaire
     });
@@ -57,18 +56,31 @@ style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la connexion,\n\
                 success: function (msg) { // si l'appel a bien fonctionné
                     if (msg == "1") // si la connexion en php a fonctionnée
                     {
-                        alert("Vous êtes à prensent inscrit sur l'application ! Vous pouvez vous connecter !");
-                        // on désactive l'affichage du formulaire et on affiche un message de bienvenue à la place
-                        window.location.assign("index.php");
-                    }
-                    else if (msg == "0") // si la connexion en php n'a pas fonctionnée
+                        UIkit.notify({
+                            message: 'Vous êtes à prensent inscrit sur l\'application ! Vous pouvez vous connecter !',
+                            status: 'success',
+                            timeout: 1000,
+                            pos: 'top-center'
+                        });
+
+                        setTimeout(function () {
+                            window.location.href = "index.php";
+                        }, 1500);
+                        
+//                        window.location.assign("index.php");
+                    } else if (msg == "0") // si la connexion en php n'a pas fonctionnée
                     {
+                        UIkit.notify({
+                            message: 'l\'utilisateur existe déjà !',
+                            status: 'warning',
+                            timeout: 2000,
+                            pos: 'top-center'
+                        });
                         $("span#erreur").html("<img src=\"img/error.png\" \n\
 style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de l'inscription, l'utilisateur existe déjà !");
                         // on affiche un message d'erreur dans le span prévu à cet effet
 
-                    }
-                    else {
+                    } else {
                         console.log(msg);
                     }
                 },
