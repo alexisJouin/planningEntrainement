@@ -2,17 +2,17 @@
 
 // Set these dependant on your BB credentials
 
-$username = 'username';
-$password = 'password';
+$username = 'alexisJouin';
+$password = 'aj100695';
 
 $branch = 'master';
 
 // FTP Credentials
 
-$ftp_host = 'example.com';
-$ftp_username = 'username';
-$ftp_password = 'password';
-$ftp_path = '/public_html/directory/';
+$ftp_host = 'ftp.cluster020.hosting.ovh.net';
+$ftp_username = 'rollerdepj';
+$ftp_password = 'JuHJ5MyzjVnC';
+$ftp_path = '/www/planningEntrainement/';
 
 // Grab the data from BB's POST service and decode
 $json = stripslashes($_POST['payload']);
