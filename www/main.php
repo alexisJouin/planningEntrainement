@@ -42,7 +42,7 @@ include("include/testConnect.php");
                 <button id="PlannningMove">Gestion du planning</button>
                 <br>
                 <div id="linkToCreateGroup">
-                    <p>Vous êtes le coach ou le responsable de la gestion des entrainements ?</p>
+                    <p>Vous êtes le coach ou le responsable de la gestion des entraînements ?</p>
                     <a href="creationGroup.php">Créez votre groupe dès maintenant</a>
                 </div>
             </div>
@@ -77,13 +77,14 @@ include("include/testConnect.php");
     <!-- Cas où l'untilisateur possède un groupe -->
     <div id='planning'>
         <h3><?php echo utf8_encode($_SESSION['nom_groupe']); ?></h3>
-        <h4>Liste des prochains entrainements</h4>
+        <h4>Liste des prochains entraînements</h4>
         <img src="img/direction_arrow_blue_left.png" id="arrowLeft"/>
         <img src="img/direction_arrow_blue_right.png" id="arrowRight"/>
         <div id="dateScrolling">
             
         </div>
     </div>
+    <div id="modalEntrainement"></div>
 
 </body>
 </html>

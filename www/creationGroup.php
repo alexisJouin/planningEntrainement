@@ -8,7 +8,7 @@ include("include/testConnect.php");
 
 </head>
 <body>
-    <h1>Planning des entrainements Roller Derby</h1>
+    <h1>Planning des entraînements Roller Derby</h1>
 
     <form id="formCreation" method="POST" action="#">
         <h2>Création du groupe</h2>

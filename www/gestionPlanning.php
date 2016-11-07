@@ -7,10 +7,10 @@
     </head>
 
     <body>
-        <h1>Gestion des planning d'entrainements</h1>
+        <h1>Gestion des planning d'entraînements</h1>
         <ul id='menuPlanning'>
-            <li><a id="planningCreationLink" href='createPlanning.php'>Créer un planning d'entrainement</a></li>
-            <li><a href='editEntrainement.php'>Modifier un entrainement</a></li>
+            <li><a id="planningCreationLink" href='createPlanning.php'>Créer un planning d'entraînement</a></li>
+            <li><a href='editEntrainement.php'>Modifier un entraînement</a></li>
             <li><a href='createEvent.php' style="pointer-events: none;cursor: default;">Créer un évenement spécial - En cours de développement ...</a></li>
             <li><a href='main.php'>Annuler</a></li>
         </ul>
@@ -25,10 +25,10 @@
                 success: function (msg) {
                     console.log(msg.length)
                      if(msg != "" && msg != null && msg.length != 2){
-                         $('#planningCreationLink').text("Modifier le planning d'entrainement");
+                         $('#planningCreationLink').text("Modifier le planning d'entraînement");
                      }
                      else{
-                         $('#planningCreationLink').text("Créer le planning d'entrainement");
+                         $('#planningCreationLink').text("Créer le planning d'entraînement");
                      }
                 }
         

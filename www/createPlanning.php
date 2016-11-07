@@ -8,9 +8,9 @@ include("include/testConnect.php");
 </head>
 
 <body>
-    <h1>Gestion des planning d'entrainements</h1>
-    <p>Selectionner les jours d'entrainement pour l'année entière en précisant l'heure de l'entrainement.</p>
-    <p>Il y a possibilité de modifier le planning plus tard et les entrainements sur le menu précédent</p>
+    <h1>Gestion des planning d'entraînements</h1>
+    <p>Selectionner les jours d'entraînement pour l'année entière en précisant l'heure de l'entraînement.</p>
+    <p>Il y a possibilité de modifier le planning plus tard et les entraînements sur le menu précédent</p>
     <form id='formGestionPlanning' action='#' type='POST'>
         <ul id='weekList'>
             <li id='lundi'>

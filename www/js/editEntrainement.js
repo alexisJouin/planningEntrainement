@@ -65,7 +65,7 @@ $(document).ready(function () {
                             //Génération des listes d'entrainement
                             output += "\n\
                                     <li id='" + tabListEntrainement[i].id + "'> \n\
-                                        <p> Entrainement du " + tabListEntrainement[i].date + "</p>\n\
+                                        <p> Entraînement du " + tabListEntrainement[i].date + "</p>\n\
                                         <label for='" + tabListEntrainement[i].id + "HD'>Horraire de début : </label>\n\
                                         <input type='time' id='" + tabListEntrainement[i].id + "HD'/>\n\
                                         <label for='" + tabListEntrainement[i].id + "HF'>Horraire de fin : </label>\n\
@@ -120,7 +120,7 @@ $(document).ready(function () {
                 data: "option=2&horraire_debut=" + horraire_debut + "&horraire_fin=" + horraire_fin + "&lieu=" + lieu + "&id=" + id,
                 success: function () {
                     $('#span' + id).fadeOut(1000);
-                    $("#" + id).append("<span id='span" + id + "' style='color:red;font-weight:bold;'>Entrainement mis à jour avec succès </span>");
+                    $("#" + id).append("<span id='span" + id + "' style='color:red;font-weight:bold;'>Entraînement mis à jour avec succès </span>");
                 }
 
             });

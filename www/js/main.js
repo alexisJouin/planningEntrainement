@@ -213,10 +213,7 @@ $(document).ready(function () {
                     var tabListEntrainement = jQuery.parseJSON(msg);
                     var output = "";
 
-
-//<h1>Jeudi 22</h1><h1>Septembre 2016</h1><h2>Entrainement à 18h30</h2>
-
-                    //Pour chaque Groupe
+                    //Pour chaque entraînement
                     for (var i in tabListEntrainement)
 
                     {
@@ -226,18 +223,18 @@ $(document).ready(function () {
                                     <img src='img/info.png' style='width:35px; float:right;'/>\n\
                                 </a>\n\
                                 <h1>" + $.format.date(tabListEntrainement[i].date, 'ddd d') + "  " + $.format.date(tabListEntrainement[i].date, 'MMMM yyyy') + "</h1>\n\
-                                <h2>Entrainement de " + tabListEntrainement[i].horraire_debut + " à " + tabListEntrainement[i].horraire_fin + "</h2>\n\
+                                <h2>Entraînement de " + tabListEntrainement[i].horraire_debut + " à " + tabListEntrainement[i].horraire_fin + "</h2>\n\
                                 <br><img src='img/notif_alert.png' id='notReponse' alt='pas de réponse !'/><figcaption id='notReponse'>Vous n'avez pas répondu !</figcaption>\n\
                                 <span id='buttonReponse'><button value='yes' id='yes' idEntrainement=" + tabListEntrainement[i].id + " >Oui</button><button value='yn' id='yn' idEntrainement=" + tabListEntrainement[i].id + " >Peut-être</button><button value='no' id='no' idEntrainement=" + tabListEntrainement[i].id + " >Non</button></span>\n\
                             </div>";
 
                         $('#dateScrolling').append(output);
-                        $('body').append('\
+                        $('#modalEntrainement').append('\
                             <div id="modalInfoEntrainement' + tabListEntrainement[i].id + '" class="uk-modal">\n\
                                 <div class="uk-modal-dialog">\n\
                                     <div class="uk-modal-header">\n\
                                         <a class="uk-modal-close uk-close"></a>\n\
-                                        <h2>Entrainement du ' + $.format.date(tabListEntrainement[i].date, 'dd/MM/yyyy') + ' </h2>\n\
+                                        <h2>Entraînement du ' + $.format.date(tabListEntrainement[i].date, 'dd/MM/yyyy') + ' </h2>\n\
                                     </div>\n\
                                     Lieu : <a href="https://www.google.fr/maps/place/' + tabListEntrainement[i].lieu + '">' + tabListEntrainement[i].lieu + '</a>\n\
                                     <h3><u>Liste des personnes présentes</u> : </h3>\n\
@@ -247,13 +244,38 @@ $(document).ready(function () {
                                 );
 
                         getListPresence(tabListEntrainement[i].id);
+
+                        //Supprime les doublons 
+//                        $('#listPresence' + tabListEntrainement[i].id + ' li').each(function () {
+//                            var idUl = $(this).parent().attr()
+//                            $("#"+idUl).children('[id="' + this.id + '"]:gt(0)').remove();
+//
+//                        });
+
                         getCurrentPlayerPresence(tabListEntrainement[i].id);
+
+
                     }
 
                     //Supprime les doublons 
                     $('div').each(function () {
                         $('[id="' + this.id + '"]:gt(0)').remove();
                     });
+
+
+                    $('#modalEntrainement ul').each(function () {
+                        var idUl = $(this).attr('id');
+                        console.log(idUl);
+                        $(this).children('li').each(function () {
+                            var idLi = $(this).attr('id');
+                            console.log(idLi);
+                            $('#' + idUl).children('[id="' + this.id + '"]:gt(0)').remove();
+                        });
+
+
+                    });
+
+
 
                     scrollView();
                 } else {
@@ -312,12 +334,13 @@ $(document).ready(function () {
                         if (tabListPresence[i].statut == 2) {
                             output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + "</li>"
                             $('#listPresence' + idEntrainement).append(output);
+                        } else if (tabListPresence[i].statut == 1) {
+                            output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "' style='color:orange;'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + " => Peut-être</li>"
+                            $('#listPresence' + idEntrainement).append(output);
                         }
                     }
-                    //Supprime les doublons 
-                    $('li').each(function () {
-                        $('[id="' + this.id + '"]:gt(0)').remove();
-                    });
+
+
 
                 } else {
 
@@ -376,16 +399,41 @@ $(document).ready(function () {
             async: false,
             data: "option=1&idEntrainement=" + id + "&reponse=" + reponse,
             success: function () {
-                UIkit.notify({
-                    message: 'Vous avez confirmé votre présence pour cet entrainement !',
-                    status: 'info',
-                    timeout: 1000,
-                    pos: 'top-center'
-                });
+                if (reponse == "yes") {
+                    UIkit.notify({
+                        message: 'Vous avez confirmé votre présence pour cet entraînement !',
+                        status: 'info',
+                        timeout: 1000,
+                        pos: 'top-center'
+                    });
 
-                setTimeout(function () {
-                    window.location.reload();
-                }, 1500);
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1500);
+                } else if (reponse == "yn") {
+                    UIkit.notify({
+                        message: 'Vous avez que vous n\'êtes pas sur pour cet entraînement !',
+                        status: 'warning',
+                        timeout: 1000,
+                        pos: 'top-center'
+                    });
+
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1500);
+                } else if (reponse == "no") {
+                    UIkit.notify({
+                        message: 'Vous ne serez pas présent pour cet entraînement !',
+                        status: 'danger',
+                        timeout: 1000,
+                        pos: 'top-center'
+                    });
+
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1500);
+                }
+
             }
 
         });

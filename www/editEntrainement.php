@@ -8,12 +8,12 @@ include("include/testConnect.php");
 </head>
 
 <body>
-    <h1>Edition des entrainements</h1>
+    <h1>Edition des entraînements</h1>
 
     <div id="modalAddEntrainement" class="uk-modal">
         <div class="uk-modal-dialog"  style="min-height:0;">
             <div>
-                <div class="uk-modal-content uk-form">Date de l'entrainement :</div>
+                <div class="uk-modal-content uk-form">Date de l'entraînement :</div>
                 <div class="uk-margin-small-top uk-modal-content uk-form">
                     <p>
                         <input type="date" id="dateAdd" class="uk-width-1-1">
@@ -45,10 +45,10 @@ include("include/testConnect.php");
         </div>
     </div>
 
-    <button id='addEntrainement'  data-uk-modal="{target:'#modalAddEntrainement'}">Ajouter un entrainement</button>
+    <button id='addEntrainement'  data-uk-modal="{target:'#modalAddEntrainement'}">Ajouter un entraînement</button>
     <button id='backToMenuGestion' >Retour</button>
     <br><br><br><br>
-    <p>Sélectionner une période pour afficher la liste des entrainement de cette période :</p>
+    <p>Sélectionner une période pour afficher la liste des entraînement de cette période :</p>
     <div id="periode">
         <label for="dateDebut">Début</label>
         <input type="date" id="dateDebut"/>
