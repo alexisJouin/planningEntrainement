@@ -15,9 +15,18 @@ $(document).ready(function () {
                     "&photo=" + $("#photo").val(),
             success: function (msg) { // si l'appel a bien fonctionné
                 if (msg === "1") {
+                    UIkit.notify({
+                        message: 'Modification enregistrées',
+                        status: 'success',
+                        timeout: 2000,
+                        pos: 'top-center'
+                    });
                     $("span#erreur").html("Vos modifications ont bien été enregistrés");
                     $("span#erreur").html("Modifications enregistrées");
-                    location.reload();
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1500);
+
                 } else {
                     console.log("Modification non enregistré : " + msg);
                     $("span#erreur").html("Erreur lors de l'enregistrement");

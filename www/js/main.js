@@ -18,6 +18,7 @@ $(document).ready(function () {
             $('#linkToCreateGroup').hide();
             $('#planning').show();
 
+
             if (privilege == 1 || privilege == 2) { //Si c'est l'admin
                 $('#linkToCreateGroup').hide();
                 $('#EditGroupeMove').show();
@@ -26,7 +27,9 @@ $(document).ready(function () {
 
             }
 
+
             getListEntrainement();
+
 
         } else if (statut_in_groupe == 1) {
             $('#linkToCreateGroup').hide();
@@ -251,6 +254,10 @@ $(document).ready(function () {
                     $('div').each(function () {
                         $('[id="' + this.id + '"]:gt(0)').remove();
                     });
+
+                    scrollView();
+                } else {
+                    //TO DO  mettre un message aucun d'entrainement prévus
                 }
             }
 
@@ -258,7 +265,7 @@ $(document).ready(function () {
     }
 
 
-    $(function () {
+    function scrollView() {
 
         $('#dateScrolling').jqxScrollView({
             width: "75%",
@@ -287,9 +294,8 @@ $(document).ready(function () {
             currentPage = page;
         });
 
-
-
-    });
+    }
+    ;
 
     function getListPresence(idEntrainement) {
         $.ajax({
