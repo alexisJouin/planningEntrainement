@@ -112,8 +112,8 @@ $(document).ready(function () {
                 var tabListDemande = jQuery.parseJSON(msg);
                 //Pour chaque demande de joueurs dans le groupe
                 for (var i in tabListDemande) {
-                    $('#notification ul').append('<li id="' + tabListDemande[i].id_player + '"><u><b>' + tabListDemande[i].nom_player +
-                            '</b></u> Veux rejoindre le groupe <input id="reponseDemande" type="radio" name="reponseDemande" value="yes" /> Oui <input id="reponseDemande" type="radio" name="reponseDemande" value="no" /> Non </li>');
+                    $('#notification ul').append('<li id="' + tabListDemande[i].id_player + '">\n\
+                                                    <u><b>' + tabListDemande[i].prenom_player + ', ' + tabListDemande[i].derby_name + '</b></u> Veux rejoindre le groupe <br><input id="reponseDemande" type="radio" name="reponseDemande" value="yes" /> Oui <input id="reponseDemande" type="radio" name="reponseDemande" value="no" /> Non </li>');
                 }
 
                 testHasNotif();

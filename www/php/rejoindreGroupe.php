@@ -19,7 +19,7 @@ try {
 
     //Liste des demandes
     else if ($option == 2) {
-        $req = $dbh->prepare("SELECT g.id id_groupe, p.id id_player, p.nom nom_player, p.statut_in_groupe statut , g.id_admin id_admin , g.nom nom_groupe, g.email mail_groupe, adresse, descriptif, g.photo photo_groupe"
+        $req = $dbh->prepare("SELECT g.id id_groupe, p.id id_player, p.nom nom_player, p.prenom prenom_player, p.derby_name derby_name, p.statut_in_groupe statut , g.id_admin id_admin , g.nom nom_groupe, g.email mail_groupe, adresse, descriptif, g.photo photo_groupe"
                 . " FROM groupe g"
                 . " INNER JOIN player p ON g.id = p.id_groupe"
                 . " WHERE g.id = " . $_POST['idGroupe'] . " AND statut_in_groupe = 1");
