@@ -229,6 +229,7 @@ $(document).ready(function () {
                             </div>";
 
                         $('#dateScrolling').append(output);
+
                         $('#modalEntrainement').append('\
                             <div id="modalInfoEntrainement' + tabListEntrainement[i].id + '" class="uk-modal">\n\
                                 <div class="uk-modal-dialog">\n\
@@ -237,20 +238,15 @@ $(document).ready(function () {
                                         <h2>Entraînement du ' + $.format.date(tabListEntrainement[i].date, 'dd/MM/yyyy') + ' </h2>\n\
                                     </div>\n\
                                     Lieu : <a href="https://www.google.fr/maps/place/' + tabListEntrainement[i].lieu + '">' + tabListEntrainement[i].lieu + '</a>\n\
+                                    <br><span id="nbrPersonne'+ tabListEntrainement[i].id +'"></span>\n\
                                     <h3><u>Liste des personnes présentes</u> : </h3>\n\
-                                    <ul id="listPresence' + tabListEntrainement[i].id + '" class="uk-list uk-list-striped" style="max-height: 400px;overflow: auto;"></ul>\n\
+                                    <ul id="listPresence' + tabListEntrainement[i].id + '" class="uk-list uk-list-striped" style="max-height: 200px;overflow: auto;"></ul>\n\
                                 </div>\n\
                             </div>'
                                 );
 
                         getListPresence(tabListEntrainement[i].id);
 
-                        //Supprime les doublons 
-//                        $('#listPresence' + tabListEntrainement[i].id + ' li').each(function () {
-//                            var idUl = $(this).parent().attr()
-//                            $("#"+idUl).children('[id="' + this.id + '"]:gt(0)').remove();
-//
-//                        });
 
                         getCurrentPlayerPresence(tabListEntrainement[i].id);
 
@@ -262,13 +258,11 @@ $(document).ready(function () {
                         $('[id="' + this.id + '"]:gt(0)').remove();
                     });
 
-
+                    //Supprime les doublons
                     $('#modalEntrainement ul').each(function () {
                         var idUl = $(this).attr('id');
-                        console.log(idUl);
                         $(this).children('li').each(function () {
                             var idLi = $(this).attr('id');
-                            console.log(idLi);
                             $('#' + idUl).children('[id="' + this.id + '"]:gt(0)').remove();
                         });
 
@@ -329,16 +323,19 @@ $(document).ready(function () {
                 var output = "";
                 if (msg != "" && msg != null && msg.length != 2) {
                     var tabListPresence = jQuery.parseJSON(msg);
-
+                    var nbrPresence = 0;
                     for (var i in tabListPresence) {
                         if (tabListPresence[i].statut == 2) {
                             output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + "</li>"
                             $('#listPresence' + idEntrainement).append(output);
+                            nbrPresence++;
                         } else if (tabListPresence[i].statut == 1) {
                             output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "' style='color:orange;'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + " => Peut-être</li>"
                             $('#listPresence' + idEntrainement).append(output);
                         }
                     }
+
+                    $('#nbrPersonne' + idEntrainement).append("Nombre de personne pour l\'entrainement : <b>" + nbrPresence + "</b>");
 
 
 
