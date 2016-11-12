@@ -222,7 +222,7 @@ $(document).ready(function () {
                                 <a href='#modalInfoEntrainement" + tabListEntrainement[i].id + "' data-uk-modal>\n\
                                     <img src='img/info.png' style='width:35px; float:right;'/>\n\
                                 </a>\n\
-                                <h1>" + $.format.date(tabListEntrainement[i].date, 'ddd d') + "  " + $.format.date(tabListEntrainement[i].date, 'MMMM yyyy') + "</h1>\n\
+                                <h1 style='padding: 24px 32px 32px 32px;'>" + $.format.date(tabListEntrainement[i].date, 'ddd d') + "  " + $.format.date(tabListEntrainement[i].date, 'MMMM yyyy') + "</h1>\n\
                                 <h2>Entraînement de " + tabListEntrainement[i].horraire_debut + " à " + tabListEntrainement[i].horraire_fin + "</h2>\n\
                                 <br><img src='img/notif_alert.png' id='notReponse' alt='pas de réponse !'/><figcaption id='notReponse'>Vous n'avez pas répondu !</figcaption>\n\
                                 <span id='buttonReponse'><button value='yes' id='yes' idEntrainement=" + tabListEntrainement[i].id + " >Oui</button><button value='yn' id='yn' idEntrainement=" + tabListEntrainement[i].id + " >Peut-être</button><button value='no' id='no' idEntrainement=" + tabListEntrainement[i].id + " >Non</button></span>\n\

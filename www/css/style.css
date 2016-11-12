@@ -13,6 +13,10 @@ body{
     /*height:800px;*/
 }
 
+h1{
+    text-shadow: inherit;
+    padding: inherit;
+}
 h2{
     text-shadow: inherit;
 }
