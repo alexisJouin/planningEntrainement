@@ -134,7 +134,7 @@ h1 {
     /*margin: 0.67em 0;*/
     font-size: 28px;
     text-shadow: -1px -1px #9df, 1px 1px #49d, -3px 0 4px #000;
-    font-family:"Segoe print", Arial, Helvetica, sans-serif;
+    font-family: 'Comic Sans MS', cursive;
     color:#6bf;
     padding:24px 32px 32px 32px; 
     text-align:center;
@@ -146,7 +146,7 @@ h2 {
     margin: 0.83em 0;*/
     font-size: 24px;
     text-shadow: -1px -1px #9df, 1px 1px #49d, -3px 0 4px #000;
-    font-family:"Segoe print", Arial, Helvetica, sans-serif;
+    font-family: 'Comic Sans MS', cursive;
     color:white;
     padding:24px 32px 32px 32px; 
     text-align:center;

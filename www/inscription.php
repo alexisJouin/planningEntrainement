@@ -33,7 +33,7 @@ include("include/header.php");
         <input type="file" id="photoPlayer" accept="image/*;capture=camera" style="margin-top: 0px;">
         <input type="password" id="password" placeholder="Mot de passe" required>
         <input type="password" id="password2" placeholder="Re-tapez le mot de passe" required>
-        <button type="submit" id="submit">Inscription</button>
+        <button type="submit" id="submit" style="height: 50px;">Inscription</button>
         <a href="index.php">Déjà inscrit ? Connectez-vous ici !</a>
         <br>
         <span id="erreur"></span>

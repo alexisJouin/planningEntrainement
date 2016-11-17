@@ -17,7 +17,7 @@
             <h2>Connexion</h2>
             <input id="derbyName" name="derbyName" placeholder='Derby Name' required>
             <input id="password" type="password" name="password" placeholder="Mot de passe" required>
-            <button type="submit" id="submit">Connexion</button>
+            <button type="submit" id="submit" style="height: 50px;">Connexion</button>
             <a href="inscription.php" style="color:white;">Pas encore de compte ? Inscrivez-vous ici !</a>
             <br>
             <!--<a href="main.html">ACCESS TO MAIN</a>-->

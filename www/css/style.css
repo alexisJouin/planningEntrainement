@@ -4,7 +4,7 @@
 */
 
 *, form, button, input, ::-webkit-input-placeholder {
-    font-family:"Segoe print", Arial, Helvetica, sans-serif;
+    font-family: 'Comic Sans MS', cursive;
 }
 
 body{
@@ -26,7 +26,7 @@ form {
     position: relative;
     width: 65%;
     height: auto;
-    font-family: Arial, sans-serif;
+    font-family: 'Comic Sans MS', cursive;
     font-size: 14px;
     line-height: 24px;
     text-decoration: none;
@@ -173,7 +173,8 @@ a{
     height:250px;
     margin-left: 25%;
     background-color: rgba(2,112,201,0.7);
-    border:1px solid black;
+    border: inherit;
+    border-radius: 15px;
 }
 
 #dateScrolling{
@@ -270,6 +271,9 @@ a{
 #PlannningMove{
     display: none;
 }
+#ExportMove{
+    display:none;
+}
 
 .uk-modal h2{
     padding: 0px;
@@ -298,7 +302,7 @@ a{
     position: relative;
     top: -55px;
     right: 15px;
-    
+
 }
 
 img#notReponse {
