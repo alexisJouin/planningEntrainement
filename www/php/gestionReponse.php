@@ -39,12 +39,22 @@ try {
         $selPresence = $dbh->prepare("SELECT p.`id_player` id_player, p.`id_groupe` id_groupe, p.`id_entrainement` id_entrainement, p.`statut` statut, pl.derby_name derby_name, pl.prenom prenom "
                 . " FROM `presence` p"
                 . " INNER JOIN player pl ON pl.id = p.id_player"
-                . " WHERE p.id_entrainement = $id_entrainement AND p.id_groupe= $id_groupe ");
+                . " WHERE p.id_entrainement = $id_entrainement AND p.id_groupe= $id_groupe "
+                . " ORDER BY statut DESC");
 
         $selPresence->execute();
         $listPresence = $selPresence->fetchAll(PDO::FETCH_ASSOC);
 
-        echo json_encode($listPresence);
+        $selNoReponse = $dbh->prepare("SELECT  pl.id id_playerNo, pl.derby_name derby_nameNo, pl.prenom prenomNo
+                        FROM `entrainement` e
+                        INNER JOIN player pl ON pl.id_groupe = e.id_groupe
+                        LEFT JOIN presence p ON p.id_player = pl.id
+                        WHERE e.id = $id_entrainement AND e.id_groupe= $id_groupe AND p.id IS NULL");
+        $selNoReponse->execute();
+        $listNoPresence = $selNoReponse->fetchAll(PDO::FETCH_ASSOC);
+            
+        echo json_encode(array($listPresence,$listNoPresence));
+//        echo json_encode($listNoPresence);
     }
     
     elseif($option == 3){

@@ -317,3 +317,10 @@ figcaption#notReponse {
     font-weight: bold;
     text-decoration: underline;
 }
+
+[forAdmin="true"]{
+    display:inherit;
+}
+[forAdmin="false"]{
+    display : none;
+}

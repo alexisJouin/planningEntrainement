@@ -2,27 +2,42 @@ $(document).ready(function () {
     var tabCurrentSession;
     var tabListGroup;
     var id_player, id_groupe, derby_name, privilege, statut_in_groupe, nom_groupe;
-    var data = new Array();
+    var forAdmin = "false";
     var currentPage = $('#dateScrolling').jqxScrollView('currentPage');
+
+    //Logo de chargement ... à améliorer
+    $(document).on({
+        ajaxStart: function () {
+            $("body").addClass("loading");
+        },
+        ajaxStop: function () {
+            $("body").removeClass("loading");
+        }
+    });
+
 
     getCurrentSession();
 
     //TO DO replace hide par empty pour empécher d'afficher avec console les div
     if (id_groupe == 0 || id_groupe == null || id_groupe == "") {
+        forAdmin = "false";
         $('#planning').hide();
         $('#firstUse').show();
         getListGroup();
     } else {
         if (statut_in_groupe == 2) { // si personne accepté 
+            forAdmin = "false";
             $('#firstUse').hide();
             $('#linkToCreateGroup').hide();
             $('#planning').show();
 
 
             if (privilege == 1 || privilege == 2) { //Si c'est l'admin
+                forAdmin = "true";
                 $('#linkToCreateGroup').hide();
                 $('#EditGroupeMove').show();
                 $('#PlannningMove').show();
+                $('#ExportMove').show();
                 getListDemandePlayer();
 
             }
@@ -32,7 +47,9 @@ $(document).ready(function () {
 
 
         } else if (statut_in_groupe == 1) {
+            forAdmin = "false";
             $('#linkToCreateGroup').hide();
+            $('[forAdmin="true"]').hide();
             $('#notification ul').append('<li>Vous avez demandé de rejoindre le groupe : <u><b>' + nom_groupe + '</b></u></li>');
             $('body').append("<h1>Votre demande pour rejoindre le groupe : <u>" + nom_groupe + "</u> est en cours de validation par l'administrateur</h1>");
         }
@@ -178,6 +195,9 @@ $(document).ready(function () {
     $("#PlannningMove").click(function () {
         window.location.href = "gestionPlanning.php";
     });
+    $("#ExportMove").click(function () {
+        window.location.href = "exportPresence.php";
+    });
 
     //Bouton de déconnexion
     $("#logOff").click(function () {
@@ -218,7 +238,7 @@ $(document).ready(function () {
 
                     {
                         output += "\
-                            <div id='" + tabListEntrainement[i].id + "'>\n\
+                            <div class ='entrainement' id='" + tabListEntrainement[i].id + "'>\n\
                                 <a href='#modalInfoEntrainement" + tabListEntrainement[i].id + "' data-uk-modal>\n\
                                     <img src='img/info.png' style='width:35px; float:right;'/>\n\
                                 </a>\n\
@@ -238,9 +258,15 @@ $(document).ready(function () {
                                         <h2>Entraînement du ' + $.format.date(tabListEntrainement[i].date, 'dd/MM/yyyy') + ' </h2>\n\
                                     </div>\n\
                                     Lieu : <a href="https://www.google.fr/maps/place/' + tabListEntrainement[i].lieu + '">' + tabListEntrainement[i].lieu + '</a>\n\
-                                    <br><span id="nbrPersonne'+ tabListEntrainement[i].id +'"></span>\n\
-                                    <h3><u>Liste des personnes présentes</u> : </h3>\n\
-                                    <ul id="listPresence' + tabListEntrainement[i].id + '" class="uk-list uk-list-striped" style="max-height: 200px;overflow: auto;"></ul>\n\
+                                    <br><span id="nbrPersonne' + tabListEntrainement[i].id + '"></span>\n\
+                                    <div class="listPlayerReponse" id="divListReponse' + tabListEntrainement[i].id + '">\n\
+                                        <h3><u>Liste des personnes présentes</u> : </h3>\n\
+                                        <ul id="listPresence' + tabListEntrainement[i].id + '" class="uk-list uk-list-striped" style="max-height: 200px;overflow: auto;"></ul>\n\
+                                        <h3><u>Liste des personnes absentes</u> : </h3>\n\
+                                        <ul id="listPresence' + tabListEntrainement[i].id + 'No" class="uk-list uk-list-striped" style="max-height: 200px;overflow: auto;"></ul>\n\
+                                        <h3 forAdmin="' + forAdmin + '"><u>Liste des personnes n\'ayant pas répondu !</u> : </h3>\n\
+                                        <ul forAdmin="' + forAdmin + '" id="listPresence' + tabListEntrainement[i].id + 'NoRep" class="uk-list uk-list-striped" style="max-height: 200px;overflow: auto;"></ul>\n\
+                                    </div>\n\
                                 </div>\n\
                             </div>'
                                 );
@@ -254,19 +280,16 @@ $(document).ready(function () {
                     }
 
                     //Supprime les doublons 
-                    $('div').each(function () {
+                    $('.entrainement').each(function () {
                         $('[id="' + this.id + '"]:gt(0)').remove();
                     });
 
                     //Supprime les doublons
-                    $('#modalEntrainement ul').each(function () {
-                        var idUl = $(this).attr('id');
-                        $(this).children('li').each(function () {
-                            var idLi = $(this).attr('id');
-                            $('#' + idUl).children('[id="' + this.id + '"]:gt(0)').remove();
+                    $('.listPlayerReponse').each(function () {
+                        var idDiv = $(this).attr('id');
+                        $('#' + idDiv).children('ul').children('li').each(function () {
+                            $('#' + idDiv).children('ul').children('[id="' + this.id + '"]:gt(0)').remove();
                         });
-
-
                     });
 
 
@@ -322,8 +345,12 @@ $(document).ready(function () {
             success: function (msg) {
                 var output = "";
                 if (msg != "" && msg != null && msg.length != 2) {
-                    var tabListPresence = jQuery.parseJSON(msg);
+
+                    var tabList = jQuery.parseJSON(msg);
                     var nbrPresence = 0;
+                    var tabListPresence = tabList[0];
+                    var tabListNoPresence = tabList[1];
+
                     for (var i in tabListPresence) {
                         if (tabListPresence[i].statut == 2) {
                             output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + "</li>"
@@ -332,7 +359,15 @@ $(document).ready(function () {
                         } else if (tabListPresence[i].statut == 1) {
                             output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "' style='color:orange;'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + " => Peut-être</li>"
                             $('#listPresence' + idEntrainement).append(output);
+                        } else if (tabListPresence[i].statut == 0) {
+                            output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "' style='color:red;'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + "</li>"
+                            $('#listPresence' + idEntrainement + 'No').append(output);
                         }
+                    }
+
+                    for (var i in tabListNoPresence) {
+                        output += "<li id='liIdPlayer" + tabListNoPresence[i].id_playerNo + "' style='color:red;'>" + tabListNoPresence[i].prenomNo + ",  " + tabListNoPresence[i].derby_nameNo + "</li>"
+                        $('#listPresence' + idEntrainement + 'NoRep').append(output);
                     }
 
                     $('#nbrPersonne' + idEntrainement).append("Nombre de personne pour l\'entrainement : <b>" + nbrPresence + "</b>");
@@ -396,41 +431,7 @@ $(document).ready(function () {
             async: false,
             data: "option=1&idEntrainement=" + id + "&reponse=" + reponse,
             success: function () {
-                if (reponse == "yes") {
-                    UIkit.notify({
-                        message: 'Vous avez confirmé votre présence pour cet entraînement !',
-                        status: 'info',
-                        timeout: 1000,
-                        pos: 'top-center'
-                    });
-
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 1500);
-                } else if (reponse == "yn") {
-                    UIkit.notify({
-                        message: 'Vous avez que vous n\'êtes pas sur pour cet entraînement !',
-                        status: 'warning',
-                        timeout: 1000,
-                        pos: 'top-center'
-                    });
-
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 1500);
-                } else if (reponse == "no") {
-                    UIkit.notify({
-                        message: 'Vous ne serez pas présent pour cet entraînement !',
-                        status: 'danger',
-                        timeout: 1000,
-                        pos: 'top-center'
-                    });
-
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 1500);
-                }
-
+                window.location.reload();
             }
 
         });
