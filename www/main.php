@@ -37,9 +37,10 @@ include("include/testConnect.php");
                 <p>Bienvenue <u><b><?php echo utf8_encode($_SESSION['derby_name']); ?></b></u>, vous êtes connecté</p>
                 <a href="#" id="logOff">Se déconnecter</a>
                 <br>
-                <button id="EditProfilMove">Votre Porfil</button>
+                <button id="EditProfilMove">Votre Profil</button>
                 <button id="EditGroupeMove">Votre Groupe</button>
                 <button id="PlannningMove">Gestion du planning</button>
+                <button id="ExportMove">Exportation des présences</button>
                 <br>
                 <div id="linkToCreateGroup">
                     <p>Vous êtes le coach ou le responsable de la gestion des entraînements ?</p>
