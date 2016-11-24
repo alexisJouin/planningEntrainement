@@ -251,9 +251,9 @@ $(document).ready(function () {
                                 </a>\n\
                                 <h1 style='padding: 24px 32px 32px 32px;'>" + $.format.date(tabListEntrainement[i].date, 'ddd d') + "  " + $.format.date(tabListEntrainement[i].date, 'MMMM yyyy') + "</h1>\n\
                                 <h2>Entraînement de " + tabListEntrainement[i].horraire_debut + " à " + tabListEntrainement[i].horraire_fin + "</h2>\n\
+                                <ul id='listPresenceDefile" + tabListEntrainement[i].id + "' list='defile'></ul>\n\
                                 <br><img src='img/notif_alert.png' id='notReponse' alt='pas de réponse !'/><figcaption id='notReponse'>Vous n'avez pas répondu !</figcaption>\n\
                                 <span id='buttonReponse'><button value='yes' id='yes' idEntrainement=" + tabListEntrainement[i].id + " >Oui</button><button value='yn' id='yn' idEntrainement=" + tabListEntrainement[i].id + " >Peut-être</button><button value='no' id='no' idEntrainement=" + tabListEntrainement[i].id + " >Non</button></span>\n\
-                                <ul id='listPresenceDefile" + tabListEntrainement[i].id + "' list='defile'>\n\
                             </div>";
 
                         $('#dateScrolling').append(output);
@@ -365,8 +365,7 @@ $(document).ready(function () {
                         if (tabListPresence[i].statut == 2) {
                             output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + "</li>";
                             $('#listPresence' + idEntrainement).append(output);
-                            output2 = "<li><p>" + tabListPresence[i].prenom + " , " + tabListPresence[i].derby_name + "</p></li>";
-                            $('#listPresenceDefile' + idEntrainement).append(output2);
+                            output2 += "<li><p>" + tabListPresence[i].prenom + " , " + tabListPresence[i].derby_name + "</p></li>";
                             nbrPresence++;
                         } else if (tabListPresence[i].statut == 1) {
                             output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "' style='color:orange;'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + " => Peut-être</li>";
@@ -376,6 +375,7 @@ $(document).ready(function () {
                             $('#listPresence' + idEntrainement + 'No').append(output);
                         }
                     }
+                    $('#listPresenceDefile' + idEntrainement).append(output2);
 
                     for (var i in tabListNoPresence) {
                         output += "<li id='liIdPlayer" + tabListNoPresence[i].id_playerNo + "' style='color:red;'>" + tabListNoPresence[i].prenomNo + ",  " + tabListNoPresence[i].derby_nameNo + "</li>";
