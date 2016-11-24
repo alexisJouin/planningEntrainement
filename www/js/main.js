@@ -3,18 +3,21 @@ $(document).ready(function () {
     var tabListGroup;
     var id_player, id_groupe, derby_name, privilege, statut_in_groupe, nom_groupe;
     var forAdmin = "false";
-    var currentPage = $('#dateScrolling').jqxScrollView('currentPage');
 
-    //Logo de chargement ... à améliorer
-    $(document).on({
-        ajaxStart: function () {
-            $("body").addClass("loading");
-        },
-        ajaxStop: function () {
-            $("body").removeClass("loading");
-        }
-    });
-
+//    var getUrlParameter = function getUrlParameter(sParam) {
+//        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+//                sURLVariables = sPageURL.split('&'),
+//                sParameterName,
+//                i;
+//
+//        for (i = 0; i < sURLVariables.length; i++) {
+//            sParameterName = sURLVariables[i].split('=');
+//
+//            if (sParameterName[0] === sParam) {
+//                return sParameterName[1] === undefined ? true : sParameterName[1];
+//            }
+//        }
+//    };
 
     getCurrentSession();
 
@@ -30,6 +33,10 @@ $(document).ready(function () {
             $('#firstUse').hide();
             $('#linkToCreateGroup').hide();
             $('#planning').show();
+            var currentPage = $('#dateScrolling').jqxScrollView('currentPage');
+
+//            var currentPage = getUrlParameter('currentPage');
+//            $("#dateScrolling").jqxScrollView('changePage', getUrlParameter('currentPage'));
 
 
             if (privilege == 1 || privilege == 2) { //Si c'est l'admin
@@ -246,6 +253,7 @@ $(document).ready(function () {
                                 <h2>Entraînement de " + tabListEntrainement[i].horraire_debut + " à " + tabListEntrainement[i].horraire_fin + "</h2>\n\
                                 <br><img src='img/notif_alert.png' id='notReponse' alt='pas de réponse !'/><figcaption id='notReponse'>Vous n'avez pas répondu !</figcaption>\n\
                                 <span id='buttonReponse'><button value='yes' id='yes' idEntrainement=" + tabListEntrainement[i].id + " >Oui</button><button value='yn' id='yn' idEntrainement=" + tabListEntrainement[i].id + " >Peut-être</button><button value='no' id='no' idEntrainement=" + tabListEntrainement[i].id + " >Non</button></span>\n\
+                                <ul id='listPresenceDefile" + tabListEntrainement[i].id + "' list='defile'>\n\
                             </div>";
 
                         $('#dateScrolling').append(output);
@@ -344,29 +352,33 @@ $(document).ready(function () {
             data: "option=2&idEntrainement=" + idEntrainement,
             success: function (msg) {
                 var output = "";
+                var output2 = "";
+                
                 if (msg != "" && msg != null && msg.length != 2) {
 
                     var tabList = jQuery.parseJSON(msg);
                     var nbrPresence = 0;
                     var tabListPresence = tabList[0];
                     var tabListNoPresence = tabList[1];
-
+                     $('#listPresenceDefile' + idEntrainement).append("<li><span>Personnes présentes : </span></li>");
                     for (var i in tabListPresence) {
                         if (tabListPresence[i].statut == 2) {
-                            output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + "</li>"
+                            output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + "</li>";
                             $('#listPresence' + idEntrainement).append(output);
+                            output2 = "<li><p>" + tabListPresence[i].prenom + " , " + tabListPresence[i].derby_name + "</p></li>";
+                            $('#listPresenceDefile' + idEntrainement).append(output2);
                             nbrPresence++;
                         } else if (tabListPresence[i].statut == 1) {
-                            output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "' style='color:orange;'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + " => Peut-être</li>"
+                            output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "' style='color:orange;'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + " => Peut-être</li>";
                             $('#listPresence' + idEntrainement).append(output);
                         } else if (tabListPresence[i].statut == 0) {
-                            output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "' style='color:red;'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + "</li>"
+                            output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "' style='color:red;'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + "</li>";
                             $('#listPresence' + idEntrainement + 'No').append(output);
                         }
                     }
 
                     for (var i in tabListNoPresence) {
-                        output += "<li id='liIdPlayer" + tabListNoPresence[i].id_playerNo + "' style='color:red;'>" + tabListNoPresence[i].prenomNo + ",  " + tabListNoPresence[i].derby_nameNo + "</li>"
+                        output += "<li id='liIdPlayer" + tabListNoPresence[i].id_playerNo + "' style='color:red;'>" + tabListNoPresence[i].prenomNo + ",  " + tabListNoPresence[i].derby_nameNo + "</li>";
                         $('#listPresence' + idEntrainement + 'NoRep').append(output);
                     }
 
@@ -439,8 +451,22 @@ $(document).ready(function () {
 
     });
 
+    //Text défilant 
+    $(function () {
+        $('ul[list="defile"]').each(function () {
+            var id = $(this).attr('id');
+            $('#'+id).liScroll({travelocity: 0.1});
+        });
+    });
 
+});
 
-
-
+//Logo de chargement ... à améliorer
+$(document).on({
+    ajaxStart: function () {
+        $("body").addClass("loading");
+    },
+    ajaxStop: function () {
+        $("body").removeClass("loading");
+    }
 });

@@ -9,6 +9,7 @@ include("include/testConnect.php");
 <script type="text/javascript" src="js/uikit/jqxscrollview.js"></script>
 <script type="text/javascript" src="js/uikit/jqxnotification.js"></script>
 <link rel="stylesheet" href="css/uikit/jqx.base.css" type="text/css" />
+<link rel="stylesheet" href="css/li-scroller.css" />
 <script type="text/javascript" src="js/uikit/jqxdata.js"></script>
 <script type="text/javascript" src="js/uikit/jqxbuttons.js"></script>
 <script type="text/javascript" src="js/uikit/jqxscrollbar.js"></script>
@@ -22,6 +23,8 @@ include("include/testConnect.php");
 <script type="text/javascript" src="js/uikit/jqxgrid.sort.js"></script> 
 <script type="text/javascript" src="js/uikit/jqxgrid.pager.js"></script> 
 <script type="text/javascript" src="js/uikit/jqxgrid.grouping.js"></script> 
+
+<script type="text/javascript" src="js/jquery.li-scroller.1.0.js"></script>
 
 <script src="js/main.js"></script>
 
@@ -79,6 +82,7 @@ include("include/testConnect.php");
     <div id='planning'>
         <h3 style="text-align: center"><?php echo utf8_encode($_SESSION['nom_groupe']); ?></h3>
         <h4 style="text-align: center">Liste des prochains entraînements</h4>
+        <br>
         <img src="img/direction_arrow_blue_left.png" id="arrowLeft"/>
         <img src="img/direction_arrow_blue_right.png" id="arrowRight"/>
         <div id="dateScrolling">

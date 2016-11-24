@@ -36,20 +36,24 @@ try {
         $id_entrainement = $_POST['idEntrainement'];
         $id_groupe = $_SESSION['id_groupe'];
         
-        $selPresence = $dbh->prepare("SELECT p.`id_player` id_player, p.`id_groupe` id_groupe, p.`id_entrainement` id_entrainement, p.`statut` statut, pl.derby_name derby_name, pl.prenom prenom "
+        $selPresence = $dbh->prepare("SELECT DISTINCT p.`id_player` id_player, p.`id_groupe` id_groupe, p.`id_entrainement` id_entrainement, p.`statut` statut, pl.derby_name derby_name, pl.prenom prenom "
                 . " FROM `presence` p"
                 . " INNER JOIN player pl ON pl.id = p.id_player"
                 . " WHERE p.id_entrainement = $id_entrainement AND p.id_groupe= $id_groupe "
-                . " ORDER BY statut DESC");
+                . " ORDER BY statut DESC, prenom ASC");
 
         $selPresence->execute();
         $listPresence = $selPresence->fetchAll(PDO::FETCH_ASSOC);
 
-        $selNoReponse = $dbh->prepare("SELECT  pl.id id_playerNo, pl.derby_name derby_nameNo, pl.prenom prenomNo
-                        FROM `entrainement` e
-                        INNER JOIN player pl ON pl.id_groupe = e.id_groupe
-                        LEFT JOIN presence p ON p.id_player = pl.id
-                        WHERE e.id = $id_entrainement AND e.id_groupe= $id_groupe AND p.id IS NULL");
+        $selNoReponse = $dbh->prepare("SELECT DISTINCT pl.id id_playerNo,  pl.derby_name derby_nameNo,  pl.prenom  prenomNo, pl.email email
+                                        FROM `player` pl
+                                        WHERE NOT EXISTS (
+                                                SELECT p.id FROM presence p WHERE p.id_player = pl.id AND p.id_entrainement IN (
+                                                        SELECT e.id FROM entrainement e WHERE e.id = $id_entrainement
+                                                )
+                                        )
+                                        AND pl.id_groupe = $id_groupe
+                                        ORDER BY prenomNo");
         $selNoReponse->execute();
         $listNoPresence = $selNoReponse->fetchAll(PDO::FETCH_ASSOC);
             

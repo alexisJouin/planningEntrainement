@@ -25,6 +25,12 @@ h1{
 h2{
     text-shadow: inherit;
 }
+h3{
+    margin: inherit;
+}
+h4{
+    margin: inherit;
+}
 
 form {
     margin: auto;
