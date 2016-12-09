@@ -4,6 +4,65 @@ $(document).ready(function () {
     var id_player, id_groupe, derby_name, privilege, statut_in_groupe, nom_groupe;
     var forAdmin = "false";
 
+
+    var sizeWidthScreen = $(window).width();
+    var sizeHeightScreen = $(window).height();
+    var widthScroll = "75%";
+    gestionSize();
+
+
+    //Quand la taille de fenêtre change
+    $(window).resize(function () {
+        gestionSize();
+        console.log("Handler for .resize() called :\nWidth : " + sizeWidthScreen + "\nHeight : " + sizeHeightScreen);
+    });
+
+    function gestionSize() {
+        sizeWidthScreen = $(window).width();
+        sizeHeightScreen = $(window).height();
+
+        if (sizeWidthScreen <= 370) {
+            setStylePhone(); 
+            $('h3').css('font-size', '11px');
+            $('h4').css('font-size', '10px');
+            $('h4').css('margin-left', '6%');
+            
+        } else if (sizeWidthScreen <= 500 && sizeWidthScreen > 370) {
+            setStylePhone();
+//            $('h3').css('left', '19%');
+        } else if (sizeWidthScreen > 500) {
+            widthScroll = "400px";
+            $('#dateScrolling').css('margin', '0px auto 0px 0px');
+            $('#dateScrolling').css('left', '' + (sizeWidthScreen / 2)-250 + 'px');
+            $('#arrowLeft').css('left', '' + (sizeWidthScreen / 2)-350 + 'px');
+            $('#arrowRight').css('right', '' + (sizeWidthScreen / 2)-350 + 'px');
+        }
+    }
+    ;
+
+    function setStylePhone() {
+        widthScroll = "100%";
+        $('#dateScrolling').css('margin-left', '0px');
+        $('#dateScrolling').css('border-radius', '0px');
+        $('h3').css('font-size', '20px');
+        $('h4').css('font-size', '15px');
+        $('#arrowLeft').hide();
+        $('#arrowRight').hide();
+    }
+
+    // Check la plateform
+    window.mobileAndTabletcheck = function () {
+        var check = false;
+        (function (a) {
+            if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4)))
+                check = true;
+        })(navigator.userAgent || navigator.vendor || window.opera);
+        console.log(check);
+        return check;
+    };
+    window.mobileAndTabletcheck();
+
+
 //    var getUrlParameter = function getUrlParameter(sParam) {
 //        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
 //                sURLVariables = sPageURL.split('&'),
@@ -249,7 +308,7 @@ $(document).ready(function () {
                                 <a href='#modalInfoEntrainement" + tabListEntrainement[i].id + "' data-uk-modal>\n\
                                     <img src='img/info.png' style='width:35px; float:right;'/>\n\
                                 </a>\n\
-                                <h1 style='padding: 24px 32px 32px 32px;'>" + $.format.date(tabListEntrainement[i].date, 'ddd d') + "  " + $.format.date(tabListEntrainement[i].date, 'MMMM yyyy') + "</h1>\n\
+                                <h1>" + $.format.date(tabListEntrainement[i].date, 'ddd d') + "  " + $.format.date(tabListEntrainement[i].date, 'MMMM yyyy') + "</h1>\n\
                                 <h2>Entraînement de " + tabListEntrainement[i].horraire_debut + " à " + tabListEntrainement[i].horraire_fin + "</h2>\n\
                                 <ul id='listPresenceDefile" + tabListEntrainement[i].id + "' list='defile'></ul>\n\
                                 <br><img src='img/notif_alert.png' id='notReponse' alt='pas de réponse !'/><figcaption id='notReponse'>Vous n'avez pas répondu !</figcaption>\n\
@@ -315,8 +374,8 @@ $(document).ready(function () {
     function scrollView() {
 
         $('#dateScrolling').jqxScrollView({
-            width: "75%",
-            height: 550,
+            width: widthScroll,
+            height: 480,
             buttonsOffset: [1, 1]
         });
 
@@ -353,14 +412,14 @@ $(document).ready(function () {
             success: function (msg) {
                 var output = "";
                 var output2 = "";
-                
+
                 if (msg != "" && msg != null && msg.length != 2) {
 
                     var tabList = jQuery.parseJSON(msg);
                     var nbrPresence = 0;
                     var tabListPresence = tabList[0];
                     var tabListNoPresence = tabList[1];
-                     $('#listPresenceDefile' + idEntrainement).append("<li><span>Personnes présentes : </span></li>");
+                    $('#listPresenceDefile' + idEntrainement).append("<li><span>Personnes présentes : </span></li>");
                     for (var i in tabListPresence) {
                         if (tabListPresence[i].statut == 2) {
                             output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + "</li>";
@@ -455,7 +514,7 @@ $(document).ready(function () {
     $(function () {
         $('ul[list="defile"]').each(function () {
             var id = $(this).attr('id');
-            $('#'+id).liScroll({travelocity: 0.1});
+            $('#' + id).liScroll({travelocity: 0.1});
         });
     });
 

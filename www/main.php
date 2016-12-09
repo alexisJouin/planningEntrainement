@@ -90,6 +90,10 @@ include("include/testConnect.php");
         </div>
     </div>
     <div id="modalEntrainement"></div>
+    
+    <footer>
+        <p>Développé par Alexis Jouin. Pour toute question contactez-moi par mail : alexis.jouin@live.fr</p>
+    </footer>
 
 </body>
 </html>
