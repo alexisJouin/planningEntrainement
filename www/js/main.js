@@ -22,20 +22,20 @@ $(document).ready(function () {
         sizeHeightScreen = $(window).height();
 
         if (sizeWidthScreen <= 370) {
-            setStylePhone(); 
+            setStylePhone();
             $('h3').css('font-size', '11px');
             $('h4').css('font-size', '10px');
             $('h4').css('margin-left', '6%');
-            
+
         } else if (sizeWidthScreen <= 500 && sizeWidthScreen > 370) {
             setStylePhone();
 //            $('h3').css('left', '19%');
         } else if (sizeWidthScreen > 500) {
             widthScroll = "400px";
             $('#dateScrolling').css('margin', '0px auto 0px 0px');
-            $('#dateScrolling').css('left', '' + (sizeWidthScreen / 2)-250 + 'px');
-            $('#arrowLeft').css('left', '' + (sizeWidthScreen / 2)-350 + 'px');
-            $('#arrowRight').css('right', '' + (sizeWidthScreen / 2)-350 + 'px');
+            $('#dateScrolling').css('left', '' + (sizeWidthScreen / 2) - 250 + 'px');
+            $('#arrowLeft').css('left', '' + (sizeWidthScreen / 2) - 350 + 'px');
+            $('#arrowRight').css('right', '' + (sizeWidthScreen / 2) - 350 + 'px');
         }
     }
     ;
@@ -263,6 +263,20 @@ $(document).ready(function () {
     });
     $("#ExportMove").click(function () {
         window.location.href = "exportPresence.php";
+    });
+
+    //Mise à jour
+    $("#updateButton").click(function () {
+        $.ajax({
+            url: "php/gestionReponse.php",
+            type: "POST",
+            async: false,
+            data: "option=0",
+            success: function () {
+                window.location.reload();
+            }
+
+        });
     });
 
     //Bouton de déconnexion

@@ -64,6 +64,7 @@ include("include/testConnect.php");
                                <div class="tm-icon-menu"></div>
                            </a>-->
     <img src="img/param.png" id="paramButton" alt="Cacher le menu" class="uk-button" data-uk-offcanvas="{target:'#param'}"></img>
+    <img src="img/update.png" id="updateButton" class="update" alt="Cacher le menu"></img>
 
     <!-- Cas où l'untilisateur n'a aucune affiliation -->
     <div id='firstUse'>
