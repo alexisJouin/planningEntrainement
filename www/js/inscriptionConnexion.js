@@ -1,5 +1,32 @@
 $(document).ready(function () {
 
+    $('#forgotPWD').click(function () {
+        UIkit.modal.prompt("Adresse mail : ", "", function (adressMail) {
+            if (adressMail != "") {
+                $.ajax({
+                    type: "POST",
+                    url: "php/sendMail.php",
+                    data: "adressMail=" + adressMail + "&option=1",
+                    success: function (msg) {
+                        if (msg == "0") // si pas de compte associé
+                        {
+                            UIkit.modal.alert('Désolé, il n\'y a aucun compte associé à ' + adressMail);
+                        } else if(msg == "1") {
+                            UIkit.modal.alert('Un mail avec le mot de passe a été envoyé à ' + adressMail + "\nPensez à regarder dans vos courriers indésirables ;)");
+                        }
+                        else{
+                            UIkit.modal.alert('Désolé, une erreur est survenue ... :(');
+                            console.log(msg);
+                        }
+                    }
+                });
+
+
+            }
+            console.log(adressMail);
+
+        });
+    });
 
 
     //Connexion
@@ -66,7 +93,7 @@ style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la connexion,\n\
                         setTimeout(function () {
                             window.location.href = "index.php";
                         }, 1500);
-                        
+
 //                        window.location.assign("index.php");
                     } else if (msg == "0") // si la connexion en php n'a pas fonctionnée
                     {

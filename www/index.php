@@ -18,6 +18,8 @@
             <input id="derbyName" name="derbyName" placeholder='Derby Name' required>
             <input id="password" type="password" name="password" placeholder="Mot de passe" required>
             <button type="submit" id="submit" style="height: 50px;">Connexion</button>
+            <a href="#" data-uk-modal="{center:true}" id="forgotPWD" style="color:white;">Mot de passe oublié ?</a>
+            <br>
             <a href="inscription.php" style="color:white;">Pas encore de compte ? Inscrivez-vous ici !</a>
             <br>
             <!--<a href="main.html">ACCESS TO MAIN</a>-->
