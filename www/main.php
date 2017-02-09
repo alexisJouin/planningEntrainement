@@ -63,7 +63,7 @@ include("include/testConnect.php");
     <!--    TODO ! => add class tm-icon-menu pour bouton <a href="#overlay-menu" class="tm-overlay-toggle tm-icon uk-float-right" data-uk-modal="{target: '#overlay-menu', center: true}">
                                <div class="tm-icon-menu"></div>
                            </a>-->
-    <img src="img/param.png" id="paramButton" alt="Cacher le menu" class="uk-button" data-uk-offcanvas="{target:'#param'}"></img>
+    <img src="img/param.png" id="paramButton" alt="Cacher le menu" data-uk-offcanvas="{target:'#param'}"></img>
     <img src="img/update.png" id="updateButton" class="update" alt="Cacher le menu"></img>
 
     <!-- Cas où l'untilisateur n'a aucune affiliation -->
@@ -92,8 +92,10 @@ include("include/testConnect.php");
     </div>
     <div id="modalEntrainement"></div>
     
-    <footer>
+    <footer style="font-size: 8px;">
+        <!--©-->
         <p>Développé par Alexis Jouin. Pour toute question contactez-moi par mail : alexis.jouin@live.fr</p>
+        <img src="img/logo_sirene_hurlante.png" alt="Sirènes Hurlantes" class="logo"/>
     </footer>
 
 </body>

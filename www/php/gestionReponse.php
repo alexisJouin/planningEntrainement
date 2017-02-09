@@ -20,6 +20,8 @@ try {
             $statut = 1;
         } elseif ($reponse == "yes") {
             $statut = 2;
+        } elseif ($reponse == "noContact") {
+            $statut = 3;
         }
 
 
@@ -30,13 +32,17 @@ try {
         $insPresence->execute();
 
         echo json_encode($insPresence);
-    }
-    
-    elseif($option == 2){
+    } elseif ($option == 2) {
         $id_entrainement = $_POST['idEntrainement'];
         $id_groupe = $_SESSION['id_groupe'];
-        
-        $selPresence = $dbh->prepare("SELECT DISTINCT p.`id_player` id_player, p.`id_groupe` id_groupe, p.`id_entrainement` id_entrainement, p.`statut` statut, pl.derby_name derby_name, pl.prenom prenom "
+
+        $selPresence = $dbh->prepare("SELECT DISTINCT p.`id_player` id_player,"
+                . " p.`id_groupe` id_groupe,"
+                . " p.`id_entrainement` id_entrainement,"
+                . " p.`statut` statut,"
+                . " pl.derby_name derby_name,"
+                . " pl.prenom prenom, "
+                . " pl.sexe sexe"
                 . " FROM `presence` p"
                 . " INNER JOIN player pl ON pl.id = p.id_player"
                 . " WHERE p.id_entrainement = $id_entrainement AND p.id_groupe= $id_groupe "
@@ -56,16 +62,14 @@ try {
                                         ORDER BY prenomNo");
         $selNoReponse->execute();
         $listNoPresence = $selNoReponse->fetchAll(PDO::FETCH_ASSOC);
-            
-        echo json_encode(array($listPresence,$listNoPresence));
+
+        echo json_encode(array($listPresence, $listNoPresence));
 //        echo json_encode($listNoPresence);
-    }
-    
-    elseif($option == 3){
+    } elseif ($option == 3) {
         $id_entrainement = $_POST['idEntrainement'];
         $id_groupe = $_SESSION['id_groupe'];
         $id_player = $_SESSION['id'];
-        
+
         $selPresence = $dbh->prepare("SELECT p.`statut` statut"
                 . " FROM `presence` p"
                 . " INNER JOIN player pl ON pl.id = p.id_player"
@@ -75,6 +79,10 @@ try {
         $listPresence = $selPresence->fetch(PDO::FETCH_ASSOC);
 
         echo json_encode($listPresence);
+    } elseif ($option == 0) {
+        $insPresence = $dbh->prepare("UPDATE presence SET `id_groupe` = $_SESSION[id_groupe] WHERE id_player = $_SESSION[id_player]");
+        $insPresence->execute();
+        echo json_encode($insPresence);
     }
 
 

@@ -57,7 +57,7 @@ try {
         echo json_encode($ins);   
     }
     
-    //Gest list entrainement pour la page main
+    //Get list entrainement pour la page main
     else if($option == 5){
         date_default_timezone_set('UTC');
         setlocale(LC_TIME, 'fr_FR.utf8', 'fra');

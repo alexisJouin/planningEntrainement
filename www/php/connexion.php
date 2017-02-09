@@ -8,12 +8,11 @@ $derby_name_session;
 try {
 
     //Préparation de la requête
-    $res = $dbh->prepare("SELECT derby_name, mdp, id, id_groupe, statut_in_groupe, privilege FROM player WHERE derby_name = '$_POST[derby_name]' AND mdp = '$_POST[mdp]'");
+    $res = $dbh->prepare("SELECT derby_name, mdp, id, id_groupe, statut_in_groupe, privilege FROM player WHERE derby_name LIKE '$_POST[derby_name]' AND mdp LIKE '$_POST[mdp]'");
     $res->execute();
-    $membre = $res->fetch(PDO::FETCH_ASSOC);
-
-
-    if (($_POST['derby_name'] == $membre['derby_name']) && ($_POST['mdp'] == $membre['mdp'] )) {
+    $membre = $res->fetch(PDO::FETCH_ASSOC);    
+    
+    if ((strcasecmp($_POST['derby_name'], $membre['derby_name']) == 0) && ( strcasecmp($_POST['mdp'], $membre['mdp'] ) == 0 )) {  
         //Démarage de la session
         session_start();
 
