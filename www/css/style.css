@@ -49,6 +49,10 @@ form {
     color: white;
 }
 
+#formConnect .uk-form-icon > [class*='uk-icon-']{
+    width:inherit;
+    margin-top: inherit;
+}
 button{
     width: 150px;
     display: block;
@@ -75,6 +79,10 @@ input{
     padding:5px;
     display: block;
     /*margin:0 auto;*/
+}
+
+.uk-modal-content.uk-form, .uk-modal-content.uk-form, .uk-margin.uk-modal-content{
+    color:black;
 }
 
 button:hover{
@@ -399,7 +407,7 @@ img#updateButton:hover {
 }
 
 .logo{
-    width:130px;
+    width:35px;
 }
 
 .listPlayerReponse, #nbrPersonne{

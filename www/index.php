@@ -15,8 +15,14 @@
         <!--Formulaire de connexion-->
         <form id="formConnect" class="formConnect" method="POST" action="#">
             <h2>Connexion</h2>
-            <input id="derbyName" name="derbyName" placeholder='Derby Name' required>
-            <input id="password" type="password" name="password" placeholder="Mot de passe" required>
+            <div class="uk-form-icon">
+                <i class="uk-icon-user"></i>
+                <input id="derbyName" name="derbyName" autofocus placeholder='Derby Name' required>
+            </div>
+            <div class="uk-form-icon">
+                <i class="uk-icon-key"></i>
+                <input id="password" type="password" name="password" placeholder="Mot de passe" required>
+            </div>
             <button type="submit" id="submit" style="height: 50px;">Connexion</button>
             <a href="#" data-uk-modal="{center:true}" id="forgotPWD" style="color:white;">Mot de passe oublié ?</a>
             <br>
