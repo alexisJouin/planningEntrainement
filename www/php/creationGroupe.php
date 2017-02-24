@@ -26,7 +26,16 @@ try {
         echo "0"; // on 'retourne' la valeur 0 au javascript si LE Groupe Existe déjà
     } 
     else if($nom != $membre['nom']) {
-        $ins = $dbh->prepare("INSERT INTO groupe (`nom`, `email`,`adresse`, `descriptif` ,`photo`, `date_creation`, `id_admin`) VALUES ('$nom','$email ' , '$adress', '$descriptionGroupe', '$photo', CURRENT_TIMESTAMP, $id_admin)");
+        
+        //preg_match
+        $ins = $dbh->prepare("INSERT INTO groupe (`nom`, `email`,`adresse`, `descriptif` ,`photo`, `date_creation`, `id_admin`) VALUES (:nom, :email , :adress, :descriptionGroupe , :photo, CURRENT_TIMESTAMP, :id_admin )");
+        $ins->bindParam(':nom', $nom);
+        $ins->bindParam(':email', $email);
+        $ins->bindParam(':adress', $adress);
+        $ins->bindParam(':descriptionGroupe', $descriptionGroupe);
+        $ins->bindParam(':photo', $photo);
+        $ins->bindParam(':id_admin', $id_admin);
+        
         $ins->execute();
         echo json_encode($ins); // on 'retourne' la valeur 1 au javascript si c'est bon
     }
@@ -37,3 +46,7 @@ try {
     print "Erreur !: " . $e->getMessage() . "<br/>";
     die();
 }
+
+/*
+ * Groupe réservé aux tests réalisés par l'admin de l'application. merci.
+ */

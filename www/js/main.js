@@ -83,6 +83,7 @@ $(document).ready(function () {
         forAdmin = "false";
         $('#planning').hide();
         $('#firstUse').show();
+        $('footer').hide();
         getListGroup();
     } else {
         if (statut_in_groupe == 2) { // si personne accepté 
@@ -353,6 +354,7 @@ $(document).ready(function () {
                                         <h3><u>Liste des personnes absentes</u> : </h3>\n\
                                         <ul id="listPresence' + tabListEntrainement[i].id + 'No" class="uk-list uk-list-striped" style="max-height: 200px;overflow: auto;"></ul>\n\
                                         <h3 forAdmin="' + forAdmin + '"><u>Liste des personnes n\'ayant pas répondu !</u> : </h3>\n\
+                                        <button id="sendRappel" idEntrainement="' + tabListEntrainement[i].id + '" forAdmin="' + forAdmin + '"><u>Envoyer un mail !</u> : </button>\n\
                                         <ul forAdmin="' + forAdmin + '" id="listPresence' + tabListEntrainement[i].id + 'NoRep" class="uk-list uk-list-striped" style="max-height: 200px;overflow: auto;"></ul>\n\
                                     </div>\n\
                                 </div>\n\
@@ -455,7 +457,7 @@ $(document).ready(function () {
                                 nbrNana++;
                             }
                             $('#listPresence' + idEntrainement).append(output);
-                            
+
                             nbrPresence++;
                         } else if (tabListPresence[i].statut == 1) {
                             output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "' style='color:orange;'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + " => Peut-être</li>";
@@ -466,7 +468,7 @@ $(document).ready(function () {
                         } else if (tabListPresence[i].statut == 3) {
                             if (tabListPresence[i].sexe == 0) {//Si c'est un homme
                                 nbrMec++;
-                            }else{
+                            } else {
                                 nbrNana++;
                             }
                             output += "<li id='liIdPlayer" + tabListPresence[i].id_player + "' style='color:green;'>" + tabListPresence[i].prenom + ",  " + tabListPresence[i].derby_name + " (No Contact) </li>";
@@ -552,6 +554,27 @@ $(document).ready(function () {
                 $("#" + id + " button").parent().parent.parent("#notReponse").fadeOut(1000);
                 //TODO Modifier directement dans la liste des présence dans INFO
             }
+        });
+    });
+
+    //Envoie mail de rappel
+    $('#sendRappel').click(function () {
+        var idEntrainement = $(this).attr('identrainement')
+        UIkit.modal.confirm("Envoyer un mail aux personnes n'ayant toujours pas répondu ?", function () {
+            $.ajax({
+                type: "POST",
+                url: "php/sendMailRappel.php",
+                data: "id_entrainement=" + idEntrainement + "&id_groupe=" + id_groupe,
+                success: function (msg) {
+                    console.log(msg)
+                    if (msg == "1") { //Si tout est OK 
+                        UIkit.modal.alert("Un email de rappel a bien été envoyé à tous les joueurs n'ayant pas répondu");
+                    } else {
+                        UIkit.modal.alert('Désolé, une erreur est survenue ... :(');
+                        console.log(msg);
+                    }
+                }
+            });
         });
     });
 

@@ -11,7 +11,7 @@
         <ul id='menuPlanning'>
             <li><a id="planningCreationLink" href='createPlanning.php'>Créer un planning d'entraînement</a></li>
             <li><a href='editEntrainement.php'>Modifier un entraînement</a></li>
-            <li><a href='createEvent.php' style="pointer-events: none;cursor: default;">Créer un évenement spécial - En cours de développement ...</a></li>
+            <li><a href='createEvent.php'>Créer un évenement spécial - En cours de développement ...</a></li>
             <li><a href='main.php'>Annuler</a></li>
         </ul>
     </body>

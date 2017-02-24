@@ -14,7 +14,7 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   /* 3 */
-  background: #fff;
+  /*background: #fff;*/
   color: white;
 }
 /*
@@ -43,7 +43,7 @@ a:hover {
  */
 a,
 .uk-link {
-  color: #07D;
+  color: white;
   text-decoration: none;
   cursor: pointer;
 }
