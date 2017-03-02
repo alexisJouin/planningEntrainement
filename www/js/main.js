@@ -551,7 +551,7 @@ $(document).ready(function () {
             success: function () {
                 $("#" + id + " button").removeClass("selectedButtonReponse");
                 $("#" + id + " button[value= " + idButton + " ]").addClass("selectedButtonReponse");
-                $("#" + id + " button").parent().parent.parent("#notReponse").fadeOut(1000);
+                $("#" + id).children("#notReponse").fadeOut(1000);
                 //TODO Modifier directement dans la liste des présence dans INFO
             }
         });
