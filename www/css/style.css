@@ -446,3 +446,33 @@ img#updateButton:hover {
 .listPlayerReponse, #nbrPersonne{
     color:black;
 }
+
+.annule h1,.annule h2, .annule li{
+    text-decoration: line-through;
+}
+
+.annule #notReponse{
+    display:none;
+}
+
+.annule .infoButton:hover{
+    width: 35px;
+}
+
+.annule button:disabled{
+    background: grey;
+}
+
+.annule a::before {
+    content: "ANNULE !"; 
+    color: red;
+    font-size: 25px;
+}
+
+#imgMatch{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: 0%;
+    z-index: -1;
+}

@@ -65,7 +65,7 @@ try {
         $current_date = date('y-m-d');
         $datePeriode_fin = date('Y-m-d', strtotime("+3 week"));
         
-        $req = $dbh->prepare("SELECT  id, `date`, DATE_FORMAT(`horraire_debut`,'%H:%i') horraire_debut, lieu, DATE_FORMAT(`horraire_fin`,'%H:%i') horraire_fin"
+        $req = $dbh->prepare("SELECT  id, `date`, DATE_FORMAT(`horraire_debut`,'%H:%i') horraire_debut, lieu, DATE_FORMAT(`horraire_fin`,'%H:%i') horraire_fin, etat"
                 . " FROM `entrainement` "
                 . " WHERE id_groupe = " . $_SESSION['id_groupe'] . " AND date BETWEEN '" . $current_date . "' AND '" . $datePeriode_fin . "' ORDER BY date");
         $req->execute();

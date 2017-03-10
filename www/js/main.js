@@ -316,13 +316,22 @@ $(document).ready(function () {
                     for (var i in tabListEntrainement)
 
                     {
+                        var classStyle = "";
+                        var typeEntrainement = "Entrainement";
+                        if (tabListEntrainement[i].etat == 0) {
+                            classStyle = "annule";
+                        } else if (tabListEntrainement[i].etat == 2) {
+                            classStyle = "match";
+                            typeEntrainement = "Match ";
+                        }
+
                         output += "\
-                            <div class ='entrainement' id='" + tabListEntrainement[i].id + "'>\n\
+                            <div class ='entrainement " + classStyle + "' id='" + tabListEntrainement[i].id + "'>\n\
                                 <a href='#modalInfoEntrainement" + tabListEntrainement[i].id + "' data-uk-modal>\n\
                                     <img src='img/info.png' class='infoButton'/>\n\
                                 </a>\n\
                                 <h1>" + $.format.date(tabListEntrainement[i].date, 'ddd d') + "  " + $.format.date(tabListEntrainement[i].date, 'MMMM yyyy') + "</h1>\n\
-                                <h2>Entraînement de " + tabListEntrainement[i].horraire_debut + " à " + tabListEntrainement[i].horraire_fin + "</h2>\n\
+                                <h2>" + typeEntrainement + " de " + tabListEntrainement[i].horraire_debut + " à " + tabListEntrainement[i].horraire_fin + "</h2>\n\
                                 <ul id='listPresenceDefile" + tabListEntrainement[i].id + "' list='defile'></ul>\n\
                                 <br><img src='img/notif_alert.png' id='notReponse' alt='pas de réponse !'/><figcaption id='notReponse'>Vous n'avez pas répondu !</figcaption>\n\
                                 <span id='buttonReponse'>\n\
@@ -368,6 +377,11 @@ $(document).ready(function () {
 
 
                     }
+
+                    $('.annule button').prop('disabled', true);
+                    $('.match button[id="yn"]').remove();
+                    $('.match button[id="noContact"]').remove();
+                    $('.match').prepend('<img id="imgMatch" src="img/match.PNG" />')
 
                     //Supprime les doublons 
                     $('.entrainement').each(function () {

@@ -173,7 +173,9 @@ ALTER TABLE `player`
 ALTER TABLE `presence`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-
+ALTER TABLE `entrainement` ADD `etat` INT NOT NULL DEFAULT '1' COMMENT '1 : normal / 0 : annulé / 2 : match' AFTER `lieu`;
+  
+  
 --
 -- Déclencheurs `groupe`
 --
