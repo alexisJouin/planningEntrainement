@@ -14,7 +14,8 @@
 
 html{
     /*cursor:url(../img/roller2.cur)4 12, auto;*/
-    background-image: url(../img/backRoller2.jpg);
+    /*background-image: url(../img/backRoller2_2.jpg);*/
+    background-color: blanchedalmond;
     background-repeat: no-repeat;
     background-position: center bottom;
     background-attachment: fixed;

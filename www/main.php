@@ -16,7 +16,7 @@ include("include/testConnect.php");
 <script type="text/javascript" src="js/uikit/jqxmenu.js"></script>
 <script type="text/javascript" src="js/uikit/jqxlistbox.js"></script>
 <script type="text/javascript" src="js/uikit/jqxdropdownlist.js"></script>
-<script type="text/javascript" src="js/uikit/jqxgrid.js"></script>
+<!--<script type="text/javascript" src="js/uikit/jqxgrid.js"></script>-->
 <script type="text/javascript" src="js/uikit/jqxgrid.selection.js"></script> 
 <script type="text/javascript" src="js/uikit/jqxgrid.columnsresize.js"></script> 
 <script type="text/javascript" src="js/uikit/jqxgrid.filter.js"></script> 
@@ -95,7 +95,7 @@ include("include/testConnect.php");
     <footer style="font-size: 8px;">
         <!--©-->
         <p>Développé par Alexis Jouin. Pour toute question contactez-moi par mail : alexis.jouin@live.fr</p>
-        <img src="img/logo_sirene_hurlante.png" alt="Sirènes Hurlantes" class="logo"/>
+        <!--<img src="img/logo_sirene_hurlante.png" alt="Sirènes Hurlantes" class="logo"/>-->
     </footer>
 
 </body>
