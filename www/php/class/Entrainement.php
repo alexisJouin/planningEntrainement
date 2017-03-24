@@ -1,4 +1,5 @@
 <?php
+require_once 'SQLFunctions.php';
 
 class Entrainement {
 
@@ -14,10 +15,14 @@ class Entrainement {
 
     public function __construct() {
         $this->table = "entrainement";
+        $sql = new SQLFunctions();
+        echo $sql->select($this->table, 1);
+        echo $sql->select($this->table, 2, $attr = "id");
+        echo $sql->select($this->table, 3, $attr = "id", $value = 1);
+        echo $sql->select($this->table, 4, $attr = "id", $value = 3 , $attrField="date");
     }
 
-    
-    /**Setter**/
+    /** Setter* */
     public function setIdPlanning($idplanning) {
         $this->id_planning = $idplanning;
     }
@@ -46,7 +51,8 @@ class Entrainement {
         $this->etat = $etat;
     }
 
-    /**Getter**/
+    /*     * Getter* */
+
     public function getId() {
         return $this->id;
     }
@@ -80,3 +86,8 @@ class Entrainement {
     }
 
 }
+
+new Entrainement();
+?>
+
+<p>TEST !</p>
