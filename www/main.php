@@ -10,28 +10,12 @@ include("include/testConnect.php");
 <script type="text/javascript" src="js/uikit/jqxnotification.js"></script>
 <link rel="stylesheet" href="css/uikit/jqx.base.css" type="text/css" />
 <link rel="stylesheet" href="css/li-scroller.css" />
-<script type="text/javascript" src="js/uikit/jqxdata.js"></script>
-<script type="text/javascript" src="js/uikit/jqxbuttons.js"></script>
-<script type="text/javascript" src="js/uikit/jqxscrollbar.js"></script>
-<script type="text/javascript" src="js/uikit/jqxmenu.js"></script>
-<script type="text/javascript" src="js/uikit/jqxlistbox.js"></script>
-<script type="text/javascript" src="js/uikit/jqxdropdownlist.js"></script>
-<!--<script type="text/javascript" src="js/uikit/jqxgrid.js"></script>-->
-<script type="text/javascript" src="js/uikit/jqxgrid.selection.js"></script> 
-<script type="text/javascript" src="js/uikit/jqxgrid.columnsresize.js"></script> 
-<script type="text/javascript" src="js/uikit/jqxgrid.filter.js"></script> 
-<script type="text/javascript" src="js/uikit/jqxgrid.sort.js"></script> 
-<script type="text/javascript" src="js/uikit/jqxgrid.pager.js"></script> 
-<script type="text/javascript" src="js/uikit/jqxgrid.grouping.js"></script> 
-
 <script type="text/javascript" src="js/jquery.li-scroller.1.0.js"></script>
 
 <script src="js/main.js"></script>
 
 <title>Menu Principal</title>
 </head>
-
-
 
 <body>
     <div id="param" class="uk-offcanvas">
@@ -92,11 +76,11 @@ include("include/testConnect.php");
     </div>
     <div id="modalEntrainement"></div>
     
-    <footer style="font-size: 8px;">
-        <!--©-->
+<!--    <footer style="font-size: 8px;">
+        ©
         <p>Développé par Alexis Jouin. Pour toute question contactez-moi par mail : alexis.jouin@live.fr</p>
-        <!--<img src="img/logo_sirene_hurlante.png" alt="Sirènes Hurlantes" class="logo"/>-->
-    </footer>
+        <img src="img/logo_sirene_hurlante.png" alt="Sirènes Hurlantes" class="logo"/>
+    </footer>-->
 
 </body>
 </html>

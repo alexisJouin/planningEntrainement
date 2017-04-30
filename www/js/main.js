@@ -22,9 +22,9 @@ $(document).ready(function () {
 
         if (sizeWidthScreen <= 370) {
             setStylePhone();
-            $('h3').css('font-size', '11px');
-            $('h4').css('font-size', '10px');
-            $('h4').css('margin-left', '6%');
+            $('h3').css('font-size', '14px');
+            $('h4').css('font-size', '12px');
+//            $('h4').css('margin-left', '6%');
 
         } else if (sizeWidthScreen <= 500 && sizeWidthScreen > 370) {
             setStylePhone();
@@ -93,10 +93,6 @@ $(document).ready(function () {
             $('#planning').show();
             var currentPage = $('#dateScrolling').jqxScrollView('currentPage');
 
-//            var currentPage = getUrlParameter('currentPage');
-//            $("#dateScrolling").jqxScrollView('changePage', getUrlParameter('currentPage'));
-
-
             if (privilege == 1 || privilege == 2) { //Si c'est l'admin
                 forAdmin = "true";
                 $('#linkToCreateGroup').hide();
@@ -109,7 +105,7 @@ $(document).ready(function () {
 
 
             getListEntrainement();
-
+                
 
         } else if (statut_in_groupe == 1) {
             forAdmin = "false";
@@ -325,26 +321,42 @@ $(document).ready(function () {
                             typeEntrainement = "Match ";
                         }
 
+                        //Pour la liste défilante 
+                        //<ul id='listPresenceDefile" + tabListEntrainement[i].id + "' list='defile'></ul>\n\
+
                         output += "\
-                            <div class ='entrainement " + classStyle + "' id='" + tabListEntrainement[i].id + "'>\n\
+                            <div style = 'height:100%;' class ='entrainement " + classStyle + "' id='" + tabListEntrainement[i].id + "'>\n\
                                 <a href='#modalInfoEntrainement" + tabListEntrainement[i].id + "' data-uk-modal>\n\
                                     <img src='img/info.png' class='infoButton'/>\n\
                                 </a>\n\
-                                <h1>" + $.format.date(tabListEntrainement[i].date, 'ddd d') + "  " + $.format.date(tabListEntrainement[i].date, 'MMMM yyyy') + "</h1>\n\
+                                <h1 style='color:white;'>" + $.format.date(tabListEntrainement[i].date, 'ddd d') + "  " + $.format.date(tabListEntrainement[i].date, 'MMMM yyyy') + "</h1>\n\
                                 <h2>" + typeEntrainement + " de " + tabListEntrainement[i].horraire_debut + " à " + tabListEntrainement[i].horraire_fin + "</h2>\n\
-                                <ul id='listPresenceDefile" + tabListEntrainement[i].id + "' list='defile'></ul>\n\
                                 <br><img src='img/notif_alert.png' id='notReponse' alt='pas de réponse !'/><figcaption id='notReponse'>Vous n'avez pas répondu !</figcaption>\n\
-                                <span id='buttonReponse'>\n\
-                                    <div class='oui'>\n\
-                                        <button value='yes' id='yes' idEntrainement=" + tabListEntrainement[i].id + " >OUI</button>\n\
-                                        <button value='noContact' id='noContact' idEntrainement=" + tabListEntrainement[i].id + " >OUI mais sans contact</button>\n\
-                                    </div>\n\
-                                    <div class='non'>\n\
-                                        <button value='yn' id='yn' idEntrainement=" + tabListEntrainement[i].id + " >Peut-être</button>\n\
-                                        <button value='no' id='no' idEntrainement=" + tabListEntrainement[i].id + " >NON</button>\n\
-                                    </div>\n\
-                                </span>\n\
+                                <div id='buttonReponse'>\n\
+                                    <button value='yes' id='yes' idEntrainement=" + tabListEntrainement[i].id + " >OUI</button>\n\
+                                    <button value='no' id='no' idEntrainement=" + tabListEntrainement[i].id + " >NON</button>\n\
+                                    <button value='noContact' id='noContact' idEntrainement=" + tabListEntrainement[i].id + " >Sans Contact</button>\n\
+                                </div>\n\
                             </div>";
+                        
+                        /*Tableau
+                         * <table id='table" + tabListEntrainement[i].id + "' class='tablePresence'>\n\
+                                    <thead>\n\
+                                        <tr>\n\
+                                            <th>Nom</th>\n\
+                                            <th>Prenom</th>\n\
+                                            <th>Derby Name</th>\n\
+                                        </tr>\n\
+                                    </thead>\n\
+                                    <tbody>\n\
+                                        <tr>\n\
+                                            <td>Michel</td>\n\
+                                            <td>Dupont</td>\n\
+                                            <td>KillerBill</td>\n\
+                                        </tr>\n\
+                                    </tbody>\n\
+                                </table>\n\
+                         */
 
                         $('#dateScrolling').append(output);
 
@@ -409,10 +421,19 @@ $(document).ready(function () {
 
 
     function scrollView() {
-
+        var height = 450;
+//        if (sizeHeightScreen < 600) {
+//            height = 550;
+//        } else if (sizeHeightScreen >= 600 && sizeHeightScreen < 660) {
+//            height = 600;
+//        } else if (sizeHeightScreen >= 660 && sizeHeightScreen < 760) {
+//            height = 700;
+//        } else if (sizeHeightScreen >= 760) {
+//            height = 900;
+//        }
         $('#dateScrolling').jqxScrollView({
             width: widthScroll,
-            height: 480,
+            height: height,
             buttonsOffset: [1, 1]
         });
 
@@ -604,10 +625,11 @@ $(document).ready(function () {
 
 //Logo de chargement ... à améliorer
 $(document).on({
-    ajaxStart: function () {
-        $("body").addClass("loading");
+    ajaxStart: function (a) {
+        $("html").addClass("loading");
+        console.log("TEST LOAD ... " + a);
     },
     ajaxStop: function () {
-        $("body").removeClass("loading");
+        $("html").removeClass("loading");
     }
 });

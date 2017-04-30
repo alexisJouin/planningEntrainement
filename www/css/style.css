@@ -15,7 +15,7 @@
 html{
     /*cursor:url(../img/roller2.cur)4 12, auto;*/
     /*background-image: url(../img/backRoller2_2.jpg);*/
-    background-color: blanchedalmond;
+    background-color: white;
     background-repeat: no-repeat;
     background-position: center bottom;
     background-attachment: fixed;
@@ -23,6 +23,20 @@ html{
     height: 100%;
     position: absolute;
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-height: 50%;
+    overflow-y: auto;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
 
 h1{
     text-shadow: inherit;
@@ -290,7 +304,9 @@ a{
 }
 
 #paramButton{
-    width: 50px;
+    width: 30px;
+    top: 10px;
+    left: 10px;
     /* background-color: white; */
     position: absolute;
     cursor: pointer;
@@ -307,7 +323,7 @@ img#paramButton:hover{
 
 #planning{
     display: none;
-    background-color: rgba(32, 142, 228, 0.35);
+    background-color: rgba(32, 142, 228, 1);
 }
 
 .uk-modal-dialog {
@@ -325,25 +341,25 @@ ul#listLiGroup {
     color: black;
 }
 
+#buttonResponse{
+    margin-top: 20px;
+}
 #buttonReponse button{
-    display: initial;
-    margin-left: 10%;
     width: 80%;
-    padding:inherit;
-    margin-bottom: 0px;
-    margin-top: 5px;
+    border-radius: 200px;
+    height: 40px;
 }
 
 .selectedButtonReponse{
-    background-color: black;
+    border: 2px solid navajowhite;
     font-weight: bold;
     text-decoration: underline;
-    font-size: 30px;
+    font-size: 25px;
 }
 
-/*#buttonResponse button{
-   display: initial;
-}*/
+#buttonResponse button{
+    display: initial;
+}
 
 #EditGroupeMove{
     display: none;
@@ -383,7 +399,7 @@ ul#listLiGroup {
     float: right;
     display: none;
     position: relative;
-    top: -90px;
+    top: -60px;
     right: 15px;
 
 }
@@ -410,7 +426,7 @@ figcaption#notReponse {
 
 img#updateButton{
     cursor: pointer;
-    width : 40px;
+    width : 35px;
     right: 15px;
     top:5px;
     float: right;
@@ -476,4 +492,35 @@ img#updateButton:hover {
     position: absolute;
     bottom: 0%;
     z-index: -1;
+}
+
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+        url('../img/loading.gif') 
+        50% 50% 
+        no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
 }

@@ -43,7 +43,7 @@ a:hover {
  */
 a,
 .uk-link {
-  color: white;
+  color: black;
   text-decoration: none;
   cursor: pointer;
 }
