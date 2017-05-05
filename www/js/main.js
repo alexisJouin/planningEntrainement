@@ -1,3 +1,11 @@
+//Logo de chargement
+$(window).on('load', function () {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");
+    ;
+});
+
+//Quand la page est chargée
 $(document).ready(function () {
     var tabCurrentSession;
     var tabListGroup;
@@ -105,7 +113,7 @@ $(document).ready(function () {
 
 
             getListEntrainement();
-                
+
 
         } else if (statut_in_groupe == 1) {
             forAdmin = "false";
@@ -262,16 +270,18 @@ $(document).ready(function () {
 
     //Mise à jour
     $("#updateButton").click(function () {
-        $.ajax({
-            url: "php/gestionReponse.php",
-            type: "POST",
-            async: false,
-            data: "option=0",
-            success: function () {
-                window.location.reload();
-            }
+        location.reload(true);
+//        $.ajax({
+//            url: "php/gestionReponse.php",
+//            type: "POST",
+//            async: false,
+//            data: "option=0",
+//            success: function () {
+//                window.location.reload();
+//            }
+//
+//        });
 
-        });
     });
 
     //Bouton de déconnexion
@@ -338,24 +348,24 @@ $(document).ready(function () {
                                     <button value='noContact' id='noContact' idEntrainement=" + tabListEntrainement[i].id + " >Sans Contact</button>\n\
                                 </div>\n\
                             </div>";
-                        
+
                         /*Tableau
                          * <table id='table" + tabListEntrainement[i].id + "' class='tablePresence'>\n\
-                                    <thead>\n\
-                                        <tr>\n\
-                                            <th>Nom</th>\n\
-                                            <th>Prenom</th>\n\
-                                            <th>Derby Name</th>\n\
-                                        </tr>\n\
-                                    </thead>\n\
-                                    <tbody>\n\
-                                        <tr>\n\
-                                            <td>Michel</td>\n\
-                                            <td>Dupont</td>\n\
-                                            <td>KillerBill</td>\n\
-                                        </tr>\n\
-                                    </tbody>\n\
-                                </table>\n\
+                         <thead>\n\
+                         <tr>\n\
+                         <th>Nom</th>\n\
+                         <th>Prenom</th>\n\
+                         <th>Derby Name</th>\n\
+                         </tr>\n\
+                         </thead>\n\
+                         <tbody>\n\
+                         <tr>\n\
+                         <td>Michel</td>\n\
+                         <td>Dupont</td>\n\
+                         <td>KillerBill</td>\n\
+                         </tr>\n\
+                         </tbody>\n\
+                         </table>\n\
                          */
 
                         $('#dateScrolling').append(output);
@@ -370,12 +380,12 @@ $(document).ready(function () {
                                     Lieu : <a href="https://www.google.fr/maps/place/' + tabListEntrainement[i].lieu + '">' + tabListEntrainement[i].lieu + '</a>\n\
                                     <br><span class="listPlayerReponse" id="nbrPersonne' + tabListEntrainement[i].id + '"></span>\n\
                                     <div class="listPlayerReponse" id="divListReponse' + tabListEntrainement[i].id + '">\n\
-                                        <h3><u>Liste des personnes présentes</u> : </h3>\n\
+                                        <h3>Liste des personnes présentes: </h3>\n\
                                         <ul id="listPresence' + tabListEntrainement[i].id + '" class="uk-list uk-list-striped" style="max-height: 200px;overflow: auto;"></ul>\n\
-                                        <h3><u>Liste des personnes absentes</u> : </h3>\n\
+                                        <h3>Liste des personnes absentes: \n\
                                         <ul id="listPresence' + tabListEntrainement[i].id + 'No" class="uk-list uk-list-striped" style="max-height: 200px;overflow: auto;"></ul>\n\
-                                        <h3 forAdmin="' + forAdmin + '"><u>Liste des personnes n\'ayant pas répondu !</u> : </h3>\n\
-                                        <button id="sendRappel" idEntrainement="' + tabListEntrainement[i].id + '" forAdmin="' + forAdmin + '"><u>Envoyer un mail !</u> : </button>\n\
+                                        <h3 forAdmin="' + forAdmin + '">Liste des personnes n\'ayant pas répondu: </h3>\n\
+                                        <button id="sendRappel" idEntrainement="' + tabListEntrainement[i].id + '" forAdmin="' + forAdmin + '">Envoyer un mail</button>\n\
                                         <ul forAdmin="' + forAdmin + '" id="listPresence' + tabListEntrainement[i].id + 'NoRep" class="uk-list uk-list-striped" style="max-height: 200px;overflow: auto;"></ul>\n\
                                     </div>\n\
                                 </div>\n\
@@ -623,13 +633,3 @@ $(document).ready(function () {
 
 });
 
-//Logo de chargement ... à améliorer
-$(document).on({
-    ajaxStart: function (a) {
-        $("html").addClass("loading");
-        console.log("TEST LOAD ... " + a);
-    },
-    ajaxStop: function () {
-        $("html").removeClass("loading");
-    }
-});

@@ -11,13 +11,19 @@ include("include/testConnect.php");
 <link rel="stylesheet" href="css/uikit/jqx.base.css" type="text/css" />
 <link rel="stylesheet" href="css/li-scroller.css" />
 <script type="text/javascript" src="js/jquery.li-scroller.1.0.js"></script>
+<link rel="stylesheet" href="plugins/materialize/css/materialize.css" />
+<script type="text/javascript" src="plugins/materialize/js/materialize.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
 
 <script src="js/main.js"></script>
 
 <title>Menu Principal</title>
 </head>
-
-<body>
+<body>    
+    <!-- Loader ... -->
+    <div class="se-pre-con"></div>
+    <!-- Ends -->
+    
     <div id="param" class="uk-offcanvas">
         <div class="uk-offcanvas-bar">
             <div id="menuMain">
@@ -71,16 +77,15 @@ include("include/testConnect.php");
         <img src="img/direction_arrow_blue_left.png" id="arrowLeft"/>
         <img src="img/direction_arrow_blue_right.png" id="arrowRight"/>
         <div id="dateScrolling">
-            
+
         </div>
     </div>
     <div id="modalEntrainement"></div>
-    
-<!--    <footer style="font-size: 8px;">
-        ©
-        <p>Développé par Alexis Jouin. Pour toute question contactez-moi par mail : alexis.jouin@live.fr</p>
-        <img src="img/logo_sirene_hurlante.png" alt="Sirènes Hurlantes" class="logo"/>
-    </footer>-->
-
 </body>
+
+<footer style="font-size: 8px;">
+    <!--©-->
+    <p>Développé par Alexis Jouin. Pour toute question contactez-moi par mail : alexis.jouin@live.fr</p>
+    <!--<img src="img/logo_sirene_hurlante.png" alt="Sirènes Hurlantes" class="logo"/>-->
+</footer>
 </html>

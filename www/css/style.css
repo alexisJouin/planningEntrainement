@@ -3,13 +3,10 @@
     Author     : Alexis
 */
 
-@font-face {
-    font-family: derbyFont;
-    src: url(fonts/FontAwesome.otf);
-}
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
 
 *,h1, h2, h3, p, form, button, input, ::-webkit-input-placeholder {
-    font-family: derbyFont;
+    font-family: 'Open Sans';
 }
 
 html{
@@ -452,9 +449,6 @@ img#updateButton:hover {
     float:right; 
     cursor:pointer;
 }
-.infoButton:hover{
-    width:40px;
-}
 
 .logo{
     width:35px;
@@ -494,33 +488,74 @@ img#updateButton:hover {
     z-index: -1;
 }
 
-/* Start by setting display:none to make this hidden.
-   Then we position it in relation to the viewport window
-   with position:fixed. Width, height, top and left speak
-   for themselves. Background we set to 80% white with
-   our animation centered, and no-repeating */
-.modal {
-    display:    none;
+/**
+   ** LOADER **
+*/
+.modalLoad {
+    display: none;
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 1.5s linear infinite;
+    position: fixed;
+    z-index: 1000;
+    top: 25%;
+    left: 30%;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.filter{
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: rgba(0, 135, 255, 0.18);
+}
+
+.filter p{
+    position: relative;
+    top: 50px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(../img/loading.gif) center no-repeat #fff;
+}
+
+/*
+OLD LOADER
+   display:    none;
     position:   fixed;
     z-index:    1000;
     top:        0;
     left:       0;
     height:     100%;
     width:      100%;
-    background: rgba( 255, 255, 255, .8 ) 
+    background: rgba( 58, 40, 40, 0.8) 
         url('../img/loading.gif') 
-        50% 50% 
+        25% 25% 
         no-repeat;
-}
+*/
 
-/* When the body has the loading class, we turn
-   the scrollbar off with overflow:hidden */
 body.loading {
-    overflow: hidden;   
+    overflow: hidden; 
 }
 
-/* Anytime the body has the loading class, our
-   modal element will be visible */
-body.loading .modal {
-    display: block;
+body.loading .modalLoad {
+    display: block;   
 }
