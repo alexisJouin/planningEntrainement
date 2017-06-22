@@ -9,7 +9,7 @@ try {
     //Demande du Player
     if ($option == 1) {
 
-        $upd = $dbh->prepare("UPDATE player SET statut_in_groupe = 1, id_groupe = " . $_POST['idGroupe'] . " WHERE id=" . $_POST['id_player']);
+        $upd = $dbh->prepare("UPDATE player SET statut_in_groupe = 2, id_groupe = " . $_POST['idGroupe'] . " WHERE id=" . $_POST['id_player']);
         $upd->execute();
 
         echo json_encode($upd);

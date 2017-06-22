@@ -14,7 +14,10 @@ include("include/testConnect.php");
 <link rel="stylesheet" href="plugins/materialize/css/materialize.css" />
 <script type="text/javascript" src="plugins/materialize/js/materialize.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
-
+<!--Import Google Icon Font-->
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <script src="js/main.js"></script>
 
 <title>Menu Principal</title>
@@ -23,38 +26,23 @@ include("include/testConnect.php");
     <!-- Loader ... -->
     <div class="se-pre-con"></div>
     <!-- Ends -->
-    
-    <div id="param" class="uk-offcanvas">
-        <div class="uk-offcanvas-bar">
-            <div id="menuMain">
-                <p>Bienvenue <u><b><?php echo utf8_encode($_SESSION['derby_name']); ?></b></u>, vous êtes connecté</p>
-                <a href="#" id="logOff">Se déconnecter</a>
-                <br>
-                <button id="EditProfilMove">Votre Profil</button>
-                <button id="EditGroupeMove">Votre Groupe</button>
-                <button id="PlannningMove">Gestion du planning</button>
-                <button id="ExportMove">Exportation des présences</button>
-                <br>
-                <div id="linkToCreateGroup">
-                    <p>Vous êtes le coach ou le responsable de la gestion des entraînements ?</p>
-                    <a href="creationGroup.php">Créez votre groupe dès maintenant</a>
-                </div>
-            </div>
-            <hr>
-            <div id="notification">
-                <h2><u>Notification</u> :</h2>
-                <ul class="uk-list uk-list-striped">
 
-                </ul>
-            </div>
-        </div>
+<!--    <img src="img/param.png" id="paramButton" alt="Cacher le menu" data-uk-offcanvas="{target:'#param'}"></img>
+    <img src="img/update.png" id="updateButton" class="update" alt="Mise à jour"></img>-->
+
+    <div id="newParamButton" class="fixed-action-btn horizontal right click-to-toggle">
+        <a class="btn-floating btn-large waves-effect waves-light blue">
+            <i class="material-icons">menu</i>
+        </a>
+        <ul>
+            <li id="logOff"><a class="btn-floating red"  href = "index.php"><i class="material-icons">cancel</i></a></li>
+            <li id="ExportMove" ><a class="btn-floating yellow darken-1" href="exportPresence.php"><i class="material-icons">assessment</i></a></li>
+            <li id="PlannningMove"><a class="btn-floating green" href="gestionPlanning.php"><i class="material-icons">settings_applications</i></a></li>
+            <li id="EditProfilMove"><a class="btn-floating blue" href="EditionCompte.php"><i class="material-icons">edit</i></a></li>
+            <li id="EditGroupeMove"><a class="btn-floating blue" href="editionGroupe.php"><i class="material-icons">group</i></a></li>
+            <li id="creationMove"><a class="btn-floating green" href="creationGroup.php"><i class="material-icons">add</i></a></li>
+        </ul>
     </div>
-
-    <!--    TODO ! => add class tm-icon-menu pour bouton <a href="#overlay-menu" class="tm-overlay-toggle tm-icon uk-float-right" data-uk-modal="{target: '#overlay-menu', center: true}">
-                               <div class="tm-icon-menu"></div>
-                           </a>-->
-    <img src="img/param.png" id="paramButton" alt="Cacher le menu" data-uk-offcanvas="{target:'#param'}"></img>
-    <img src="img/update.png" id="updateButton" class="update" alt="Cacher le menu"></img>
 
     <!-- Cas où l'untilisateur n'a aucune affiliation -->
     <div id='firstUse'>

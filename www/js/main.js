@@ -91,6 +91,10 @@ $(document).ready(function () {
         forAdmin = "false";
         $('#planning').hide();
         $('#firstUse').show();
+        $('#creationMove').show();
+        $('#EditGroupeMove').hide();
+        $('#PlannningMove').hide();
+        $('#ExportMove').hide();
         $('footer').hide();
         getListGroup();
     } else {
@@ -99,16 +103,20 @@ $(document).ready(function () {
             $('#firstUse').hide();
             $('#linkToCreateGroup').hide();
             $('#planning').show();
+            $('#creationMove').hide();
             var currentPage = $('#dateScrolling').jqxScrollView('currentPage');
 
             if (privilege == 1 || privilege == 2) { //Si c'est l'admin
                 forAdmin = "true";
-                $('#linkToCreateGroup').hide();
                 $('#EditGroupeMove').show();
                 $('#PlannningMove').show();
                 $('#ExportMove').show();
                 getListDemandePlayer();
-
+            } else {
+                forAdmin = false;
+                $('#EditGroupeMove').hide();
+                $('#PlannningMove').hide();
+                $('#ExportMove').hide();
             }
 
 
@@ -181,11 +189,23 @@ $(document).ready(function () {
                 url: "php/rejoindreGroupe.php",
                 data: "idGroupe=" + $(this).parent().attr("id") + "&option=1&id_player=" + id_player,
                 success: function (msg) {
-                    alert("Votre demande pour rejoindre le groupe a été envoyé !");
+                    alert("Vous avez rejoins le groupe");
                     location.reload();
                 }
             });
         });
+    });
+    
+    $("#newParamButton").click(function(){
+        
+        if($("#planning").children("h3").is(":visible")){
+            $("#planning").children("h3").hide(500);
+            $("#planning").children("h4").hide(500);
+        } else{
+            $("#planning").children("h3").show(500);
+            $("#planning").children("h4").show(500);
+        }
+        
     });
 
     //Récupère la liste des demandes
@@ -249,24 +269,6 @@ $(document).ready(function () {
             }
         });
     }
-
-    //Gestion des click bouton
-    $("#creationMove").click(function () {
-        window.location.href = "creationGroup.php";
-    });
-
-    $("#EditProfilMove").click(function () {
-        window.location.href = "EditionCompte.php";
-    });
-    $("#EditGroupeMove").click(function () {
-        window.location.href = "editionGroupe.php";
-    });
-    $("#PlannningMove").click(function () {
-        window.location.href = "gestionPlanning.php";
-    });
-    $("#ExportMove").click(function () {
-        window.location.href = "exportPresence.php";
-    });
 
     //Mise à jour
     $("#updateButton").click(function () {
@@ -382,7 +384,7 @@ $(document).ready(function () {
                                     <div class="listPlayerReponse" id="divListReponse' + tabListEntrainement[i].id + '">\n\
                                         <h3>Liste des personnes présentes: </h3>\n\
                                         <ul id="listPresence' + tabListEntrainement[i].id + '" class="uk-list uk-list-striped" style="max-height: 200px;overflow: auto;"></ul>\n\
-                                        <h3>Liste des personnes absentes: \n\
+                                        <h3>Liste des personnes absentes: </h3>\n\
                                         <ul id="listPresence' + tabListEntrainement[i].id + 'No" class="uk-list uk-list-striped" style="max-height: 200px;overflow: auto;"></ul>\n\
                                         <h3 forAdmin="' + forAdmin + '">Liste des personnes n\'ayant pas répondu: </h3>\n\
                                         <button id="sendRappel" idEntrainement="' + tabListEntrainement[i].id + '" forAdmin="' + forAdmin + '">Envoyer un mail</button>\n\

@@ -358,17 +358,6 @@ ul#listLiGroup {
     display: initial;
 }
 
-#EditGroupeMove{
-    display: none;
-}
-
-#PlannningMove{
-    display: none;
-}
-#ExportMove{
-    display:none;
-}
-
 .uk-modal h2{
     padding: 0px;
     color:black;
@@ -448,6 +437,8 @@ img#updateButton:hover {
     width:35px; 
     float:right; 
     cursor:pointer;
+    top: 14px;
+    position: relative;
 }
 
 .logo{
