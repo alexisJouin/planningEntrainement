@@ -20,28 +20,28 @@ class SQLFunctions {
      *      4->SELECT secific attr OF A SPECIFIC row
      * @param type $query
      */
-    public function select($table, $option, $attr = NULL, $value = NULL, $attrField = NULL, $query = NULL) {
+    public function select($table, $attr = NULL, $value = NULL, $attrField = NULL, $query = NULL) {
         try {
             if ($query == NULL) {
-                if ($option == 1) {
+                if (($attr == NULL && $value == NULL && $attrField == NULL ) && $table !== NULL) {
                     $this->query = "SELECT * FROM $table ";
                     $sth = $this->_db->prepare($this->query);
                     $sth->execute();
                     $list = $sth->fetchAll(PDO::FETCH_ASSOC);
                     return json_encode($list);
-                } else if ($option == 2 && ($attr != NULL || $attr != "")) {
+                } if (($value == NULL && $attrField == NULL) && ($table != NULL && $attr != NULL)) {
                     $this->query = "SELECT $attr FROM $table ";
                     $sth = $this->_db->prepare($this->query);
                     $sth->execute();
                     $list = $sth->fetchAll(PDO::FETCH_ASSOC);
                     return json_encode($list);
-                } else if ($option == 3 && ($attr != NULL || $attr != "")) {
-                    $this->query = "SELECT * FROM $table WHERE $attr = :value ";
+                } if ($attrField == NULL && ($value && $table && $attr) != NULL) {
+                    $this->query = "SELECT * FROM $table WHERE $attr LIKE :value ";
                     $sth = $this->_db->prepare($this->query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
                     $sth->execute(array(":value" => $value));
                     $list = $sth->fetch(PDO::FETCH_ASSOC);
                     return json_encode($list);
-                } else if ($option == 4 && ($attr != NULL || $attr != "")) {
+                } if (($table && $attr && $value && $attrField ) != NULL) {
                     $this->query = "SELECT $attrField FROM $table WHERE $attr = :value ";
                     $sth = $this->_db->prepare($this->query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
                     $sth->execute(array(":value" => $value));

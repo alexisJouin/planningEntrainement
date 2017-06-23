@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    //var liste_caractere_interdit = new Array('<', '>', '/', ',', '"', '\'');
+    
     $('#forgotPWD').click(function () {
         UIkit.modal.prompt("Adresse mail : ", "", function (adressMail) {
             if (adressMail != "") {
@@ -69,6 +71,7 @@ style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la connexion,\n\
     $("#formInscription").submit(function () {	// à la soumission du formulaire
         var photo = $("#photoPlayer")[0].files[0];
         if ($('#password').val() == $('#password2').val()) {
+            
             $.ajax({// fonction permettant de faire de l'ajax
                 type: "POST", // methode de transmission des données au fichier php
                 url: "php/inscription.php", // url du fichier php

@@ -16,10 +16,11 @@ class Entrainement {
     public function __construct() {
         $this->table = "entrainement";
         $sql = new SQLFunctions();
-        echo $sql->select($this->table, 1);
-        echo $sql->select($this->table, 2, $attr = "id");
-        echo $sql->select($this->table, 3, $attr = "id", $value = 1);
-        echo $sql->select($this->table, 4, $attr = "id", $value = 3 , $attrField="date");
+        echo $sql->select($this->table);
+        echo $sql->select($this->table, $attr = "id");
+        echo $sql->select($this->table, $attr = "lieu", $value = "Dk");
+        echo $sql->select($this->table, $attr = "id", $value = 2 , $attrField="lieu");
+//        $sql->insert($this->table, $attr="date", $value="1995-06-10");
     }
 
     /** Setter* */
