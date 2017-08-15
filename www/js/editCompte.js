@@ -9,8 +9,6 @@ $.ajax({
         $('#nom').val(tabInfoCompte["nom"]);
         $('#prenom').val(tabInfoCompte["prenom"]);
         $('#mail').val(tabInfoCompte["mail"]);
-        $('#photo').val(tabInfoCompte["photo"]);
         $('#derby_name').val(tabInfoCompte["derby_name"]);
-
     }
 });

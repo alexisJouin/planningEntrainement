@@ -1,7 +1,29 @@
 $(document).ready(function () {
 
-    //var liste_caractere_interdit = new Array('<', '>', '/', ',', '"', '\'');
     
+    //Gestion Click
+    $('#displayInscription').click(function () {
+        $('#displayInscription').hide(200);
+        $('#formConnect').hide(200);
+        $('#forgotPWD').hide(200);
+        $('#formInscription').show(350);
+        $('#displayConnection').show(500);
+    });
+
+    $('#displayConnection').click(function () {
+        $('#displayConnection').hide(200);
+        $('#formInscription').hide(200);
+        $('#formConnect').show(350);
+        $('#displayInscription').show(500);
+        $('#forgotPWD').show(500);
+    });
+    
+    $('#erreurConnection').modal();
+
+
+
+    //var liste_caractere_interdit = new Array('<', '>', '/', ',', '"', '\'');
+
     $('#forgotPWD').click(function () {
         UIkit.modal.prompt("Adresse mail : ", "", function (adressMail) {
             if (adressMail != "") {
@@ -13,10 +35,9 @@ $(document).ready(function () {
                         if (msg == "0") // si pas de compte associé
                         {
                             UIkit.modal.alert('Désolé, il n\'y a aucun compte associé à ' + adressMail);
-                        } else if(msg == "1") {
+                        } else if (msg == "1") {
                             UIkit.modal.alert('Un mail avec le mot de passe a été envoyé à ' + adressMail + "\nPensez à regarder dans vos courriers indésirables ;)");
-                        }
-                        else{
+                        } else {
                             UIkit.modal.alert('Désolé, une erreur est survenue ... :(');
                             console.log(msg);
                         }
@@ -32,27 +53,22 @@ $(document).ready(function () {
 
 
     //Connexion
-    $("#formConnect").submit(function () {	// à la soumission du formulaire						 
-        $.ajax({// fonction permettant de faire de l'ajax
-            type: "POST", // methode de transmission des données au fichier php
-            url: "php/connexion.php", // url du fichier php
-            data: "derby_name=" + $("#derbyName").val() + "&mdp=" + $("#password").val(), // données à transmettre
-            success: function (msg) { // si l'appel a bien fonctionné
-                if (msg == "0") // si la connexion en php n'a pas fonctionnée
-                {
-                    $("span#erreur").html("<img src=\"img/error.png\" \n\
-style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la connexion,\n\
- veuillez v&eacute;rifier votre login et votre mot de passe.");
-                    // on affiche un message d'erreur dans le span prévu à cet effet
-                } else // si la connexion en php a fonctionnée
-                {
+    $("#formConnect").submit(function () {
 
-                    $("div#connexion").html("<span id=\"confirmMsg\">Vous &ecirc;tes maintenant connect&eacute;.</span>");
-                    // on désactive l'affichage du formulaire et on affiche un message de bienvenue à la place
+        $.ajax({
+            type: "POST",
+            url: "php/connexion.php",
+            data: "derby_name=" + $("#derbyNameConnect").val() + "&mdp=" + $("#passwordConnect").val(),
+            success: function (msg) {
+                console.log(msg);
+                if (msg == 0){
+                    $('#erreurConnection').modal('open');
+                } else if (msg == 1) {
                     window.location.href = "main.php";
                 }
             },
             error: function (msg) {
+                alert("Erreur connection");
                 console.log(msg);
             }
         });
@@ -69,9 +85,8 @@ style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la connexion,\n\
     });
     //Inscription
     $("#formInscription").submit(function () {	// à la soumission du formulaire
-        var photo = $("#photoPlayer")[0].files[0];
         if ($('#password').val() == $('#password2').val()) {
-            
+
             $.ajax({// fonction permettant de faire de l'ajax
                 type: "POST", // methode de transmission des données au fichier php
                 url: "php/inscription.php", // url du fichier php
@@ -80,7 +95,6 @@ style=\"float:left;width:2.5%;\" />&nbsp;Erreur lors de la connexion,\n\
                         + "&nom=" + $("#nom").val()
                         + "&sexe=" + sexe
                         + "&email=" + $("#mail").val()
-                        + "&photo=" + photo
                         + "&password=" + $("#password").val(),
                 // données à transmettre
                 success: function (msg) { // si l'appel a bien fonctionné

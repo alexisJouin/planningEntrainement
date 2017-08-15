@@ -11,13 +11,7 @@ include("include/testConnect.php");
 <link rel="stylesheet" href="css/uikit/jqx.base.css" type="text/css" />
 <link rel="stylesheet" href="css/li-scroller.css" />
 <script type="text/javascript" src="js/jquery.li-scroller.1.0.js"></script>
-<link rel="stylesheet" href="plugins/materialize/css/materialize.css" />
-<script type="text/javascript" src="plugins/materialize/js/materialize.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
-<!--Import Google Icon Font-->
-<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<!--Let browser know website is optimized for mobile-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 <script src="js/main.js"></script>
 
 <title>Menu Principal</title>
@@ -46,8 +40,9 @@ include("include/testConnect.php");
 
     <!-- Cas où l'untilisateur n'a aucune affiliation -->
     <div id='firstUse'>
-
-        <div><u>Liste des groupes :</u></div>
+        <h1>Planning Entrainement</h1>
+        <h2>Choisir un groupe</h2>
+        <u>Liste des groupes :</u>
         <div id="listGroup">
             <div id="listGroupTot">
                 <ul class="uk-list uk-list-striped" id="listLiGroup">

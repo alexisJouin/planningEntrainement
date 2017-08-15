@@ -7,7 +7,6 @@ $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
 $email = $_POST['email'];
 $sexe = $_POST['sexe'];
-$photo = $_POST['photo'];
 $mdp = $_POST['password'];
 $liste_caractere_interdit = array('<', '>', '/', ',', '"', '\'');
 
@@ -25,13 +24,12 @@ try {
     if (($_POST['derby_name'] == $membre['derby_name'])) {
         echo "0"; // on 'retourne' la valeur 0 au javascript si LE USER Existe déjà
     } else if ($derby_name != $membre['derby_name']) {
-        $ins = $dbh->prepare("INSERT INTO player (`derby_name`, `nom`, `prenom`,`sexe`, `email`, `photo`,  `mdp`) VALUES (:derby_name, :nom, :prenom, :sexe, :email, :photo, :mdp)");
+        $ins = $dbh->prepare("INSERT INTO player (`derby_name`, `nom`, `prenom`,`sexe`, `email`,  `mdp`) VALUES (:derby_name, :nom, :prenom, :sexe, :email, :mdp)");
         $ins->bindParam(':derby_name', $derby_name);
         $ins->bindParam(':nom', $nom);
         $ins->bindParam(':prenom', $prenom);
         $ins->bindParam(':email', $email);
         $ins->bindParam(':sexe', $sexe);
-        $ins->bindParam(':photo', $photo);
         $ins->bindParam(':mdp', $mdp);
         $ins->execute();
         echo "1"; // on 'retourne' la valeur 1 au javascript si c'est bon

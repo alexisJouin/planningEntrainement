@@ -149,10 +149,9 @@ $(document).ready(function () {
                     for (var i in tabListGroup)
                     {
                         //Génération des listes
-                        output += "<li id='" + tabListGroup[i].id + "'>" + tabListGroup[i].nom +
+                        output += "<li id='" + tabListGroup[i].id + "' style='font-weight: bold;'>" + tabListGroup[i].nom +
                                 "<a href='#modalInfoGroupe" + tabListGroup[i].id + "' data-uk-modal><img src='img/info.png' id='" + tabListGroup[i].id +
-                                "' class='infoButton'/></a><button class='buttonRejoindre'id='buttonInfoGroupe" +
-                                tabListGroup[i].id + "'>Rejoindre</button></li>";
+                                "' class='infoButtonGroupe'/></a><a class='waves-effect waves-light btn blue buttonRejoindreA' id='buttonRejoindreA'><i class='material-icons left buttonRejoindre' id='buttonRejoindreGroupe' " + tabListGroup[i].id + "'>group_add</i>Rejoindre</a>";
 
                         //Génération des modals
                         $('#firstUse').append('<div id="modalInfoGroupe' + tabListGroup[i].id + '" class="uk-modal"><div class="uk-modal-dialog"><div class="uk-modal-header"><a class="uk-modal-close uk-close"></a></div></div></div>');
@@ -162,8 +161,8 @@ $(document).ready(function () {
                                     <li><u>Adresse Mail</u> : " + tabListGroup[i].email + "</li>\n\
                                     <li><u>Adresse</u> : " + tabListGroup[i].adresse + "</li>\n\
                                     <li><u>Description du groupe</u> : " + tabListGroup[i].descriptif + "</li>\n\
-                                    <li><u>Photo du groupe</u> : " + tabListGroup[i].photo + "</li>\n\
-                                </ul>");
+                                </ul>\n\
+                                <img src='img/logo_sirene_hurlante.png' alt='Les sirènes hurlantes'/>");
 
 
                     }
@@ -182,7 +181,8 @@ $(document).ready(function () {
 
     //Pour demander de rejoindre un groupe
     $(function () {
-        $(".buttonRejoindre").click(function () {
+        $("#buttonRejoindreA").click(function () {
+            alert("hého")
             //TODO : ajax call to rejoindre groupe pour le current player co
             $.ajax({
                 type: "POST",
@@ -195,17 +195,17 @@ $(document).ready(function () {
             });
         });
     });
-    
-    $("#newParamButton").click(function(){
-        
-        if($("#planning").children("h3").is(":visible")){
+
+    $("#newParamButton").click(function () {
+
+        if ($("#planning").children("h3").is(":visible")) {
             $("#planning").children("h3").hide(500);
             $("#planning").children("h4").hide(500);
-        } else{
+        } else {
             $("#planning").children("h3").show(500);
             $("#planning").children("h4").show(500);
         }
-        
+
     });
 
     //Récupère la liste des demandes

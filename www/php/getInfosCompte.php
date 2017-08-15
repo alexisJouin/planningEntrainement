@@ -6,7 +6,7 @@ try {
 
     session_start(); // On get les variables sessions
     //Préparation de la requête
-    $res = $dbh->prepare("SELECT derby_name, mdp, id, nom, prenom, email, photo FROM player WHERE id = '$_SESSION[id]'");
+    $res = $dbh->prepare("SELECT derby_name, mdp, id, nom, prenom, email FROM player WHERE id = '$_SESSION[id]'");
     $res->execute();
     $membre = $res->fetch(PDO::FETCH_ASSOC);
 
@@ -16,7 +16,6 @@ try {
         "nom" => $membre["nom"],
         "prenom" => $membre["prenom"],
         "mail" => $membre["email"],
-        "photo" => $membre["photo"],
         "mdp" => $membre["mdp"]
     );
 

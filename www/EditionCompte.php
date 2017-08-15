@@ -15,7 +15,7 @@ include("include/testConnect.php");
 
     <!--Formulaire de connexion-->
     <form id="formEditionCompte" class="formConnect" method="POST" action="#">
-        <h2>Vos infos <?php echo utf8_encode($_SESSION['derby_name']);?> </h2>
+        <h2>Vos infos <?php echo utf8_encode($_SESSION['derby_name']); ?> </h2>
         <label for="nom">Nom :</label>
         <input type="text" id="nom" name="nom" placeholder='Nom' required>
         <label for="prenom">Prénom :</label>
@@ -24,8 +24,6 @@ include("include/testConnect.php");
         <input type="email" id="mail" placeholder='Email' required>
         <label for="derby_name">Derby Name :</label>
         <input type="text" id="derby_name" name="derbyName" placeholder='Derby Name' style="margin-bottom: 10px;" required>
-        <label for="photoPlayer">Vous pouvez modifier votre photo pour votre profil :</label>
-        <input type="file" name="image" id="photoPlayer" accept="image/*;capture=camera" style="margin-top: 0px;">
         <br>
         <label for="password"><u><b>Rentrez votre ancien mot de passe valider les changement ! :</b></u></label>
         <input type="password" id="password1" placeholder="Ancien mot de passe" required style="margin-top: 10px">
@@ -38,18 +36,6 @@ include("include/testConnect.php");
         <br>
     </form>
 
-
-
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-        var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
-        (function (d, t) {
-            var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-            g.src = '//www.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g, s)
-        }(document, 'script'));
-    </script>
     <script src="js/updCompte.js"></script>
 </body>
 </html>
