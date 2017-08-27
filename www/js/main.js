@@ -338,16 +338,16 @@ $(document).ready(function () {
                         output += "\
                             <div style = 'height:100%;' class ='entrainement " + classStyle + "' id='" + tabListEntrainement[i].id + "'>\n\
                                 <a href='#modalInfoEntrainement" + tabListEntrainement[i].id + "' data-uk-modal>\n\
-                                    <img src='img/info.png' class='infoButton'/>\n\
                                 </a>\n\
-                                <h1 style='color:white;'>" + $.format.date(tabListEntrainement[i].date, 'ddd d') + "  " + $.format.date(tabListEntrainement[i].date, 'MMMM yyyy') + "</h1>\n\
+                                <h1>" + $.format.date(tabListEntrainement[i].date, 'ddd d') + "  " + $.format.date(tabListEntrainement[i].date, 'MMMM yyyy') + "</h1>\n\
                                 <h2>" + typeEntrainement + " de " + tabListEntrainement[i].horraire_debut + " à " + tabListEntrainement[i].horraire_fin + "</h2>\n\
-                                <br><img src='img/notif_alert.png' id='notReponse' alt='pas de réponse !'/><figcaption id='notReponse'>Vous n'avez pas répondu !</figcaption>\n\
+                                <p id='notReponse'>Vous n'avez pas répondu !</p>\n\
                                 <div id='buttonReponse'>\n\
-                                    <button value='yes' id='yes' idEntrainement=" + tabListEntrainement[i].id + " >OUI</button>\n\
-                                    <button value='no' id='no' idEntrainement=" + tabListEntrainement[i].id + " >NON</button>\n\
-                                    <button value='noContact' id='noContact' idEntrainement=" + tabListEntrainement[i].id + " >Sans Contact</button>\n\
+                                    <a class='waves-effect waves-light btn blue' value='yes' id='yes' idEntrainement=" + tabListEntrainement[i].id + " >OUI</a>\n\
+                                    <a class='waves-effect waves-light btn blue' value='no' id='no' idEntrainement=" + tabListEntrainement[i].id + " >NON</a>\n\
+                                    <a class='waves-effect waves-light btn blue' value='noContact' id='noContact' idEntrainement=" + tabListEntrainement[i].id + " >Sans Contact</a>\n\
                                 </div>\n\
+                                <a class='infoButton' href='#modalInfoEntrainement" + tabListEntrainement[i].id + "' data-uk-modal style='float: initial;'>Liste des participants</a>\n\
                             </div>";
 
                         /*Tableau
@@ -561,17 +561,12 @@ $(document).ready(function () {
                 var tabStatut = jQuery.parseJSON(statut);
                 var statutPlayer = tabStatut['statut'];
 
-                //Si non
                 if (statutPlayer == 0) {
-                    $("#" + idEntrainement + " button[value=no]").addClass("selectedButtonReponse");
-                }
-                //Si peut-être
-                else if (statutPlayer == 1) {
-                    $("#" + idEntrainement + " button[value=yn]").addClass("selectedButtonReponse");
+                    $("a[idEntrainement='" + idEntrainement + "'][value='no']").removeClass("blue");
                 } else if (statutPlayer == 2) {
-                    $("#" + idEntrainement + " button[value=yes]").addClass("selectedButtonReponse");
+                    $("a[idEntrainement='" + idEntrainement + "'][value='yes']").removeClass("blue");
                 } else if (statutPlayer == 3) {
-                    $("#" + idEntrainement + " button[value=noContact]").addClass("selectedButtonReponse");
+                    $("a[idEntrainement='" + idEntrainement + "'][value='noContact']").removeClass("blue");
                 } else if (statutPlayer == "undefined") {
                     $("#" + idEntrainement).children('#notReponse').show();
                 } else if (statut == "false") {
@@ -584,9 +579,9 @@ $(document).ready(function () {
     }
 
     //Gestion des boutons de réponses
-    $('#buttonReponse button').click(function () {
+    $('#buttonReponse a').click(function () {
         var id = $('.jqx-scrollview-page[page=' + currentPage + ']').attr('id');
-        var reponse = $(this).val();
+        var reponse = $(this).attr("value");
         var idButton = $(this).attr("id");
 
         $.ajax({
@@ -595,8 +590,12 @@ $(document).ready(function () {
             async: false,
             data: "option=1&idEntrainement=" + id + "&reponse=" + reponse,
             success: function () {
-                $("#" + id + " button").removeClass("selectedButtonReponse");
-                $("#" + id + " button[value= " + idButton + " ]").addClass("selectedButtonReponse");
+
+                $('#' + id).children().children("a").addClass('blue');
+                $('a[idEntrainement="' + id + '"][value="' + idButton + '"]').removeClass('blue');
+
+//                $("#" + id + " button").removeClass("selectedButtonReponse");
+//                $("#" + id + " button[value= " + idButton + " ]").addClass("selectedButtonReponse");
                 $("#" + id).children("#notReponse").fadeOut(1000);
                 //TODO Modifier directement dans la liste des présence dans INFO
             }

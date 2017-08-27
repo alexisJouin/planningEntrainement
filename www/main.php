@@ -54,8 +54,8 @@ include("include/testConnect.php");
 
     <!-- Cas où l'untilisateur possède un groupe -->
     <div id='planning'>
-        <h3 style="text-align: center"><?php echo utf8_encode($_SESSION['nom_groupe']); ?></h3>
-        <h4 style="text-align: center">Liste des prochains entraînements</h4>
+        <h3 style="text-align: left"><?php echo utf8_encode($_SESSION['nom_groupe']); ?></h3>
+        <h4 style="text-align: left">Liste des prochains entraînements</h4>
         <br>
         <img src="img/direction_arrow_blue_left.png" id="arrowLeft"/>
         <img src="img/direction_arrow_blue_right.png" id="arrowRight"/>

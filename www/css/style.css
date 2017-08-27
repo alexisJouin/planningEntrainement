@@ -117,6 +117,7 @@ a{
 #dateScrolling .jqx-scrollview-page{
     width:inherit;
     height: inherit;
+    background-color: white;
 }
 
 #dateScrollin   g{
@@ -143,11 +144,13 @@ a{
 #dateScrolling h1{
     font-size: 24px;
     position: relative;
-    left: 5%;
+    /*left: 5%;*/
     top:  15px;
+    color:#208ee4;
 }
 #dateScrolling h2{
     font-size: 20px;
+    color:#208ee4;
 }
 
 #formEditionCompte input{
@@ -232,17 +235,30 @@ ul#listLiGroup {
 #buttonResponse{
     margin-top: 20px;
 }
-#buttonReponse button{
-    width: 80%;
-    border-radius: 200px;
-    height: 40px;
+
+#buttonReponse{
+    text-align: center;
 }
 
+#buttonReponse a{
+    width: 60%;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+
+#buttonReponse a:hover{
+    width: 50%;
+    border-radius: 20px;
+}
+
+
 .selectedButtonReponse{
-    border: 2px solid navajowhite;
+    border: 5px solid #27e496;
     font-weight: bold;
     text-decoration: underline;
     font-size: 25px;
+    color: #27e496;
+    width: 50%;
 }
 
 #buttonResponse button{
@@ -277,12 +293,13 @@ a.waves-effect.waves-light.btn.blue.buttonRejoindreA {
 }
 
 #notReponse{
-    float: right;
+    text-align: center;
     display: none;
     position: relative;
-    top: -60px;
-    right: 15px;
-
+    font-size: 22px;
+    color: red;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 img#notReponse {
@@ -328,12 +345,11 @@ img#updateButton:hover {
     color:deeppink;
 }
 
-.infoButton{
-    width:35px; 
-    float:right; 
-    cursor:pointer;
-    top: 14px;
+.infoButton{ 
+    cursor: pointer;
     position: relative;
+    color: #208ee4;
+    text-align: right;
 }
 
 .infoButtonGroupe{
