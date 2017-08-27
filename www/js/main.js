@@ -182,7 +182,6 @@ $(document).ready(function () {
     //Pour demander de rejoindre un groupe
     $(function () {
         $("#buttonRejoindreA").click(function () {
-            alert("hého")
             //TODO : ajax call to rejoindre groupe pour le current player co
             $.ajax({
                 type: "POST",

@@ -13,6 +13,7 @@ try {
     $year = date("y");
     $mois = date("m");
     $current_date = date('y-m-d');
+    $date = $current_date;
 
 
 
