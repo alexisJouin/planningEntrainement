@@ -347,9 +347,13 @@ img#updateButton:hover {
 
 .infoButton{ 
     cursor: pointer;
-    position: relative;
     color: #208ee4;
-    text-align: right;
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 20px;
+    float: left;
+    left: 0px;
+    margin-bottom: 20px;
 }
 
 .infoButtonGroupe{
