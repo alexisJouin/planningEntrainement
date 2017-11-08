@@ -347,6 +347,7 @@ $(document).ready(function () {
                                     <a class='waves-effect waves-light btn blue' value='no' id='no' idEntrainement=" + tabListEntrainement[i].id + " >NON</a>\n\
                                     <a class='waves-effect waves-light btn blue' value='noContact' id='noContact' idEntrainement=" + tabListEntrainement[i].id + " >Sans Contact</a>\n\
                                 </div>\n\
+                                <p>Nombre de participants : <span id='nbrPresence" + tabListEntrainement[i].id + "'</span></p>\n\
                                 <a class='infoButton' href='#modalInfoEntrainement" + tabListEntrainement[i].id + "' data-uk-modal style='float: initial;'>Liste des participants</a>\n\
                             </div>";
 
@@ -532,7 +533,8 @@ $(document).ready(function () {
 
                     $('#nbrPersonne' + idEntrainement).append("Nombre de personne pour l\'entrainement : <b>" + nbrPresence + " joueurs\
                         </b>   dont <b class='boy'>" + nbrMec + " Mec</b> et <b class='girl'>" + nbrNana + " Nana</b>");
-
+                    
+                    $('#nbrPresence' + idEntrainement).append(nbrPresence);
 
 
                 } else {

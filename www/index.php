@@ -60,6 +60,7 @@ include("include/header.php");
         ***********************************************************************
     -->
     <div id="formInscription" >
+        <p>Votre <b>DERBY NAME</b> est le login pour se connecter !! (Vous pouvez le modifier plus tard ;) )</p>
         <div class="row">
             <form class="col s12">
                 <div class="row">
@@ -82,7 +83,7 @@ include("include/header.php");
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="derby_name" type="text" class="validate">
+                        <input id="derby_name" type="text" class="validate" required>
                         <label for="derby_name">Derby Name</label>
                     </div>
                     <div class="input-field col s6">

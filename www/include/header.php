@@ -1,7 +1,9 @@
 <?php
 mb_internal_encoding('UTF-8');
 setlocale(LC_CTYPE, 'fr_FR.UTF-8');
-header('Content-type: text/html; charset=UTF-8');
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+header("Content-Type: text/html; charset=utf-8");
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -16,6 +18,7 @@ header('Content-type: text/html; charset=UTF-8');
 
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
+        <meta http-equiv="pragma" content="no-cache" />
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
