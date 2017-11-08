@@ -630,6 +630,16 @@ $(document).ready(function () {
             $('#' + id).liScroll({travelocity: 0.1});
         });
     });
+    
+    //Text Info Menu
+    $('li[title]').qtip({
+        show: {
+            delay: 50
+        },
+        hide: {
+            delay: 200
+        }
+    });
 
 });
 

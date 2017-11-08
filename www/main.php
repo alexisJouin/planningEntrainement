@@ -8,7 +8,9 @@ include("include/testConnect.php");
 <script type="text/javascript" src="js/uikit/jqxcore.js"></script>
 <script type="text/javascript" src="js/uikit/jqxscrollview.js"></script>
 <script type="text/javascript" src="js/uikit/jqxnotification.js"></script>
+<script type="text/javascript" src="plugins/qtip/jquery.qtip.min.js"></script>
 <link rel="stylesheet" href="css/uikit/jqx.base.css" type="text/css" />
+<link rel="stylesheet" href="plugins/qtip/jquery.qtip.min.css" type="text/css" />
 <link rel="stylesheet" href="css/li-scroller.css" />
 <script type="text/javascript" src="js/jquery.li-scroller.1.0.js"></script>
 
@@ -29,12 +31,12 @@ include("include/testConnect.php");
             <i class="material-icons">menu</i>
         </a>
         <ul>
-            <li id="logOff"><a class="btn-floating red"  href = "index.php"><i class="material-icons">cancel</i></a></li>
-            <li id="ExportMove" ><a class="btn-floating yellow darken-1" href="exportPresence.php"><i class="material-icons">assessment</i></a></li>
-            <li id="PlannningMove"><a class="btn-floating green" href="gestionPlanning.php"><i class="material-icons">settings_applications</i></a></li>
-            <li id="EditProfilMove"><a class="btn-floating blue" href="EditionCompte.php"><i class="material-icons">edit</i></a></li>
-            <li id="EditGroupeMove"><a class="btn-floating blue" href="editionGroupe.php"><i class="material-icons">group</i></a></li>
-            <li id="creationMove"><a class="btn-floating green" href="creationGroup.php"><i class="material-icons">add</i></a></li>
+            <li id="logOff" title="Déconnection"><a class="btn-floating red"  href = "index.php"><i class="material-icons">cancel</i></a></li>
+            <li id="ExportMove" title="Exporter" ><a class="btn-floating yellow darken-1" href="exportPresence.php"><i class="material-icons">assessment</i></a></li>
+            <li id="PlannningMove" title="Paramètres"><a class="btn-floating green" href="gestionPlanning.php"><i class="material-icons">settings_applications</i></a></li>
+            <li id="EditProfilMove" title="Modifier mon profil"><a class="btn-floating blue" href="EditionCompte.php"><i class="material-icons">edit</i></a></li>
+            <li id="EditGroupeMove" title="Mon groupe"><a class="btn-floating blue" href="editionGroupe.php"><i class="material-icons">group</i></a></li>
+            <li id="creationMove" title="Créer un groupe"><a class="btn-floating green" href="creationGroup.php"><i class="material-icons">add</i></a></li>
         </ul>
     </div>
 
