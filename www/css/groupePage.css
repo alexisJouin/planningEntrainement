@@ -1,0 +1,23 @@
+#divPlayers, #divInfosGroupe{
+    display: none;
+}
+
+.buttons {
+    text-align: center;
+}
+
+.buttons a{
+
+}
+
+#formEditionGroupe {
+    text-align: center;
+}
+
+td img{
+    width: 10px;
+}
+
+.order{
+    cursor: pointer;
+}
