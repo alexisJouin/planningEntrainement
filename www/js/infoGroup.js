@@ -60,10 +60,8 @@ $.ajax({
                     success: function (msg) {
 
                         if (msg == 0) {
-                            alert("ATTENTION ! Vous ne pouvez pas vous\n\
-                                retirer de votre propre groupe !!");
+                            alert("ATTENTION ! Vous ne pouvez pas vous retirer de votre propre groupe !!");
                         } else {
-                            alert(idPlayer)
                             $('#' + idPlayer).hide(1000);
                             $('#' + idPlayer).empty();
                         }
