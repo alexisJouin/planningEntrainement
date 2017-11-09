@@ -471,3 +471,7 @@ body.loading {
 body.loading .modalLoad {
     display: block;   
 }
+
+span.jqx-scrollview-button.jqx-fill-state-normal{
+   display: none; 
+}
