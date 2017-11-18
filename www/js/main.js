@@ -22,6 +22,7 @@ $(document).ready(function () {
     //Quand la taille de fenêtre change
     $(window).resize(function () {
         gestionSize();
+        location.reload();
     });
 
     function gestionSize() {
@@ -348,8 +349,7 @@ $(document).ready(function () {
                                     <a class='waves-effect waves-light btn blue' value='noContact' id='noContact' idEntrainement=" + tabListEntrainement[i].id + " >Sans Contact</a>\n\
                                 </div>\n\
                                 <div style='text-align  :center;'>\n\
-                                    <p>Nombre de participants : <span id='nbrPresence" + tabListEntrainement[i].id + "'</span></p>\n\
-                                    <a class='infoButton' href='#modalInfoEntrainement" + tabListEntrainement[i].id + "' data-uk-modal style='float: initial;'>Liste des participants</a>\n\
+                                    <a class='infoButton' href='#modalInfoEntrainement" + tabListEntrainement[i].id + "' data-uk-modal style='float: initial;'>Nombre de participants : <span id='nbrPresence" + tabListEntrainement[i].id + "'</span></a>\n\
                                 </div>\n\
                             </div>";
 
@@ -595,7 +595,7 @@ $(document).ready(function () {
             data: "option=1&idEntrainement=" + id + "&reponse=" + reponse,
             success: function () {
 
-                $('#' + id).children().children("a").addClass('blue');
+                $('#' + id).children("#buttonReponse").children("a").addClass('blue');
                 $('a[idEntrainement="' + id + '"][value="' + idButton + '"]').removeClass('blue');
 
 //                $("#" + id + " button").removeClass("selectedButtonReponse");

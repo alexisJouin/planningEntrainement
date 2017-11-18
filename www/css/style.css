@@ -98,16 +98,11 @@ a{
 }
 
 #formConnect{
-    margin-top: 20%;
+    margin-top: 20px;
 }
 
 #formConnect form, #formInscription form{
     text-align: center;
-}
-
-#formConnect .input-field{
-    left: 10%;
-    position: relative;
 }
 
 #formInscription, #displayConnection{
@@ -120,7 +115,7 @@ a{
     background-color: white;
 }
 
-#dateScrollin   g{
+#dateScrolling{
     background-color: transparent;
     width:50%;
     height:250px;
@@ -131,7 +126,8 @@ a{
 }
 
 #dateScrolling{
-    cursor: -webkit-grab; cursor:-moz-grab;
+    cursor: -webkit-grab;
+    cursor:-moz-grab;
     overflow: hidden;
     position: relative;
     margin-left: 11%;
@@ -362,8 +358,18 @@ img#updateButton:hover {
     cursor:pointer;
     position: relative;
 }
-.logo{
+.logo {
     width:35px;
+}
+
+#logoDiv{
+    margin-top: 15px;
+    text-align: center;
+}
+
+.logoPRD{
+    width: 150px;
+    text-align: center;
 }
 
 .listPlayerReponse, #nbrPersonne{
@@ -473,5 +479,5 @@ body.loading .modalLoad {
 }
 
 span.jqx-scrollview-button.jqx-fill-state-normal{
-   display: none; 
+    display: none; 
 }

@@ -8,34 +8,33 @@ try {
     $req->execute();
     $membre = $req->fetch(PDO::FETCH_ASSOC);
 
-    //Si l'ancien mot de passe correspond on update bien le mdp
-    if ($_POST['pswOld'] == $membre['mdp']) {
-        if ($_POST['mdp'] == "" || $_POST['mdp'] == null) {
+    if ($_POST['option'] == 0) {
+        $updt = $dbh->prepare("UPDATE player set "
+                . " derby_name = '$_POST[derby_name]',"
+                . " nom = '$_POST[nom]',"
+                . " prenom = '$_POST[prenom]',"
+                . " email = '$_POST[mail]' WHERE id = '$_SESSION[id]'");
 
-            $updt = $dbh->prepare("UPDATE player set "
-                    . " derby_name = '$_POST[derby_name]',"
-                    . " nom = '$_POST[nom]',"
-                    . " prenom = '$_POST[prenom]',"
-                    . " email = '$_POST[mail]',"
-                    . " photo = '$_POST[photo]' WHERE id = '$_SESSION[id]'");
-        } else {
-            $updt = $dbh->prepare("UPDATE player set "
-                    . " derby_name = '$_POST[derby_name]',"
-                    . " mdp = '$_POST[mdp]',"
-                    . " nom = '$_POST[nom]',"
-                    . " prenom = '$_POST[prenom]',"
-                    . " email = '$_POST[mail]',"
-                    . " photo = '$_POST[photo]' WHERE id = '$_SESSION[id]'");
-        }
         $updt->execute();
-//        echo json_encode($updt);
+
+        $_SESSION['derby_name'] = $_POST['derby_name'];
         echo 1;
     } else {
-        echo json_encode($membre); //Cas ou mot de passe ne coresspondent pas
-    }
+        if ($_POST['password1'] == $membre['mdp']) {
+            if ($_POST['password2'] !== "" || $_POST['password2'] !== null) {
+                if ($_POST['password2'] == $_POST['password3']) {
+                    $updt = $dbh->prepare("UPDATE player set "
+                            . " mdp = '$_POST[password2]' "
+                            . " WHERE id = '$_SESSION[id]'");
 
-    $req = null;
-    $updt = null;
+                    $updt->execute();
+                    echo 1;
+                }
+            }
+        }else{
+            echo 0;
+        }
+    }
 } catch (PDOException $e) {
     print "Erreur !: " . $e->getMessage() . "<br/>";
     die();

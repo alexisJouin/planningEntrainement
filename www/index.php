@@ -10,20 +10,22 @@ include("include/header.php");
         <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
 
-    <h1>Planning des entraînements Roller Derby</h1>
+    <div id="logoDiv">
+        <img class="logoPRD" src="img/Logo.png"/>
+    </div>
 
     <div id='formConnect'>
         <div class="row">
             <form class="col s12">
                 <div class="row">
-                    <div class="input-field col s8">
+                    <div class="input-field col s12">
                         <i class="material-icons prefix">account_circle</i>
                         <input id="derbyNameConnect" type="text" class="validate" required>
                         <label for="derbyNameConnect">Derby Name</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s8">
+                    <div class="input-field col s12">
                         <i class="material-icons prefix">vpn_key</i>
                         <input id="passwordConnect" type="password" class="validate" required>
                         <label for="passwordConnect">Mot de passe</label>

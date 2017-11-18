@@ -34,7 +34,7 @@ include("include/testConnect.php");
             <li id="logOff" title="Déconnection"><a class="btn-floating red"  href = "index.php"><i class="material-icons">cancel</i></a></li>
             <li id="ExportMove" title="Exporter" ><a class="btn-floating yellow darken-1" href="exportPresence.php"><i class="material-icons">assessment</i></a></li>
             <li id="PlannningMove" title="Paramètres"><a class="btn-floating green" href="gestionPlanning.php"><i class="material-icons">settings_applications</i></a></li>
-            <li id="EditProfilMove" title="Modifier mon profil"><a class="btn-floating blue" href="EditionCompte.php"><i class="material-icons">edit</i></a></li>
+            <li id="EditProfilMove" title="Mon profil"><a class="btn-floating blue" href="EditionCompte.php"><i class="material-icons">edit</i></a></li>
             <li id="EditGroupeMove" title="Mon groupe"><a class="btn-floating blue" href="editionGroupe.php"><i class="material-icons">group</i></a></li>
             <li id="creationMove" title="Créer un groupe"><a class="btn-floating green" href="creationGroup.php"><i class="material-icons">add</i></a></li>
         </ul>
