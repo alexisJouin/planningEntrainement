@@ -89,7 +89,7 @@ include("include/header.php");
                         <label for="derby_name">Derby Name</label>
                     </div>
                     <div class="input-field col s6">
-                        <input id="password" type="password" class="validate" required>
+                        <input id="password" type="password" class="validate" placeholder="MDP" required>
                         <label for="password">Mot de passe</label>
                     </div>
                     <div class="input-field col s6 right">
